@@ -4,6 +4,9 @@ import Report from "./pages/Report";
 import Candidates from './pages/Candidates';
 import { Route, Switch, Redirect } from 'react-router';
 import ErrorDisplay from "./pages/ErrorDisplay";
+import MainHeader from "./components/UI/MainHeader";
+import Footer from "./components/UI/Footer";
+
 import useLoginInfo from "./pages/useLoginInfo";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +17,7 @@ function App() {
 
   return (
     <Container fluid className="m-0 p-0">
+      <MainHeader />
       <Switch>
         <Route exact path="/login">
           <LoginForm />
@@ -30,6 +34,7 @@ function App() {
           <ErrorDisplay message="Page not found" />
         </Route>
       </Switch>
+      <Footer />
     </Container>
   );
 }

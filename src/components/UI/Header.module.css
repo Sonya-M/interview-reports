@@ -1,0 +1,31 @@
+.Header {
+  margin: 0;
+  padding: .5rem 2rem .5rem 2rem ;
+  height: 4rem;
+  background-color:black;
+  color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: lighter;
+}
+.Header a {
+  text-decoration: none;
+  color: inherit;
+}
+.Header a:hover {
+  color:inherit;
+}
+.Menu {
+  display: flex;
+}
+.Menu button {
+  background: transparent;
+  border: 1px solid white;
+}
+.Menu button:hover {
+  background-color: #333;
+  border: 1px solid white;
+
+}
