@@ -22,7 +22,8 @@
 }
 .Menu button {
   background: transparent;
-  border: 1px solid white;
+  /* border: 1px solid white; */
+  border: none;
 }
 .Menu button:hover {
   background-color: #333;

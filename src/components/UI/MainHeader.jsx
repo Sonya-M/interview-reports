@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
-import  {BoxArrowRight} from "react-bootstrap-icons"
+import LogoutBtn from "./LogoutBtn";
 
 export default function MainHeader(props) {
   const homeLink = (<Link to="/">Interview Reports</Link>)
@@ -9,13 +9,13 @@ export default function MainHeader(props) {
   return (
     <Header
       title={homeLink}
-      menuItems={[candidatesLink, < LogoutBtn/>]}
+      menuItems={[candidatesLink, < LogoutBtn onLogout={props.onLogout}/>]}
     />
   )
 }
 
-function LogoutBtn(props) {
-  return (
-    <BoxArrowRight size="1rem"/>
-  )
-}
+// function LogoutBtn(props) {
+//   return (
+//     <BoxArrowRight size="1rem" className={ LogoutBtn }onClick={ props.onLogout}/>
+//   )
+// }
