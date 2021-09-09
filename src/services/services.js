@@ -1,7 +1,17 @@
-const AUTH_ENDPOINT = "http://localhost:3333/login";
-const CANDIDATES_ENDPOINT = "http://localhost:3333/api/candidates";
+import Candidate from "../entities/Candidate";
+import Report from "../entities/Report";
+import Company from "../entities/Company";
 
-const example_header = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
+const AUTH_ENDPOINT = "http://localhost:3333/login";
+const BASE_URL = "http://localhost:3333/api/";
+
+function getHeaders() {
+  console.assert(sessionStorage.getItem("accessToken"));
+  return ({
+    'Content-Type': 'application/json',
+    'Authorization': "Bearer " + sessionStorage.getItem("accessToken")
+  });
+}
 
 export function authenticate(email, password) {
   // const headers = new Headers();
@@ -12,14 +22,14 @@ export function authenticate(email, password) {
     body: JSON.stringify({ email, password })
   }).then(response => {
     if (!response.ok) {
-      console.log(response.status)
+      console.log(response.status);
       throw new Error(response.status);
     }
     return response.json();
   }).then(json => {
     const token = json["accessToken"];
     sessionStorage.setItem("accessToken", token); //save accessToken
-    sessionStorage.setItem("username", email)
+    sessionStorage.setItem("username", email);
     return { email, token };
   }).catch(error => {
     console.log(error);
@@ -27,20 +37,40 @@ export function authenticate(email, password) {
   });
 }
 
-export function getCandidates() {
-  // console.log("Bearer ", sessionStorage.getItem("accessToken"))
-  console.assert(sessionStorage.getItem("accessToken"));
-  return fetch(CANDIDATES_ENDPOINT, {
+export function getData(action) {
+  let link = BASE_URL + action;
+  return (fetch(link, {
     method: "GET",
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + sessionStorage.getItem("accessToken")
-    }
+    headers: getHeaders(),
   }).then(response => {
     if (!response.ok) throw new Error(response.status);
     return response.json();
-  }).then(json => {
-    console.log(json);
-    return json;
-  });
+  }));
+}
+
+export function getCandidates() {
+  return getData("candidates")
+    .then(json => {
+      // console.log("Results", json);
+      // console.log(("Candidates:", json.map(c => new Candidate(c))));
+      return (json.map(c => new Candidate(c)));
+    });
+}
+
+export function getReports() {
+  return getData("reports")
+    .then(json => {
+      // console.log("Reports results: ", json);
+      // console.log("Reports:", json.map(r => new Report(r)));
+      return (json.map(r => new Report(r)));
+    });
+}
+
+export function getCompanies() {
+  return getData("companies")
+    .then(json => {
+      // console.log("Companies json: ", json);
+      // console.log("Companies", json.map(c => new Company(c)));
+      return json.map(c => new Company(c));
+    });
 }
