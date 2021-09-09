@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { candidates } from "../data/candidates";
 import { reports } from "../data/reports";
 import { companies } from "../data/companies";
@@ -7,20 +7,23 @@ import LoginRedirect from "../components/LoginRedirect";
 
 export default function Report(props) {
   let { id } = useParams(); // candidate id
-  
-  const {loggedIn} = props;
+  let location = useLocation();
 
-  const selectedCandidateReport = reports.find(r => r.candidateId === +id);
+  const { loggedIn } = props;
 
-  if (!loggedIn){return (<LoginRedirect />)};
+  const selectedCandidateReport = reports.find((r) => r.candidateId === +id);
+
+  if (!loggedIn) {
+    return <LoginRedirect redirectPath={location} />;
+  }
 
   return (
     <Fragment>
-    <h1>{`CANDIDATE REPORT (ID: ${id})`}</h1>
-    <ul>
-      <li>{selectedCandidateReport.candidateName}</li>
-      <li>{selectedCandidateReport.note}</li>
-    </ul>
-
-  </Fragment>);
+      <h1>{`CANDIDATE REPORT (ID: ${id})`}</h1>
+      <ul>
+        <li>{selectedCandidateReport.candidateName}</li>
+        <li>{selectedCandidateReport.note}</li>
+      </ul>
+    </Fragment>
+  );
 }

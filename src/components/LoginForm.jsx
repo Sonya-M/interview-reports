@@ -38,7 +38,10 @@ const LoginForm = (props) => {
 
   return (
     <div className="m-5  text-center">
-      <h2 className="display-4">Welcome.</h2>
+      <h2 className="display-4">Welcome</h2>
+      <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
+        Please log in to view the content.
+      </p>
       <Form className={styles.LoginForm} onSubmit={handleSubmit}>
         <Form.Control
           type="text"
@@ -55,7 +58,7 @@ const LoginForm = (props) => {
           onChange={handlePasswordInputChange}
         />
         <Button type="submit">Log in</Button>
-        <div style={{color: "red"}}>{message}</div>
+        <div style={{ color: "red" }}>{message}</div>
       </Form>
     </div>
   );

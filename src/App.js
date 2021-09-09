@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Report from "./pages/Report";
 import Candidates from './pages/Candidates';
-import { Route, Switch, Redirect, useLocation } from 'react-router';
+import { Route, Switch, Redirect, useLocation, useHistory } from 'react-router';
 import ErrorDisplay from "./pages/ErrorDisplay";
 import MainHeader from "./components/UI/MainHeader";
 import Footer from "./components/UI/Footer";
@@ -13,6 +13,7 @@ import { Container } from 'react-bootstrap';
 
 function App() {
   let location = useLocation();
+  let history = useHistory();
   console.log("location", location)
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -31,6 +32,7 @@ function App() {
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("username");
     setLoggedIn(false);
+    history.push("/");
   };
 
 
@@ -53,9 +55,9 @@ function App() {
           <Candidates loggedIn={loggedIn} />
         </Route >
 
-        {/* <Route>
-          <Redirect from="/" to="/home"></Redirect>
-        </Route> */}
+        <Route>
+          <Redirect from="/candidates" to="/"></Redirect>
+        </Route>
 
         <Route>
           <ErrorDisplay message="Page not found" />
