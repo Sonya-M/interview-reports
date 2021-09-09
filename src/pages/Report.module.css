@@ -1,14 +1,16 @@
-
 .cardInfo {
-    min-height: 150px;
+  min-height: 150px;
 }
 .candidateInfo {
-    color: gray
+  color: gray;
 }
 .candidateData {
-    font-size: 1.5em;
-    padding-left: 1em;
+  font-size: 1.5em;
+  padding-left: 1em;
 }
 th {
-    border: 1px black solid;
+  border: 1px black solid;
+}
+img.avatar {
+  width: 250px;
 }

@@ -16,7 +16,9 @@ function App() {
   let location = useLocation();
   let history = useHistory();
   console.log("location", location)
+
   const [loggedIn, setLoggedIn] = useState(false);
+
 
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken");
@@ -49,10 +51,15 @@ function App() {
           <LoginForm onLogin={handleLogin} />
         </Route> */}
         <Route exact path="/candidates/:id">
-          <Report loggedIn={loggedIn} />
+          <Report
+            loggedIn={loggedIn}
+
+          />
         </Route>
         <Route exact path="/">
-          <Candidates loggedIn={loggedIn} />
+          <Candidates
+            loggedIn={loggedIn}
+          />
         </Route >
 
         <Route>

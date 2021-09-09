@@ -1,99 +1,90 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
-import { candidates as cant }   from "../data/candidates";
-import { reports } from "../data/reports";
-import { companies } from "../data/companies";
-import { getCandidates, getCompanies, getReports } from "../services/services";
-import LoginRedirect from "../components/LoginRedirect"
+// import { candidates as cant } from "../data/candidates";
+// import { reports } from "../data/reports";
+import { getSingleCandidate, getReports } from "../services/services";
+import LoginRedirect from "../components/LoginRedirect";
 
-
-import style from './Report.module.css'
-import { Table } from './Table';
+import style from "./Report.module.css";
+import { Table } from "./Table";
 
 export default function Report(props) {
-  const {loggedIn} = props;
-  let location = useLocation()
+  const { loggedIn } = props;
+  let location = useLocation();
   let { id } = useParams(); // candidate id
-  // just testing data fetching, state will probably not be here
-  const [candidates, setCandidates] = useState([]);
+
   const [reports, setReports] = useState([]);
-  const [companies, setCompanies] = useState([]);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [selectedCandidateReports, setSelectedCandidateReports] = useState([]);
 
-  // useEffect(() => {
-  //   getCandidates().then((data) => {
-  //     console.log("Fetched candidates", data);
-  //     setCandidates(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getSingleCandidate(id).then((data) => {
+      console.log("selectedCandidate data: ", data);
+      setSelectedCandidate(data);
+    });
+  }, [id]);
 
-  // useEffect(() => {
-  //   getReports().then((data) => {
-  //     console.log("Fetched reports", data);
-  //     setReports(data);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   getCompanies().then((data) => {
-  //     console.log("Fetched companies: ", data);
-  //     setCompanies(data);
-  //   });
-  // }, []);
-  
-  const selectedCandidateReport = reports
-  const selectedCandidate = cant.find(c => c.id === +id)
-  const bDay = new Date (selectedCandidate.birthday)
-  const formatedBirthday = `${bDay.getDate()}.${bDay.getMonth()+1}.${bDay.getFullYear()}`;
- 
-  
-
+  useEffect(() => {
+    getReports().then((data) => {
+      console.log("Fetched reports", data);
+      setReports(data);
+      setSelectedCandidateReports(data.filter((r) => r.candidateId === +id));
+    });
+  }, [id]);
 
   if (!loggedIn) {
     return <LoginRedirect redirectPath={location} />;
   }
 
+  if (!selectedCandidate) {
+    return <Fragment></Fragment>;
+  }
   return (
     <Fragment>
       <h1>{`CANDIDATE REPORT (ID: ${id})`}</h1>
-    <div className="container">
-      <div className="row">
-        <div className="col">
-        <img src="https://picsum.photos/id/237/300/300"/>
-        </div>
-        <div className="col">
-          <div className={style.cardInfo}>
-            <p className={style.candidateInfo}>Name:</p>
-            <span className={style.candidateData}>
-            {selectedCandidate.name}
-            </span>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <img
+              className={style.avatar}
+              src={selectedCandidate.avatar}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/Profile_avatar_placeholder_large.png";
+              }}
+            />
           </div>
-          <div className={style.cardInfo}>
-          <p className={style.candidateInfo}>Email:</p>
-          <span className={style.candidateData}>
-            {selectedCandidate.email}
-            </span>
-          </div>
-
-        </div>
-        <div className="col">
-        <div className={style.cardInfo}>
-        <p className={style.candidateInfo}>Birthday:</p>
-        <span className={style.candidateData}>
-            {formatedBirthday}
-            </span>
-          </div>
-          <div className={style.cardInfo}> 
-          <p className={style.candidateInfo}>Education:</p>
-          <div className={style.candidateData}>
-            {selectedCandidate.education}
+          <div className="col">
+            <div className={style.cardInfo}>
+              <p className={style.candidateInfo}>Name:</p>
+              <span className={style.candidateData}>
+                {selectedCandidate.name}
+              </span>
+            </div>
+            <div className={style.cardInfo}>
+              <p className={style.candidateInfo}>Email:</p>
+              <span className={style.candidateData}>
+                {selectedCandidate.email}
+              </span>
             </div>
           </div>
-
+          <div className="col">
+            <div className={style.cardInfo}>
+              <p className={style.candidateInfo}>Birthday:</p>
+              <span className={style.candidateData}>
+                {selectedCandidate.getBirthday()}
+              </span>
+            </div>
+            <div className={style.cardInfo}>
+              <p className={style.candidateInfo}>Education:</p>
+              <div className={style.candidateData}>
+                {selectedCandidate.education}
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
-    </div>
-    <Table/>
+      <Table reports={reports} />
     </Fragment>
   );
 }
