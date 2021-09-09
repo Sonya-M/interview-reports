@@ -1,35 +1,70 @@
 import React, { useEffect, useState } from "react";
-import LoginForm from "./pages/LoginForm";
+import LoginForm from "./components/LoginForm";
 import Report from "./pages/Report";
 import Candidates from './pages/Candidates';
-import { Route, Switch, Redirect } from 'react-router';
+import { Route, Switch, Redirect, useLocation, useHistory } from 'react-router';
 import ErrorDisplay from "./pages/ErrorDisplay";
-import useLoginInfo from "./pages/useLoginInfo";
+import MainHeader from "./components/UI/MainHeader";
+import Footer from "./components/UI/Footer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container } from 'react-bootstrap';
 
 function App() {
+  let location = useLocation();
+  let history = useHistory();
+  console.log("location", location)
+  const [loggedIn, setLoggedIn] = useState(false);
+
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("accessToken");
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, [loggedIn]);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("username");
+    setLoggedIn(false);
+    history.push("/");
+  };
+
 
   return (
-    <Container fluid className="m-0 p-0">
+    <Container fluid className="m-0 p-0 mb-5">
+      <MainHeader onLogout={handleLogout} />
+
+      {!loggedIn && location.pathname === "/" &&
+        <LoginForm onLogin={handleLogin} />
+      }
+
       <Switch>
-        <Route exact path="/login">
-          <LoginForm />
-        </Route>
+        {/* <Route exact path="/login">
+          <LoginForm onLogin={handleLogin} />
+        </Route> */}
         <Route exact path="/candidates/:id">
-          <Report />
+          <Report loggedIn={loggedIn} />
         </Route>
         <Route exact path="/">
-          <Candidates
-          />
+          <Candidates loggedIn={loggedIn} />
         </Route >
-        <Redirect from="/candidates" to="/"></Redirect>
+
+        <Route>
+          <Redirect from="/candidates" to="/"></Redirect>
+        </Route>
+
         <Route>
           <ErrorDisplay message="Page not found" />
         </Route>
       </Switch>
+
+      <Footer />
     </Container>
   );
 }

@@ -8,7 +8,7 @@ export default function ErrorDisplay(props) {
     <div className="text-center m-5">
       <EmojiFrownFill size="10rem" />
       <h2 className="display-2">{msg}</h2>
-      <Link to="/candidates">Home page</Link>
+      <Link to="/">Home page</Link>
     </div>
   );
 }

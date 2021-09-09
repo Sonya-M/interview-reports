@@ -11,12 +11,14 @@ export function authenticate(email, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
   }).then(response => {
-    if (!response.ok) throw new Error(response.status);
+    if (!response.ok) {
+      console.log(response.status)
+      throw new Error(response.status);
+    }
     return response.json();
   }).then(json => {
     const token = json["accessToken"];
     sessionStorage.setItem("accessToken", token); //save accessToken
-    sessionStorage.setItem("isLoggedIn", "1");
     sessionStorage.setItem("username", email)
     return { email, token };
   }).catch(error => {
@@ -27,6 +29,7 @@ export function authenticate(email, password) {
 
 export function getCandidates() {
   // console.log("Bearer ", sessionStorage.getItem("accessToken"))
+  console.assert(sessionStorage.getItem("accessToken"));
   return fetch(CANDIDATES_ENDPOINT, {
     method: "GET",
     headers: {
