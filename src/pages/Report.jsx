@@ -9,19 +9,32 @@ import { Table } from './Table';
 
 export default function Report(props) {
   let { id } = useParams(); // candidate id
-  // const [loggedIn, setLoggedIn] = useState(false);
+  // just testing data fetching, state will probably not be here
+  const [candidates, setCandidates] = useState([]);
+  const [reports, setReports] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
-  // useEffect(() => {
-  //   const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-  //   if (isLoggedIn === "1") {
-  //     setLoggedIn(true);
-  //   }
-  // }, [loggedIn]);
+  useEffect(() => {
+    getCandidates().then((data) => {
+      console.log("Fetched candidates", data);
+      setCandidates(data);
+    });
+  }, []);
 
-  // const handleLogin = (success) => {
-  //   setLoggedIn(success);
-  // };
-  const loggedIn = true;
+  useEffect(() => {
+    getReports().then((data) => {
+      console.log("Fetched reports", data);
+      setReports(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    getCompanies().then((data) => {
+      console.log("Fetched companies: ", data);
+      setCompanies(data);
+    });
+  }, []);
+  
   const selectedCandidateReport = reports
   const selectedCandidate = candidates.find(c => c.id === +id)
   const bDay = new Date (selectedCandidate.birthday)
@@ -29,12 +42,9 @@ export default function Report(props) {
  
   
 
-  if (!loggedIn)
-    return (
-      <LoginForm
-        // onLogin={handleLogin}
-        redirectPath={"/candidates/" + id} />
-    );
+  if (!loggedIn) {
+    return <LoginRedirect redirectPath={location} />;
+  }
 
   // return <h1>{`CANDIDATE REPORT (ID: ${id})`}</h1>;
 
