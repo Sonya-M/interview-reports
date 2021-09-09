@@ -1,32 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { getCandidates } from "../services/sevices";
-import LoginForm from "./LoginForm";
+import React, { Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getCandidates, getCompanies, getReports } from "../services/services";
+
 import CandidateList from "../components/CandidateList";
 
-
-
 const Candidates = (props) => {
-  // const [loggedIn, setLoggedIn] = useState(false);
-  // useEffect(() => {
-  //   const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-  //   if (isLoggedIn === "1") {
-  //     setLoggedIn(true);
-  //   }
-  // }, [loggedIn]);
+  // just testing data fetching, state will probably not be here
+  const [candidates, setCandidates] = useState([]);
+  const [reports, setReports] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
-  // const handleLogin = () => {
-  //   setLoggedIn(true);
-  // };
-  
-  const loggedIn = true;
+  useEffect(() => {
+    getCandidates().then((data) => {
+      console.log("Fetched candidates", data);
+      setCandidates(data);
+    });
+  }, []);
 
-  return loggedIn ? (
-    <CandidateList />
+  useEffect(() => {
+    getReports().then((data) => {
+      console.log("Fetched reports", data);
+      setReports(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    getCompanies().then((data) => {
+      console.log("Fetched companies: ", data);
+      setCompanies(data);
+    });
+  }, []);
+
+  return props.loggedIn ? (
+    <Fragment>
+      <CandidateList />
+    </Fragment>
   ) : (
-      <LoginForm
-        // onLogin={handleLogin}
-        redirectPath="/candidates" />
+    <Fragment />
   );
 };
 

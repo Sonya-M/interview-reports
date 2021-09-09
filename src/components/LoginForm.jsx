@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { authenticate } from "../services/sevices";
+import { authenticate } from "../services/services";
 
 import { Form, Button } from "react-bootstrap";
 import styles from "./LoginForm.module.css";
@@ -37,8 +37,11 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div className="m-5">
-      <h2 className="display-4 text-center">Welcome.</h2>
+    <div className="m-5  text-center">
+      <h2 className="display-4">Welcome</h2>
+      <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
+        Please log in to view the content.
+      </p>
       <Form className={styles.LoginForm} onSubmit={handleSubmit}>
         <Form.Control
           type="text"
@@ -55,7 +58,7 @@ const LoginForm = (props) => {
           onChange={handlePasswordInputChange}
         />
         <Button type="submit">Log in</Button>
-        <div>{message}</div>
+        <div style={{ color: "red" }}>{message}</div>
       </Form>
     </div>
   );
