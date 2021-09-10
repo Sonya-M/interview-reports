@@ -7,13 +7,11 @@ const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
-    if (props.loggedIn) {
-      getCandidates().then((data) => {
-        console.log("Fetched candidates", data);
-        setCandidates(data);
-      });
-    }
-  }, [props.loggedIn]); // <---- !!!  otherwise fetched attempted on page load,
+    getCandidates().then((data) => {
+      console.log("Fetched candidates", data);
+      setCandidates(data);
+    });
+  }, []); // <---- !!!  otherwise fetched attempted on page load,
   // regardless of whether the user is logged in or not, and regardless of the
   // if condition before the call to fetch
 
