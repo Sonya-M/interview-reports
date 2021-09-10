@@ -48,6 +48,15 @@ export function getData(action) {
   }));
 }
 
+export function getSingleCandidate(id) {
+  return getData("candidates?id=" + id)
+    .then(json => {
+      console.log("getSingleCandidate", json);
+      console.assert(json.length === 1); // ???????
+      return (new Candidate(json[0]));
+    });
+}
+
 export function getCandidates() {
   return getData("candidates")
     .then(json => {
@@ -72,14 +81,5 @@ export function getCompanies() {
       // console.log("Companies json: ", json);
       // console.log("Companies", json.map(c => new Company(c)));
       return json.map(c => new Company(c));
-    });
-}
-
-export function getSingleCandidate(id) {
-  return getData("candidates?id=" + id)
-    .then(json => {
-      console.log("getSingleCandidate", json);
-      console.assert(json.length === 1); // ???????
-      return (new Candidate(json[0]));
     });
 }
