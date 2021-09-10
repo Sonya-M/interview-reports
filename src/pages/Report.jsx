@@ -1,28 +1,52 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
-import { candidates } from "../data/candidates";
-import { reports } from "../data/reports";
-import { companies } from "../data/companies";
 import LoginRedirect from "../components/LoginRedirect";
+import { getReports, getSingleCandidate } from "../services/services";
 
 export default function Report(props) {
   let { id } = useParams(); // candidate id
   let location = useLocation();
-
   const { loggedIn } = props;
 
-  const selectedCandidateReport = reports.find((r) => r.candidateId === +id);
+  const [reports, setReports] = useState([]);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [selectedCandidateReports, setSelectedCandidateReports] = useState([]);
+
+  useEffect(() => {
+    if (props.loggedIn) {
+      getSingleCandidate(id)
+        .then((data) => {
+          console.log("selectedCandidate data: ", data);
+          setSelectedCandidate(data);
+        })
+        .then(
+          // fetching reports depends on first fetching single candidate data!!!
+          getReports().then((data) => {
+            console.log("Fetched reports", data);
+            setReports(data);
+            setSelectedCandidateReports(
+              data.filter((r) => r.candidateId === +id)
+            );
+          })
+        );
+    }
+  }, [id, props.loggedIn]);
 
   if (!loggedIn) {
-    return <LoginRedirect redirectPath={location} />;
+    return <LoginRedirect />;
+  }
+
+  if (!selectedCandidate || selectedCandidateReports.length === 0) {
+    return <p>Loading</p>; // TODO: add spinner
   }
 
   return (
     <Fragment>
       <h1>{`CANDIDATE REPORT (ID: ${id})`}</h1>
+      {/* placeholder - TODO: delete */}
       <ul>
-        <li>{selectedCandidateReport.candidateName}</li>
-        <li>{selectedCandidateReport.note}</li>
+        <li>{selectedCandidate.name}</li>
+        <li>{selectedCandidateReports[0].note}</li>
       </ul>
     </Fragment>
   );
