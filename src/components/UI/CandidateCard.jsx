@@ -8,7 +8,7 @@ const CandidateCard = (props) => {
     const { candidate } = props;
     return (
         <Fragment>
-            <Card className="candidateCard m-2">
+            <Card className="candidateCard m-3">
                 <Card.Img
                     className="cardImg"
                     variant="top"

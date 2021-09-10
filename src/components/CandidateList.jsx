@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
-import { candidates } from "../data/candidates";
+import { Link } from "react-router-dom";
 
 import CandidateCard from "./UI/CandidateCard.jsx"
 
 import { Row, Col, Form } from "react-bootstrap";
-import { BsSearch } from "react-icons/bs";
-import style from "./LinkStyle.module.css"
+import style from "./LinkStyle.module.css";
 
 export default function CandidateList(props) {
+  const { candidates } = props;
+
   return (
     <Fragment>
       <Form as={Row} className="m-5">
