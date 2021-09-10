@@ -40,7 +40,7 @@ function App() {
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
-      <MainHeader onLogout={handleLogout} />
+      <MainHeader loggedIn={loggedIn} onLogout={handleLogout} />
 
       {!loggedIn && location.pathname === "/" &&
         <LoginForm onLogin={handleLogin} />

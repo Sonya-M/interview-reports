@@ -1,39 +1,46 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
-// import { candidates as cant } from "../data/candidates";
-// import { reports } from "../data/reports";
-import { getSingleCandidate, getReports } from "../services/services";
 import LoginRedirect from "../components/LoginRedirect";
+import { getReports, getSingleCandidate } from "../services/services";
 
 import style from "./Report.module.css";
 import { Table } from "./Table";
 
 export default function Report(props) {
   const { loggedIn } = props;
+  let { id } = useParams();
   let location = useLocation();
-  let { id } = useParams(); // candidate id
 
   const [reports, setReports] = useState([]);
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [selectedCandidateReports, setSelectedCandidateReports] = useState([]);
 
   useEffect(() => {
-    getSingleCandidate(id).then((data) => {
-      console.log("selectedCandidate data: ", data);
-      setSelectedCandidate(data);
-    });
-  }, [id]);
-
-  useEffect(() => {
-    getReports().then((data) => {
-      console.log("Fetched reports", data);
-      setReports(data);
-      setSelectedCandidateReports(data.filter((r) => r.candidateId === +id));
-    });
-  }, [id]);
+    if (props.loggedIn) {
+      getSingleCandidate(id)
+        .then((data) => {
+          console.log("selectedCandidate data: ", data);
+          setSelectedCandidate(data);
+        })
+        .then(
+          // fetching reports depends on first fetching single candidate data!!!
+          getReports().then((data) => {
+            console.log("Fetched reports", data);
+            setReports(data);
+            setSelectedCandidateReports(
+              data.filter((r) => r.candidateId === +id)
+            );
+          })
+        );
+    }
+  }, [id, props.loggedIn]);
 
   if (!loggedIn) {
-    return <LoginRedirect redirectPath={location} />;
+    return <LoginRedirect />;
+  }
+
+  if (!selectedCandidate || selectedCandidateReports.length === 0) {
+    return <p>Loading</p>; // TODO: add spinner
   }
 
   if (!selectedCandidate) {
@@ -85,6 +92,11 @@ export default function Report(props) {
         </div>
       </div>
       <Table reports={reports} />
+      {/* placeholder - TODO: delete */}
+      <ul>
+        <li>{selectedCandidate.name}</li>
+        <li>{selectedCandidateReports[0].note}</li>
+      </ul>
     </Fragment>
   );
 }
