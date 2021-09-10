@@ -1,14 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Header from "./Header";
 import LogoutBtn from "./LogoutBtn";
 
 export default function MainHeader(props) {
+  let location = useLocation();
   const homeLink = <Link to="/">Interview Reports</Link>;
-  let menu = [];
   const candidatesLink = <Link to="/">Candidates</Link>;
+  let menu = [];
   if (props.loggedIn) {
-    menu = [candidatesLink, <LogoutBtn onLogout={props.onLogout} />];
+    menu = [<LogoutBtn onLogout={props.onLogout} />];
   }
-  return <Header title={homeLink} menuItems={menu} />;
+  return (
+    <Header
+      title={homeLink}
+      menuItems={[location.pathname !== "/" && candidatesLink, ...menu]}
+    />
+  );
 }
