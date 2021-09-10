@@ -1,26 +1,28 @@
 import React, { Fragment } from "react";
-import { candidates } from "../data/candidates";
+import { Link } from "react-router-dom";
 
 import CandidateCard from "./UI/CandidateCard.jsx"
 
 import { Row, Col } from "react-bootstrap";
+import style from "./LinkStyle.module.css";
 
 export default function CandidateList(props) {
+  const { candidates } = props;
+
   return (
     <Fragment>
-      <Row  className="g-4">
-      <Col xs={6} md={4}>
+      <Row xs={1} md={3} className="m-5">
         {candidates.map( c => (
-      
-            <CandidateCard 
-              key={c.id}
-              candidate={c}
-             /> 
-          
+          <Col className="mb-5">
+            <Link to={"/candidates/" + c.id } className={style.linksStyle}>
+              <CandidateCard 
+                key={c.id}
+                candidate={c}
+              /> 
+            </Link>
+          </Col>
         ))}
-  </Col>
-</Row>
-      
+      </Row>
     </Fragment>
   );
 }

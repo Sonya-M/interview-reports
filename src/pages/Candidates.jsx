@@ -33,7 +33,7 @@ const Candidates = (props) => {
 
   return props.loggedIn ? (
     <Fragment>
-      <CandidateList />
+      <CandidateList candidates={candidates}/>
     </Fragment>
   ) : (
     <Fragment />
