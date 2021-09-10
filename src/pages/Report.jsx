@@ -13,28 +13,22 @@ export default function Report(props) {
   const [selectedCandidateReports, setSelectedCandidateReports] = useState([]);
 
   useEffect(() => {
-    if (props.loggedIn) {
-      getSingleCandidate(id)
-        .then((data) => {
-          console.log("selectedCandidate data: ", data);
-          setSelectedCandidate(data);
+    getSingleCandidate(id)
+      .then((data) => {
+        console.log("selectedCandidate data: ", data);
+        setSelectedCandidate(data);
+      })
+      .then(
+        // fetching reports depends on first fetching single candidate data!!!
+        getReports().then((data) => {
+          console.log("Fetched reports", data);
+          setReports(data);
+          setSelectedCandidateReports(
+            data.filter((r) => r.candidateId === +id)
+          );
         })
-        .then(
-          // fetching reports depends on first fetching single candidate data!!!
-          getReports().then((data) => {
-            console.log("Fetched reports", data);
-            setReports(data);
-            setSelectedCandidateReports(
-              data.filter((r) => r.candidateId === +id)
-            );
-          })
-        );
-    }
-  }, [id, props.loggedIn]);
-
-  if (!loggedIn) {
-    return <LoginRedirect />;
-  }
+      );
+  }, [id]);
 
   if (!selectedCandidate || selectedCandidateReports.length === 0) {
     return <p>Loading</p>; // TODO: add spinner
