@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import CandidateCard from "./UI/CandidateCard.jsx"
 
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import style from "./LinkStyle.module.css";
 
 export default function CandidateList(props) {
@@ -23,6 +23,7 @@ export default function CandidateList(props) {
           </Col>
         ))}
       </Row>
+      
     </Fragment>
   );
 }
