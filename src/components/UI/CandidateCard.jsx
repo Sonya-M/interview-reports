@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Card } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 
 import "./CandidateCard.css"
 
@@ -8,6 +8,7 @@ const CandidateCard = (props) => {
     const { candidate } = props;
     return (
         <Fragment>
+            <Col xs={12} md={4}>
             <Card className="candidateCard m-3">
                 <Card.Img
                     className="cardImg"
@@ -24,6 +25,7 @@ const CandidateCard = (props) => {
                     </Card.Text>
                 </Card.Body>
             </Card>
+            </Col> 
         </Fragment>
     )
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 import CandidateCard from "./UI/CandidateCard.jsx"
@@ -6,20 +6,22 @@ import CandidateCard from "./UI/CandidateCard.jsx"
 import { Row, Col, Form, InputGroup, FormControl } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 import style from "./LinkStyle.module.css";
+import Candidates from "../pages/Candidates.jsx";
 
 export default function CandidateList(props) {
   const { candidates } = props;
-  const candidatesCopy = {...candidates}
+  // const[searchResult, setSearchResult] = useState([]);
   
-
-  const filterCandidates = (event) => {
-    let filteredCandidates = [];
-    if(event.target.value) {
-      filteredCandidates = candidates.filter(item => item.name.toLowerCase().includes(event.target.value.toLowerCase()));
-    } else {
-
-    }
-  }
+  // const filterCandidates = (e) => {
+  //   let filtered =[];
+  //   if(e.target.value) {
+  //     filtered = candidates.filter(item => item.name.toLowerCase().includes(e.target.value).toLowerCase());
+  //     setSearchResult(filtered);
+  //   }
+  //   else {
+  //     setSearchResult(candidates);
+  //   }
+  // }
 
   return (
     <Fragment>
@@ -33,13 +35,11 @@ export default function CandidateList(props) {
       </Form>
       <Row  className="g-4 m-5">
         {candidates.map( c => (
-          <Col xs={12} md={4}>
             <CandidateCard 
               key={c.id}
               candidate={c}
               className={style.linksStyle}
-             /> 
-           </Col>   
+             />  
         ))}
       </Row>
     </Fragment>
