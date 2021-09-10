@@ -4,6 +4,8 @@ import { candidates } from "../data/candidates";
 import CandidateCard from "./UI/CandidateCard.jsx"
 
 import { Row, Col, Form } from "react-bootstrap";
+import { BsSearch } from "react-icons/bs";
+import style from "./LinkStyle.module.css"
 
 export default function CandidateList(props) {
   return (
@@ -13,12 +15,13 @@ export default function CandidateList(props) {
           <Form.Control type="text" size="sm" />
         </Col>
       </Form>
-      <Row  className="g-4">
+      <Row  className="g-4 m-5">
         {candidates.map( c => (
-          <Col xs={6} md={4}>
+          <Col xs={1} md={4}>
             <CandidateCard 
               key={c.id}
               candidate={c}
+              className={style.linksStyle}
              /> 
            </Col>   
         ))}
