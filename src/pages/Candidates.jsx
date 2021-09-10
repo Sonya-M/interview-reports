@@ -11,9 +11,7 @@ const Candidates = (props) => {
       console.log("Fetched candidates", data);
       setCandidates(data);
     });
-  }, []); // <---- !!!  otherwise fetched attempted on page load,
-  // regardless of whether the user is logged in or not, and regardless of the
-  // if condition before the call to fetch
+  }, []);
 
   return props.loggedIn ? (
     <Fragment>
