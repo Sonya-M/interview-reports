@@ -83,12 +83,3 @@ export function getCompanies() {
       return json.map(c => new Company(c));
     });
 }
-
-export function getSingleCandidate(id) {
-  return getData("candidates?id=" + id)
-    .then(json => {
-      console.log("getSingleCandidate", json);
-      console.assert(json.length === 1); // ???????
-      return (new Candidate(json[0]));
-    });
-}
