@@ -10,6 +10,7 @@ export default function Header(props) {
       <h1 className="display-5">{props.title}</h1>
       <div className={styles.Menu}>
         {props.menuItems.map((item, index) => {
+          if (!item) return;
           return (
             <Button key={index} className={menuItemClasses} size="sm">
               {item}
