@@ -37,8 +37,9 @@ export function authenticate(email, password) {
   });
 }
 
-export function getData(action) {
+export function getData(action, params) {
   let link = BASE_URL + action;
+  if (params && params.length > 0) link += "?" + concatParams(params);
   return (fetch(link, {
     method: "GET",
     headers: getHeaders(),
@@ -48,12 +49,25 @@ export function getData(action) {
   }));
 }
 
+function concatParams(params) {
+  let result = params.map(p => `${p.key}=${p.value}`);
+  return result.join("&");
+}
+
+/* export function getReportsForCandidate(candidateId) {
+  return getData("reports", [{ key: "candidateId", value: candidateId }])
+    .then(json => {
+      return (json.map(r => new Report(r)));
+    });
+}
+
 export function getSingleCandidate(id) {
-  return getData("candidates?id=" + id)
+  return getData("candidates", [{ key: "id", value: id }])
     .then(json => {
       console.log("getSingleCandidate", json);
-      console.assert(json.length === 1); // ???????
-      return (new Candidate(json[0]));
+      const noResults = json.length === 0;
+      if (noResults) console.log("getSingleCandidate: No results!");
+      return (noResults ? [] : new Candidate(json[0]));
     });
 }
 
@@ -65,6 +79,8 @@ export function getCandidates() {
       return (json.map(c => new Candidate(c)));
     });
 }
+
+
 
 export function getReports() {
   return getData("reports")
@@ -83,3 +99,27 @@ export function getCompanies() {
       return json.map(c => new Company(c));
     });
 }
+ */
+
+
+///////////////////////////////////////////////////////
+// TODO: adapt Nikola's code for save and delete below:
+// export async function saveData(action, method, data) {
+//   let link = url + action;
+//   var result = await fetch(link, {
+//     method: method,
+//     headers: headers,
+//     body: JSON.stringify(data)
+//   });
+
+//   let jsonResult = await result.json();
+//   return jsonResult;
+// }
+
+// export async function deleteData(action, id) {
+//   let link = url + action + "?id=" + id;
+//   let result = await fetch(link, { method: "DELETE", headers: headers });
+//   let data = await result.json();
+//   return data;
+// }
+////////////////////////////////////////////////////////////
