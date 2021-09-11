@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+.table {
+  margin-top: 3rem;
+  background: #c7c7c7;
+  box-shadow: -2px -2px 11px #e3e3e3, 2px 2px 11px #ababab;
+}
+
+.th {
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.4;
+  border-top-left-radius: 10px;
+  background-color: #6c7ae0;
+  border: #2c876d 1px solid;
+}
+
+.passed {
+  color: #2c876d;
+}
+.declined {
+  color: #872c2c;
+}
+
+.tr:nth-child(even) {
+  background: hsl(0, 0%, 80%);
+  color: hsl(0, 0%, 27%);
+}
+.tr:nth-child(odd) {
+  background: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 27%);
+}
+.eyeFill:hover {
+  cursor: pointer;
+}
