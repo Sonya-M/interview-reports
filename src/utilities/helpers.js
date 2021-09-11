@@ -11,3 +11,24 @@ export function formatDate(date) {
   let y = date.getFullYear();
   return d + ". " + m + ". " + y + ".";
 }
+/**
+ * 
+ * @param {string} stringToSearch 
+ * @param {string} queryString 
+ * @returns true if stringToSearch includes all of the words in query string, 
+ * in any order (so if one types the surname before the first name,
+ * the return val is still true)
+ */
+ export const includesIgnoreCase = (stringToSearch, queryString) => {
+  stringToSearch = stringToSearch.toLowerCase();
+  queryString = (queryString.trim()).toLowerCase();
+  let queries = queryString.split(/\s+/);
+ 
+
+  if (queryString.length === 0) return true;
+  for (let i = 0; i < queries.length; i++) {
+    if (!stringToSearch.includes(queries[i])) return false;
+  }
+
+  return true;
+};

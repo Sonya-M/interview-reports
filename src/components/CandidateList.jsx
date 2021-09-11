@@ -1,47 +1,45 @@
-import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useState, useEffect } from "react";
+
 
 import CandidateCard from "./UI/CandidateCard.jsx"
+import SearchBar from "./SearchBar.jsx";
+import { includesIgnoreCase } from "../utilities/helpers.js"
 
-import { Row, Col, Form, InputGroup, FormControl } from "react-bootstrap";
-import { Search } from "react-bootstrap-icons";
-import style from "./LinkStyle.module.css";
-import Candidates from "../pages/Candidates.jsx";
+import { Row } from "react-bootstrap";
 
-export default function CandidateList(props) {
-  const { candidates } = props;
-  // const[searchResult, setSearchResult] = useState([]);
+
+
+const CandidateList = ({candidates}) => {
+  const [searchResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    setSearchResult(candidates);
+  },[])
+
   
-  // const filterCandidates = (e) => {
-  //   let filtered =[];
-  //   if(e.target.value) {
-  //     filtered = candidates.filter(item => item.name.toLowerCase().includes(e.target.value).toLowerCase());
-  //     setSearchResult(filtered);
-  //   }
-  //   else {
-  //     setSearchResult(candidates);
-  //   }
-  // }
+  const filterCandidates = (event) => {
+    let filtered = [];
+    if(event.target.value) {
+      filtered = candidates.filter(candidate => includesIgnoreCase(candidate.name, event.target.value));
+      setSearchResult(filtered);
+    } else {
+      setSearchResult(candidates);
+    }
+  }
 
-  return (
+  return(
     <Fragment>
-      <Form as={Row} className="m-5">
-        <Col sm={4} className="offset-sm-4" >
-        <InputGroup className="mb-2">
-          <InputGroup.Text><Search size="1rem"/></InputGroup.Text>
-          <FormControl  type="text" />
-      </InputGroup>
-        </Col>
-      </Form>
+      <SearchBar filterCandidates={filterCandidates}/>
       <Row  className="g-4 m-5">
-        {candidates.map( c => (
-            <CandidateCard 
-              key={c.id}
-              candidate={c}
-              className={style.linksStyle}
-             />  
+        {searchResult.map( item => (
+          <CandidateCard 
+            key={item.id}
+            candidate={item}
+            /> 
         ))}
       </Row>
     </Fragment>
-  );
-}
+  )
+} 
+
+export default CandidateList;
