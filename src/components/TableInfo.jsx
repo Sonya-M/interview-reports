@@ -1,25 +1,44 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { EyeFill } from "react-bootstrap-icons";
 import style from "./Table.module.css";
+import SingleReport from "./ModalWrapper";
+import ModalWrapper from "./ModalWrapper";
+import Report from "../pages/Report";
+import ReportDetails from "./ReportDetails";
 
 export const TableInfo = (props) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   if (!props.reportInfo) {
     return <div>Loading...</div>;
   }
   const info = props.reportInfo;
+  const modalBody = <ReportDetails info={info} />;
 
   return (
-    <tr className={style.tr}>
-      <td>{info.companyName}</td>
-      <td>{info.interviewDate}</td>
-      <td className={info.status === "passed" ? style.passed : style.declined}>
-        {info.status}
-      </td>
-      <td>
-        <EyeFill className={style.eyeFill} />
-      </td>
-    </tr>
+    <Fragment>
+      <ModalWrapper
+        title={info.candidateName}
+        content={modalBody}
+        show={show}
+        onHide={handleClose}
+      />
+      <tr className={style.tr}>
+        <td>{info.companyName}</td>
+        <td>{info.getInterviewDate()}</td>
+        <td
+          className={info.status === "passed" ? style.passed : style.declined}
+        >
+          {info.status}
+        </td>
+        <td>
+          <EyeFill className={style.eyeFill} onClick={handleShow} />
+        </td>
+      </tr>
+    </Fragment>
   );
 };
 
