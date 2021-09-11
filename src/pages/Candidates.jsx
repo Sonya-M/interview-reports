@@ -11,7 +11,11 @@ const Candidates = (props) => {
       console.log("Fetched candidates", data);
       setCandidates(data);
     });
+
   }, []);
+  if(candidates.length === 0) {
+    return <div>Loading ...</div>
+  }
 
   return props.loggedIn ? (
     <Fragment>
