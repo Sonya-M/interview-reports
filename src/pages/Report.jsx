@@ -4,6 +4,7 @@ import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
 
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
+import { PLACEHOLDER_IMG } from "../shared/constants";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
@@ -12,7 +13,7 @@ export default function Report(props) {
   let { id } = useParams(); // candidate id
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
-  
+
   useEffect(() => {
     CandidateCommunicator.getById(id).then((data) => {
       console.log("selectedCandidate data: ", data);
@@ -35,13 +36,17 @@ export default function Report(props) {
   }
   return (
     <Fragment>
-      <div className={`container ${style.data}`} >
+      <div className={`container ${style.data}`}>
         <div className="row">
           <div className="col">
-            <ImageGuaranteed
-              preferredImg={selectedCandidate.avatar}
-              placeholderImg="/Profile_avatar_placeholder_large.png"
-            />
+            {selectedCandidate.avatar ? (
+              <ImageGuaranteed
+                preferredImg={selectedCandidate.avatar}
+                placeholderImg="/Profile_avatar_placeholder_large.png"
+              />
+            ) : (
+              <img src={PLACEHOLDER_IMG} alt="No image available" />
+            )}
           </div>
           <div className="col">
             <div className={style.cardInfo}>
