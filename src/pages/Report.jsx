@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
-
+import ErrorDisplay from "../pages/ErrorDisplay"; // TODO: move to components!!!
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
 import { PLACEHOLDER_IMG } from "../shared/constants";
 
@@ -13,26 +13,49 @@ export default function Report(props) {
   let { id } = useParams(); // candidate id
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    CandidateCommunicator.getById(id).then((data) => {
-      console.log("selectedCandidate data: ", data);
-      setSelectedCandidate(data);
-    });
-  }, [id]);
-  useEffect(() => {
-    ReportCommunicator.getAllForCandidate(id).then((data) => {
-      console.log("reports for candidate: ", data);
-      setReports(data);
-    });
+    CandidateCommunicator.getById(id)
+      .then((data) => {
+        console.log("selectedCandidate data: ", data);
+        setSelectedCandidate(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
-  if (!selectedCandidate) {
+  useEffect(() => {
+    ReportCommunicator.getAllForCandidate(id)
+      .then((data) => {
+        console.log("reports for candidate: ", data);
+        setReports(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
     return <p>Loading</p>; // TODO: add spinner
   }
 
-  if (!selectedCandidate) {
-    return <Fragment></Fragment>;
+  if (error) {
+    return <ErrorDisplay message="Sorry, failed to load data" />;
+  }
+
+  if (!selectedCandidate || reports.length === 0) {
+    return <ErrorDisplay message="No data available." />;
   }
   return (
     <Fragment>
@@ -42,7 +65,7 @@ export default function Report(props) {
             {selectedCandidate.avatar ? (
               <ImageGuaranteed
                 preferredImg={selectedCandidate.avatar}
-                placeholderImg="/Profile_avatar_placeholder_large.png"
+                placeholderImg={PLACEHOLDER_IMG}
               />
             ) : (
               <img src={PLACEHOLDER_IMG} alt="No image available" />

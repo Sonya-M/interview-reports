@@ -3,19 +3,35 @@ import React, { Fragment, useState, useEffect } from "react";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 
 import CandidateList from "../components/CandidateList";
+import ErrorDisplay from "./ErrorDisplay";
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    CandidateCommunicator.getAll().then((data) => {
-      console.log("Fetched candidates", data);
-      setCandidates(data);
-    });
+    CandidateCommunicator.getAll()
+      .then((data) => {
+        setCandidates(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [candidates]);
 
-  }, []);
-  if(candidates.length === 0) {
-    return <div>Loading ...</div>
+  if (loading) {
+    return <div>Loading ...</div>;
+  }
+
+  if (candidates.length === 0) {
+    return (
+      <Fragment>
+        <ErrorDisplay message="Sorry, failed to fetch data." />
+      </Fragment>
+    );
   }
 
   return props.loggedIn ? (

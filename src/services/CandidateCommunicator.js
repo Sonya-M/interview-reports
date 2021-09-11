@@ -20,7 +20,8 @@ export default class CandidateCommunicator {
         const noResults = json.length === 0;
         if (noResults) console.log("getSingleCandidate: No results!");
         else console.assert(json.length === 1);
-        return (noResults ? json : new Candidate(json[0]));
+        return (noResults ? null : new Candidate(json[0])); // ???? TODO: Pitaj Nikolu
+        // da li je bolje da vrati null ili prazan niz!
       });
   }
 }
