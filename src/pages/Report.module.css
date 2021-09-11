@@ -1,0 +1,16 @@
+.data {
+  margin-top: 2rem;
+}
+.cardInfo {
+  min-height: 150px;
+}
+.candidateInfo {
+  color: gray;
+}
+.candidateData {
+  font-size: 1.5em;
+  padding-left: 1em;
+}
+th {
+  border: 1px black solid;
+}
