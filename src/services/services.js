@@ -13,6 +13,17 @@ function getHeaders() {
   });
 }
 
+// class HttpService {
+//   get(url, config, body) {
+//     const params = { method: 'GET', ...headers, body };
+//     return fetch(url, params);
+//   }
+//   post(url, headers, body) {
+//     const params = { method: 'POST', ...headers, body };
+//     return fetch(url, params);
+//   }
+// }
+
 export function authenticate(email, password) {
   // const headers = new Headers();
   // headers.set('Authorization', 'Basic ' + Buffer.from(email + ":" + password).toString('base64'));
