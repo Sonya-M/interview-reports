@@ -58,7 +58,7 @@ export default function Report(props) {
       <div className={`container ${style.data}`}>
         <div className="row">
           <div className="col">
-            <img src="https://picsum.photos/id/237/300/300" />
+            <img src={selectedCandidate.avatar} />
           </div>
           <div className="col">
             <div className={style.cardInfo}>
