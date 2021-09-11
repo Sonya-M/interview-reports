@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-import ImageGuaranteed from "./ImageGuaranteed";
+import ImageGuaranteed from "./UI/ImageGuaranteed";
 
 import { Card, Col } from "react-bootstrap";
 import style from "./CandidateCard.module.css";
