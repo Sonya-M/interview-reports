@@ -1,51 +1,29 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useParams, useLocation, Link } from "react-router-dom";
-import { candidates as cant } from "../data/candidates";
-import { reports } from "../data/reports";
-import { companies } from "../data/companies";
-import { getCandidates, getCompanies, getReports } from "../services/services";
-import LoginRedirect from "../components/LoginRedirect";
+import { useParams } from "react-router-dom";
+import CandidateCommunicator from "../services/CandidateCommunicator";
+import ReportCommunicator from "../services/ReportCommunicator";
+
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
 
 export default function Report(props) {
-  const { loggedIn } = props;
-  let location = useLocation();
   let { id } = useParams(); // candidate id
-  // just testing data fetching, state will probably not be here
-  const [candidates, setCandidates] = useState([]);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
-  const [companies, setCompanies] = useState([]);
-
-  // useEffect(() => {
-  //   getCandidates().then((data) => {
-  //     console.log("Fetched candidates", data);
-  //     setCandidates(data);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   getReports().then((data) => {
-  //     console.log("Fetched reports", data);
-  //     setReports(data);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   getCompanies().then((data) => {
-  //     console.log("Fetched companies: ", data);
-  //     setCompanies(data);
-  //   });
-  // }, []);
-
-  const selectedCandidateReports = reports;
-  const selectedCandidate = cant.find((c) => c.id === +id);
-  const bDay = new Date(selectedCandidate.birthday);
-  const formatedBirthday = `${bDay.getDate()}.${
-    bDay.getMonth() + 1
-  }.${bDay.getFullYear()}`;
+  useEffect(() => {
+    CandidateCommunicator.getById(id).then((data) => {
+      console.log("selectedCandidate data: ", data);
+      setSelectedCandidate(data);
+    });
+  }, [id]);
+  useEffect(() => {
+    ReportCommunicator.getAllForCandidate(id).then((data) => {
+      console.log("reports for candidate: ", data);
+      setReports(data);
+    });
+  }, [id]);
 
   if (!selectedCandidate) {
     return <p>Loading</p>; // TODO: add spinner
@@ -81,7 +59,9 @@ export default function Report(props) {
           <div className="col">
             <div className={style.cardInfo}>
               <p className={style.candidateInfo}>Birthday:</p>
-              <span className={style.candidateData}>{formatedBirthday}</span>
+              <span className={style.candidateData}>
+                {selectedCandidate.getBirthday()}
+              </span>
             </div>
             <div className={style.cardInfo}>
               <p className={style.candidateInfo}>Education:</p>
@@ -92,7 +72,7 @@ export default function Report(props) {
           </div>
         </div>
       </div>
-      <Table />
+      <Table reports={reports} />
     </Fragment>
   );
 }
