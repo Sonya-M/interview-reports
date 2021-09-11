@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 
-import CandidateCard from "./UI/CandidateCard.jsx"
+import CandidateCard from "./CandidateCard.jsx"
 import SearchBar from "./SearchBar.jsx";
 import { includesIgnoreCase } from "../utilities/helpers.js"
 
