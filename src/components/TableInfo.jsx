@@ -1,10 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { EyeFill } from "react-bootstrap-icons";
 import style from "./Table.module.css";
 import SingleReport from "./SingleReport";
 
 export const TableInfo = (props) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   if (!props.reportInfo) {
     return <div>Loading...</div>;
   }
@@ -12,7 +16,7 @@ export const TableInfo = (props) => {
 
   return (
     <Fragment>
-      <SingleReport />
+      <SingleReport show={show} onHide={handleClose} />
       <tr className={style.tr}>
         <td>{info.companyName}</td>
         <td>{info.getInterviewDate()}</td>
@@ -22,7 +26,7 @@ export const TableInfo = (props) => {
           {info.status}
         </td>
         <td>
-          <EyeFill className={style.eyeFill} onClick={props.onShow} />
+          <EyeFill className={style.eyeFill} onClick={handleShow} />
         </td>
       </tr>
     </Fragment>

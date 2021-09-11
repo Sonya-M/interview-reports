@@ -12,9 +12,7 @@ export default function Report(props) {
   let { id } = useParams(); // candidate id
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  
   useEffect(() => {
     CandidateCommunicator.getById(id).then((data) => {
       console.log("selectedCandidate data: ", data);
@@ -37,7 +35,7 @@ export default function Report(props) {
   }
   return (
     <Fragment>
-      <div className={`container ${style.data}`} onClick={handleClose}>
+      <div className={`container ${style.data}`} >
         <div className="row">
           <div className="col">
             <ImageGuaranteed
@@ -75,7 +73,7 @@ export default function Report(props) {
           </div>
         </div>
       </div>
-      <Table reports={reports} onShow={handleShow} />
+      <Table reports={reports} />
     </Fragment>
   );
 }
