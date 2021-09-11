@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { EyeFill } from "react-bootstrap-icons";
 import style from "./Table.module.css";
+import SingleReport from "./SingleReport";
 
 export const TableInfo = (props) => {
   if (!props.reportInfo) {
@@ -10,16 +11,21 @@ export const TableInfo = (props) => {
   const info = props.reportInfo;
 
   return (
-    <tr className={style.tr}>
-      <td>{info.companyName}</td>
-      <td>{info.interviewDate}</td>
-      <td className={info.status === "passed" ? style.passed : style.declined}>
-        {info.status}
-      </td>
-      <td>
-        <EyeFill className={style.eyeFill} />
-      </td>
-    </tr>
+    <Fragment>
+      <SingleReport />
+      <tr className={style.tr}>
+        <td>{info.companyName}</td>
+        <td>{info.getInterviewDate()}</td>
+        <td
+          className={info.status === "passed" ? style.passed : style.declined}
+        >
+          {info.status}
+        </td>
+        <td>
+          <EyeFill className={style.eyeFill} onClick={props.onShow} />
+        </td>
+      </tr>
+    </Fragment>
   );
 };
 
