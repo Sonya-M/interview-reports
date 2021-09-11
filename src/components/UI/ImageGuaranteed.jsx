@@ -9,6 +9,7 @@ export default function ImageGuaranteed(props) {
       onError={(e) => {
         e.target.onerror = null;
         e.target.src = props.placeholderImg;
+        e.target.alt = props.alt;
       }}
     />
   );
