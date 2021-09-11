@@ -1,7 +1,14 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 import LoginRedirect from "../components/LoginRedirect";
-import { getReports, getSingleCandidate } from "../services/services";
+// import {
+//   getReports,
+//   getSingleCandidate,
+//   getReportsForCandidate,
+// } from "../services/services";
+
+import CandidateCommunicator from "../services/CandidateCommunicator";
+import ReportCommunicator from "../services/ReportCommunicator";
 
 export default function Report(props) {
   let { id } = useParams(); // candidate id
@@ -13,21 +20,17 @@ export default function Report(props) {
   const [selectedCandidateReports, setSelectedCandidateReports] = useState([]);
 
   useEffect(() => {
-    getSingleCandidate(id)
-      .then((data) => {
-        console.log("selectedCandidate data: ", data);
-        setSelectedCandidate(data);
-      })
-      .then(
-        // fetching reports depends on first fetching single candidate data!!!
-        getReports().then((data) => {
-          console.log("Fetched reports", data);
-          setReports(data);
-          setSelectedCandidateReports(
-            data.filter((r) => r.candidateId === +id)
-          );
-        })
-      );
+    CandidateCommunicator.getById(id).then((data) => {
+      console.log("selectedCandidate data: ", data);
+      setSelectedCandidate(data);
+    });
+  }, [id]);
+
+  useEffect(() => {
+    ReportCommunicator.getAllForCandidate(id).then((data) => {
+      console.log("reports for candidate: ", data);
+      setSelectedCandidateReports(data);
+    });
   }, [id]);
 
   if (!selectedCandidate || selectedCandidateReports.length === 0) {
