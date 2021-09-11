@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { reports } from "../data/reports";
 import style from "./Table.module.css";
 import { EyeFill } from "react-bootstrap-icons";
+import { TableInfo } from "./TableInfo";
 
 export const Table = () => {
   let { id } = useParams();
@@ -25,31 +26,22 @@ export const Table = () => {
   console.log(dataTest);
 
   return (
-    <table className={`${style.table} container`}>
-      <thead className={style.th}>
-        <tr>
-          <th>Company</th>
-          <th>Interview Date</th>
-          <th colSpan="2">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((d) => (
-          <tr className={style.tr}>
-            <td>{d.companyName}</td>
-            <td>{d.interviewDate}</td>
-            <td
-              className={d.status === "passed" ? style.passed : style.declined}
-            >
-              {d.status}
-            </td>
-            <td>
-              <EyeFill />
-            </td>
+    <div className={`container ${style.tableContainer}`}>
+      <table className={`${style.table} container`}>
+        <thead className={style.th}>
+          <tr>
+            <th>Company</th>
+            <th>Interview Date</th>
+            <th colSpan="2">Status</th>
           </tr>
-        ))}
-      </tbody>
-      {console.log(data)}
-    </table>
+        </thead>
+        <tbody>
+          {data.map((d) => (
+            <TableInfo reportInfo={d} />
+          ))}
+        </tbody>
+        {console.log(data)}
+      </table>
+    </div>
   );
 };

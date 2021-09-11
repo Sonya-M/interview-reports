@@ -16,7 +16,9 @@ function App() {
   let location = useLocation();
   let history = useHistory();
   console.log("location", location)
+
   const [loggedIn, setLoggedIn] = useState(false);
+
 
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken");
@@ -38,31 +40,29 @@ function App() {
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
-      <MainHeader onLogout={handleLogout} />
+      <MainHeader loggedIn={loggedIn} onLogout={handleLogout} />
 
-      {!loggedIn && location.pathname === "/" &&
-        <LoginForm onLogin={handleLogin} />
-      }
-
-      <Switch>
-        {/* <Route exact path="/login">
+      {(!loggedIn) ?
+        <LoginForm onLogin={handleLogin} /> :
+        <Switch>
+          {/* <Route exact path="/login">
           <LoginForm onLogin={handleLogin} />
         </Route> */}
-        <Route exact path="/candidates/:id">
-          <Report loggedIn={loggedIn} />
-        </Route>
-        <Route exact path="/">
-          <Candidates loggedIn={loggedIn} />
-        </Route >
+          <Route exact path="/candidates/:id">
+            <Report loggedIn={loggedIn} />
+          </Route>
+          <Route exact path="/">
+            <Candidates loggedIn={loggedIn} />
+          </Route >
 
-        <Route>
-          <Redirect from="/candidates" to="/"></Redirect>
-        </Route>
+          <Route>
+            <Redirect from="/candidates" to="/"></Redirect>
+          </Route>
 
-        <Route>
-          <ErrorDisplay message="Page not found" />
-        </Route>
-      </Switch>
+          <Route>
+            <ErrorDisplay message="Page not found" />
+          </Route>
+        </Switch>}
 
       <Footer />
     </Container>

@@ -7,7 +7,7 @@ import { getCandidates, getCompanies, getReports } from "../services/services";
 import LoginRedirect from "../components/LoginRedirect";
 
 import style from "./Report.module.css";
-import { Table } from "./Table";
+import { Table } from "../components/Table";
 
 export default function Report(props) {
   const { loggedIn } = props;
@@ -39,17 +39,20 @@ export default function Report(props) {
   //   });
   // }, []);
 
-  const selectedCandidateReport = reports;
+  const selectedCandidateReports = reports;
   const selectedCandidate = cant.find((c) => c.id === +id);
   const bDay = new Date(selectedCandidate.birthday);
   const formatedBirthday = `${bDay.getDate()}.${
     bDay.getMonth() + 1
   }.${bDay.getFullYear()}`;
 
-  if (!loggedIn) {
-    return <LoginRedirect redirectPath={location} />;
+  if (!selectedCandidate) {
+    return <p>Loading</p>; // TODO: add spinner
   }
 
+  if (!selectedCandidate) {
+    return <Fragment></Fragment>;
+  }
   return (
     <Fragment>
       <div className={`container ${style.data}`}>
