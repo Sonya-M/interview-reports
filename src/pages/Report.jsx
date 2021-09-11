@@ -12,6 +12,7 @@ export default function Report(props) {
   let { id } = useParams(); // candidate id
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
+  
   useEffect(() => {
     CandidateCommunicator.getById(id).then((data) => {
       console.log("selectedCandidate data: ", data);
@@ -34,7 +35,7 @@ export default function Report(props) {
   }
   return (
     <Fragment>
-      <div className={`container ${style.data}`}>
+      <div className={`container ${style.data}`} >
         <div className="row">
           <div className="col">
             <ImageGuaranteed
