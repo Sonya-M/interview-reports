@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-import { Card, Col } from "react-bootstrap";
+import ImageGuaranteed from "./ImageGuaranteed";
 
+import { Card, Col } from "react-bootstrap";
 import style from "./CandidateCard.module.css";
 
 const CandidateCard = (props) => {
@@ -12,12 +13,11 @@ const CandidateCard = (props) => {
             <Col xs={12} md={4}>
                 <Link to={"/candidates/" + candidate.id} className={style.linksStyle}>
                     <Card className={` m-3 ${style.candidateCard}`}>
-                        <Card.Img
-                            className="cardImg"
-                            variant="top"
-                            src={candidate.avatar}
-                            alt="no image"
-                        />
+
+                    <ImageGuaranteed
+                        preferredImg={candidate.avatar}
+                        placeholderImg="/Profile_avatar_placeholder_large.png"
+                    />
                     <Card.Body>
                         <Card.Title className="candidateName text-center">
                             {candidate.name}
