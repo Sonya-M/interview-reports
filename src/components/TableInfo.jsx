@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { EyeFill } from "react-bootstrap-icons";
 import style from "./Table.module.css";
 import SingleReport from "./ModalWrapper";
+import ModalWrapper from "./ModalWrapper";
+import Report from "../pages/Report";
+import ReportDetails from "./ReportDetails";
 
 export const TableInfo = (props) => {
   const [show, setShow] = useState(false);
@@ -13,10 +16,16 @@ export const TableInfo = (props) => {
     return <div>Loading...</div>;
   }
   const info = props.reportInfo;
+  const modalBody = <ReportDetails info={info} />;
 
   return (
     <Fragment>
-      <SingleReport show={show} onHide={handleClose} />
+      <ModalWrapper
+        title={info.candidateName}
+        content={modalBody}
+        show={show}
+        onHide={handleClose}
+      />
       <tr className={style.tr}>
         <td>{info.companyName}</td>
         <td>{info.getInterviewDate()}</td>

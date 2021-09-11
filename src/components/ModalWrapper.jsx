@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 
 import { Modal, Row, Col, Button } from "react-bootstrap";
 
-
 const ModalWrapper = (props) => {
   return (
     <Fragment>
@@ -10,11 +9,7 @@ const ModalWrapper = (props) => {
         <Modal.Header as={Col} closeButton>
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
-        <Button as={Col} variant="secondary" onClick={props.onClose}>
-        </Button>
-        <Modal.Body as={Row}>
-          {props.content}
-        </Modal.Body>
+        <Modal.Body as={Row}>{props.content}</Modal.Body>
       </Modal>
     </Fragment>
   );

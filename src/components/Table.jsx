@@ -20,7 +20,7 @@ export const Table = (props) => {
         </thead>
         <tbody>
           {reports.map((report) => (
-            <TableInfo reportInfo={report} />
+            <TableInfo reportInfo={report} key={report.id} />
           ))}
         </tbody>
       </table>
