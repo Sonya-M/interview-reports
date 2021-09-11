@@ -5,6 +5,7 @@ import { reports } from "../data/reports";
 import { companies } from "../data/companies";
 import { getCandidates, getCompanies, getReports } from "../services/services";
 import LoginRedirect from "../components/LoginRedirect";
+import ImageGuaranteed from "../components/UI/ImageGuaranteed";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
@@ -58,7 +59,10 @@ export default function Report(props) {
       <div className={`container ${style.data}`}>
         <div className="row">
           <div className="col">
-            <img src={selectedCandidate.avatar} />
+            <ImageGuaranteed
+              preferredImg={selectedCandidate.avatar}
+              placeholderImg="/Profile_avatar_placeholder_large.png"
+            />
           </div>
           <div className="col">
             <div className={style.cardInfo}>
