@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import ImageGuaranteed from "./UI/ImageGuaranteed.jsx";
 import { PLACEHOLDER_IMG } from "../shared/constants";
 
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, CardGroup } from "react-bootstrap";
 import style from "./CandidateCard.module.css";
 
 const CandidateCard = (props) => {
   const { candidate } = props;
   return (
     <Fragment>
-      <Col xs={12} md={4}>
+      <Col xs={12} md={6} lg={4} className="mb-5">
         <Link to={"/candidates/" + candidate.id} className={style.linksStyle}>
-          <Card className={` m-3 ${style.candidateCard}`}>
+          <Card className={`m-3 h-100 ${style.candidateCard}`}>
             {candidate.avatar ? (
               <ImageGuaranteed
                 preferredImg={candidate.avatar}

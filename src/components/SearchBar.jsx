@@ -9,7 +9,7 @@ const SearchBar = ({filterCandidates}) => {
   return(
     <Fragment>
       <Form as={Row} className="m-5">
-        <Col sm={4} className="offset-sm-4" >
+        <Col md={6} className="offset-md-3" >
          <InputGroup className="mb-2">
             <InputGroup.Text><Search size="1rem"/></InputGroup.Text>
             <FormControl  
