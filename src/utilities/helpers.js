@@ -19,15 +19,17 @@ export function formatDate(date) {
  * in any order (so if one types the surname before the first name,
  * the return val is still true)
  */
- export const includesIgnoreCase = (stringToSearch, queryString) => {
-  stringToSearch = stringToSearch.toLowerCase();
-  queryString = (queryString.trim()).toLowerCase();
-  let queries = queryString.split(/\s+/);
- 
-
+export const includesIgnoreCase = (stringToSearch, queryString) => {
   if (queryString.length === 0) return true;
+  queryString = (queryString.trim());
+  let queries = queryString.split(/\s+/);
+
   for (let i = 0; i < queries.length; i++) {
-    if (!stringToSearch.includes(queries[i])) return false;
+    if (i === queries.length - 1) queries[i] = new RegExp("\\b" + queries[i], "gi");
+    else queries[i] = new RegExp("\\b" + queries[i] + "\\b", "gi");
+  }
+  for (let i = 0; i < queries.length; i++) {
+    if (!stringToSearch.match(queries[i])) return false;
   }
 
   return true;
