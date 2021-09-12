@@ -5,7 +5,11 @@ import LogoutBtn from "./LogoutBtn";
 
 export default function MainHeader(props) {
   let location = useLocation();
-  const homeLink = <Link to="/">Interview Reports</Link>;
+  const logo = (
+    <span onClick={props.onLogoClick} style={{ cursor: "pointer" }}>
+      Interview Reports
+    </span>
+  );
   const candidatesLink = <Link to="/">Candidates</Link>;
   let menu = [];
   if (props.loggedIn) {
@@ -13,7 +17,7 @@ export default function MainHeader(props) {
   }
   return (
     <Header
-      title={homeLink}
+      title={logo}
       menuItems={[location.pathname !== "/" && candidatesLink, ...menu]}
     />
   );

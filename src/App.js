@@ -37,10 +37,14 @@ function App() {
     history.push("/");
   };
 
+  const refreshPage = () => {
+    window.location.reload();
+  }
+
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
-      <MainHeader loggedIn={loggedIn} onLogout={handleLogout} />
+      <MainHeader loggedIn={loggedIn} onLogout={handleLogout} onLogoClick={refreshPage} />
 
       {(!loggedIn) ?
         <LoginForm onLogin={handleLogin} /> :
