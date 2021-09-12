@@ -54,7 +54,11 @@ export default function Report(props) {
     return <ErrorDisplay message="Sorry, failed to load data" />;
   }
 
-  if (!selectedCandidate || reports.length === 0) {
+  if (
+    !selectedCandidate ||
+    selectedCandidate.length === 0 ||
+    reports.length === 0
+  ) {
     return <ErrorDisplay message="No data available." />;
   }
   return (
@@ -68,7 +72,7 @@ export default function Report(props) {
                 placeholderImg={PLACEHOLDER_IMG}
               />
             ) : (
-              <img src={PLACEHOLDER_IMG} alt="No image available" />
+              <img src={PLACEHOLDER_IMG} alt="Avatar" />
             )}
           </div>
           <div className="col">
