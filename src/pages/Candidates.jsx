@@ -20,7 +20,7 @@ const Candidates = (props) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [candidates]);
+  }, []);
 
   if (loading) {
     return <div>Loading ...</div>;
