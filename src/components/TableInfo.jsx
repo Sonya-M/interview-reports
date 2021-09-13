@@ -10,9 +10,6 @@ export const TableInfo = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  if (!props.reportInfo) {
-    return <div>Loading...</div>;
-  }
   const info = props.reportInfo;
   const modalBody = <ReportDetails info={info} />;
 
