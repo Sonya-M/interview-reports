@@ -25,8 +25,6 @@ const LoginForm = (props) => {
     e.preventDefault();
     authenticate(name, password)
       .then((response) => {
-        console.log("authenticated!");
-        console.log(name, response);
         props.onLogin();
         history.push(props.redirectPath);
       })

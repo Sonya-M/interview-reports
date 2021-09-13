@@ -70,6 +70,7 @@ export default function Report(props) {
       <div className={style.data}>
         <img
           src="https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/mckinseybets810.jpg"
+          alt="cover"
           className={style.cover}
         />
         <div>
