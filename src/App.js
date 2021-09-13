@@ -38,6 +38,7 @@ function App() {
   };
 
   const refreshPage = () => {
+    history.push("/");
     window.location.reload();
   }
 
