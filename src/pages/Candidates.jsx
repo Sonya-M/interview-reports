@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 // import { getCandidates } from "../services/services";
 import CandidateCommunicator from "../services/CandidateCommunicator";
-
+import Loader from "../components/UI/Loader";
 import CandidateList from "../components/CandidateList";
 import SearchBar from "../components/SearchBar";
 

@@ -2,9 +2,7 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { EyeFill } from "react-bootstrap-icons";
 import style from "./Table.module.css";
-import SingleReport from "./ModalWrapper";
 import ModalWrapper from "./ModalWrapper";
-import Report from "../pages/Report";
 import ReportDetails from "./ReportDetails";
 
 export const TableInfo = (props) => {
@@ -32,7 +30,7 @@ export const TableInfo = (props) => {
         <td
           className={info.status === "passed" ? style.passed : style.declined}
         >
-          {info.status}
+          {info.status.toUpperCase()}
         </td>
         <td>
           <EyeFill className={style.eyeFill} onClick={handleShow} />

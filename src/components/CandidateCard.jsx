@@ -11,9 +11,9 @@ const CandidateCard = (props) => {
   const { candidate } = props;
   return (
     <Fragment>
-      <Col xs={12} md={4}>
+      <Col xs={12} md={6} lg={4} className="mb-5">
         <Link to={"/candidates/" + candidate.id} className={style.linksStyle}>
-          <Card className={` m-3 ${style.candidateCard}`}>
+          <Card className={`m-3 h-100 ${style.candidateCard}`}>
             {candidate.avatar ? (
               <ImageGuaranteed
                 preferredImg={candidate.avatar}
@@ -21,7 +21,7 @@ const CandidateCard = (props) => {
                 alt="No image available"
               />
             ) : (
-              <img alt="No image available" src={PLACEHOLDER_IMG} />
+              <img alt="No file available" src={PLACEHOLDER_IMG} />
             )}
             <Card.Body>
               <Card.Title className="candidateName text-center">

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Modal, Row, Col, Button } from "react-bootstrap";
+import { Modal, Row, Col } from "react-bootstrap";
 
 const ModalWrapper = (props) => {
   return (
