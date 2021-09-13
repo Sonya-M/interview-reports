@@ -1,0 +1,1 @@
+export const PLACEHOLDER_IMG = "/Profile_avatar_placeholder_large.png";
