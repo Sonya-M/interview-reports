@@ -18,7 +18,8 @@ const CandidateCard = (props) => {
               <ImageGuaranteed
                 preferredImg={candidate.avatar}
                 placeholderImg={PLACEHOLDER_IMG}
-                alt="No image available"
+                preferredImgAlt={candidate.name}
+                alt="avatar"
               />
             ) : (
               <img alt="No file available" src={PLACEHOLDER_IMG} />
