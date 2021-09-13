@@ -4,7 +4,7 @@ import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
 
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
-import { PLACEHOLDER_IMG } from "../shared/constants";
+import { Envelope, Gift, Book } from "react-bootstrap-icons";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
@@ -13,6 +13,8 @@ export default function Report(props) {
   let { id } = useParams(); // candidate id
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+  const handleShowMore = () => setShowMore(!showMore);
 
   useEffect(() => {
     CandidateCommunicator.getById(id).then((data) => {
@@ -36,49 +38,53 @@ export default function Report(props) {
   }
   return (
     <Fragment>
-      <div className={`container ${style.data}`}>
-        <div className="row">
-          <div className="col">
-            {selectedCandidate.avatar ? (
-              <ImageGuaranteed
-                preferredImg={selectedCandidate.avatar}
-                placeholderImg="/Profile_avatar_placeholder_large.png"
-              />
-            ) : (
-              <img src={PLACEHOLDER_IMG} alt="No image available" />
-            )}
+      <div className={style.data}>
+        <img
+          src="https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/mckinseybets810.jpg"
+          className={style.cover}
+        />
+        <div>
+          <div className={style.cardInfo}>
+            <div className={style.name}>{selectedCandidate.name}</div>
           </div>
-          <div className="col">
-            <div className={style.cardInfo}>
-              <p className={style.candidateInfo}>Name:</p>
-              <span className={style.candidateData}>
-                {selectedCandidate.name}
-              </span>
+          <ImageGuaranteed
+            preferredImg={selectedCandidate.avatar}
+            placeholderImg="/Profile_avatar_placeholder_large.png"
+            className={style.avatar}
+          />
+          <div className={style.containerMax}>
+            <div className={showMore ? style.cardMore : style.card}>
+              <span className={style.about}>About</span>
+              <p className={style.candidateInfo}>
+                Email
+                <span className={style.candidateData}>
+                  <Envelope /> {selectedCandidate.email}
+                </span>
+              </p>
+
+              <p className={style.candidateInfo}>
+                Birthday
+                <span className={style.candidateData}>
+                  <Gift /> {selectedCandidate.getBirthday()}
+                </span>
+              </p>
+
+              <p className={style.candidateInfo}>
+                Education
+                <span className={style.candidateData}>
+                  <Book /> {selectedCandidate.education}
+                </span>
+              </p>
+
+              {console.log(showMore)}
             </div>
-            <div className={style.cardInfo}>
-              <p className={style.candidateInfo}>Email:</p>
-              <span className={style.candidateData}>
-                {selectedCandidate.email}
-              </span>
-            </div>
-          </div>
-          <div className="col">
-            <div className={style.cardInfo}>
-              <p className={style.candidateInfo}>Birthday:</p>
-              <span className={style.candidateData}>
-                {selectedCandidate.getBirthday()}
-              </span>
-            </div>
-            <div className={style.cardInfo}>
-              <p className={style.candidateInfo}>Education:</p>
-              <div className={style.candidateData}>
-                {selectedCandidate.education}
-              </div>
-            </div>
+            <button className={style.seeMore} onClick={handleShowMore}>
+              {!showMore ? "Show more" : "Show  less "}
+            </button>
+            <Table reports={reports} />
           </div>
         </div>
       </div>
-      <Table reports={reports} />
     </Fragment>
   );
 }

@@ -9,8 +9,8 @@ export const Table = (props) => {
   const { reports } = props;
 
   return (
-    <div className={`container ${style.tableContainer}`}>
-      <table className={`${style.table} container`}>
+    <div className={style.tableContainer}>
+      <table className={style.table}>
         <thead className={style.th}>
           <tr>
             <th>Company</th>

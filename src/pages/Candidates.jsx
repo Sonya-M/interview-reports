@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 // import { getCandidates } from "../services/services";
 import CandidateCommunicator from "../services/CandidateCommunicator";
-
+import Loader from "../components/UI/Loader";
 import CandidateList from "../components/CandidateList";
 
 const Candidates = (props) => {
@@ -12,10 +12,9 @@ const Candidates = (props) => {
       console.log("Fetched candidates", data);
       setCandidates(data);
     });
-
   }, []);
-  if(candidates.length === 0) {
-    return <div>Loading ...</div>
+  if (candidates.length === 0) {
+    return <Loader />;
   }
 
   return props.loggedIn ? (

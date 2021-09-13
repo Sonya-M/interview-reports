@@ -32,7 +32,7 @@ export const TableInfo = (props) => {
         <td
           className={info.status === "passed" ? style.passed : style.declined}
         >
-          {info.status}
+          {info.status.toUpperCase()}
         </td>
         <td>
           <EyeFill className={style.eyeFill} onClick={handleShow} />
