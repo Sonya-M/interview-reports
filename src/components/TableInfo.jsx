@@ -23,6 +23,7 @@ export const TableInfo = (props) => {
       />
       <tr className={style.tr}>
         <td>{info.companyName}</td>
+        {props.showCandidateName ? <td>{info.candidateName}</td> : <Fragment />}
         <td>{info.getInterviewDate()}</td>
         <td
           className={info.status === "passed" ? style.passed : style.declined}
@@ -32,6 +33,21 @@ export const TableInfo = (props) => {
         <td>
           <EyeFill className={style.eyeFill} onClick={handleShow} />
         </td>
+        {/* TODO: make a separate TebleInfo.module.css */}
+        {props.showDeleteBtn ? (
+          <td
+            className="deleteBtn"
+            onClick={() => props.onDelete(info.id)}
+            style={{
+              cursor: "pointer",
+              color: "darkred",
+            }}
+          >
+            <span>X</span>
+          </td>
+        ) : (
+          <Fragment />
+        )}
       </tr>
     </Fragment>
   );

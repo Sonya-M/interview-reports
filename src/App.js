@@ -6,6 +6,7 @@ import { Route, Switch, Redirect, useHistory } from 'react-router';
 import ErrorDisplay from "./components/ErrorDisplay";
 import MainHeader from "./components/UI/MainHeader";
 import Footer from "./components/UI/Footer";
+import AdminPage from "./pages/AdminPage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -57,11 +58,12 @@ function App() {
           <Route exact path="/">
             <Candidates loggedIn={loggedIn} />
           </Route >
-
+          <Route exact path="/admin-page">
+            <AdminPage />
+          </Route>
           <Route>
             <Redirect from="/candidates" to="/"></Redirect>
           </Route>
-
           <Route>
             <ErrorDisplay message="Page not found" />
           </Route>
