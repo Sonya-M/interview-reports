@@ -3,9 +3,11 @@ import React, { Fragment, useState, useEffect } from "react";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import CandidateList from "../components/CandidateList";
 import ErrorDisplay from "./ErrorDisplay";
+import SearchBar from "../components/SearchBar";
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +23,10 @@ const Candidates = (props) => {
       });
   }, []);
 
+  const handleSearch = (filterText) => {
+    setSearchText(filterText);
+  };
+
   if (loading) {
     return <div>Loading ...</div>;
   }
@@ -35,7 +41,8 @@ const Candidates = (props) => {
 
   return props.loggedIn ? (
     <Fragment>
-      <CandidateList candidates={candidates} />
+      <SearchBar onSearch={handleSearch} />
+      <CandidateList candidates={candidates} searchText={searchText} />
     </Fragment>
   ) : (
     <Fragment />

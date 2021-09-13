@@ -7,38 +7,22 @@ import { includesIgnoreCase } from "../utilities/helpers.js";
 import { Row } from "react-bootstrap";
 import ErrorDisplay from "../pages/ErrorDisplay.jsx";
 
-const CandidateList = ({ candidates }) => {
-  const [searchResult, setSearchResult] = useState([]);
-
-  useEffect(() => {
-    setSearchResult(candidates);
-  }, []);
-
-  const filterCandidates = (event) => {
-    let filtered = [];
-    if (event.target.value) {
-      filtered = candidates.filter((candidate) =>
-        includesIgnoreCase(candidate.name, event.target.value)
-      );
-      setSearchResult(filtered);
-    } else {
-      setSearchResult(candidates);
-    }
-  };
+const CandidateList = ({ candidates, searchText }) => {
+  let searchResult;
+  if (searchText === "") {
+    searchResult = candidates;
+  } else {
+    searchResult = candidates.filter((c) => {
+      return includesIgnoreCase(c.name, searchText);
+    });
+  }
 
   return (
-    <Fragment>
-      <SearchBar filterCandidates={filterCandidates} />
-      {searchResult.length > 0 ? (
-        <Row className="g-4 m-5">
-          {searchResult.map((item) => (
-            <CandidateCard key={item.id} candidate={item} />
-          ))}
-        </Row>
-      ) : (
-        <ErrorDisplay message="No results" />
-      )}
-    </Fragment>
+    <Row className="g-4 m-5">
+      {searchResult.map((item) => (
+        <CandidateCard key={item.id} candidate={item} />
+      ))}
+    </Row>
   );
 };
 
