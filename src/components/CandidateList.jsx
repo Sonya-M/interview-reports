@@ -1,11 +1,10 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React from "react";
 
 import CandidateCard from "./CandidateCard.jsx";
-import SearchBar from "./SearchBar.jsx";
 import { includesIgnoreCase } from "../utilities/helpers.js";
 
 import { Row } from "react-bootstrap";
-import ErrorDisplay from "../pages/ErrorDisplay.jsx";
+import ErrorDisplay from "./ErrorDisplay";
 
 const CandidateList = ({ candidates, searchText }) => {
   let searchResult;

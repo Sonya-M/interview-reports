@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
-import ErrorDisplay from "../pages/ErrorDisplay"; // TODO: move to components!!!
+import ErrorDisplay from "../components/ErrorDisplay"; 
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
 import { Envelope, Gift, Book } from "react-bootstrap-icons";
 
@@ -79,6 +79,7 @@ export default function Report(props) {
           <ImageGuaranteed
             preferredImg={selectedCandidate.avatar}
             placeholderImg="/Profile_avatar_placeholder_large.png"
+            preferredImgAlt={selectedCandidate.name}
             className={style.avatar}
           />
           <div className={style.containerMax}>

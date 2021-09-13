@@ -6,6 +6,7 @@ export default function ImageGuaranteed(props) {
     <img
       className={classes}
       src={props.preferredImg}
+      alt={props.preferredImgAlt}
       onError={(e) => {
         e.target.onerror = null;
         e.target.src = props.placeholderImg;

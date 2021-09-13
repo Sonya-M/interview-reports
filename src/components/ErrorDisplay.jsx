@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { EmojiNeutralFill } from "react-bootstrap-icons";
 
 export default function ErrorDisplay(props) {
