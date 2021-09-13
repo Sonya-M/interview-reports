@@ -1,16 +1,263 @@
-.data {
-  margin-top: 2rem;
+@media screen and (max-width: 480px) {
+  .data {
+    display: block;
+    overflow: hidden;
+  }
+  .cover {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    z-index: -1;
+  }
+  .avatar {
+    display: block;
+    border-radius: 50%;
+    border: 5px rgb(34, 58, 92) double;
+    max-width: 35%;
+    margin-top: -18%;
+    margin-left: 5%;
+    overflow: visible;
+  }
+  .cardInfo {
+    margin-top: 45%;
+    width: 100%;
+    background-color: #000000;
+  }
+  .name {
+    display: block;
+    width: 100%;
+    margin-left: 20%;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(189, 189, 189);
+    font-weight: bolder;
+    text-shadow: 0px 4px 10px #474747, -2px 3px 0px #0c0a1a,
+      4px -3px 7px #413e42;
+  }
+  .card,
+  .cardMore {
+    background: rgba(137, 166, 237, 0);
+    box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 90%;
+    margin: 5% auto 0;
+    padding: 10px;
+    overflow: scroll;
+  }
+  .about {
+    font-weight: 1000;
+    display: block;
+  }
+  .candidateInfo {
+    font-weight: 700;
+    margin-top: 1em;
+  }
+  .candidateData {
+    display: block;
+    margin-bottom: 1em;
+    font-weight: 500;
+    text-align: left;
+  }
+  .seeMore {
+    display: none;
+  }
 }
-.cardInfo {
-  min-height: 150px;
+@media screen and (min-width: 481px) and (max-width: 913px) {
+  .data {
+    display: block;
+    overflow: hidden;
+  }
+  .cover {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    /* overflow: hidden; */
+    z-index: -1;
+  }
+  .avatar {
+    display: block;
+    border-radius: 10%;
+    border: 2px black groove;
+    max-width: 170px;
+    margin-top: -18%;
+    margin-left: 5%;
+    z-index: 1;
+  }
+  .cardInfo {
+    margin-top: 45%;
+    width: 100%;
+    z-index: 2;
+    background-color: #000000;
+  }
+  .name {
+    display: block;
+    width: 100%;
+    margin-left: 20%;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(189, 189, 189);
+    font-weight: bolder;
+    text-shadow: 0px 4px 10px #000000, -2px 3px 0px #0c0a1a,
+      4px -3px 7px #1c1221;
+    z-index: 2;
+  }
+  .card {
+    position: absolute;
+    top: 4%;
+    right: 0;
+    bottom: 0%;
+    height: 1em;
+    background: hsla(0, 0%, 100%, 0.37);
+
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+
+    padding: 1rem 2rem;
+    overflow: hidden;
+    z-index: -1;
+    transition: all 800ms 0ms ease-in-out;
+  }
+
+  .cardMore {
+    position: absolute;
+    top: 7%;
+    right: 0;
+
+    height: 60%;
+
+    background: hsla(0, 0%, 100%, 0.37);
+
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+
+    padding: 1rem 2rem;
+    overflow: hidden;
+    z-index: -1;
+    transition: all 800ms 0ms ease-in-out;
+    text-shadow: 1px 1px 1px hsla(0, 0%, 100%, 0.171),
+      1px 1px 1px hsla(0, 0%, 100%, 0.26);
+    backdrop-filter: blur(7px);
+  }
+
+  .about {
+    font-weight: 1000;
+    display: block;
+  }
+  .candidateInfo {
+    font-weight: 700;
+    margin-top: 1em;
+  }
+  .candidateData {
+    display: block;
+    margin-bottom: 1em;
+    font-weight: 700;
+    text-align: left;
+  }
+  .seeMore {
+    position: absolute;
+    top: 4rem;
+    right: 0rem;
+    width: 4em;
+    height: 4em;
+    background: #7e472d65;
+    color: aliceblue;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    text-shadow: 1px 1px 1px hsla(0, 0%, 100%, 0.171),
+      1px 1px 1px hsla(0, 0%, 100%, 0.26);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 300ms 0ms ease-in-out;
+  }
+  .seeMore:hover {
+    cursor: pointer;
+  }
 }
-.candidateInfo {
-  color: gray;
-}
-.candidateData {
-  font-size: 1.5em;
-  padding-left: 1em;
-}
-th {
-  border: 1px black solid;
+@media screen and (min-width: 913px) {
+  .cover {
+    position: relative;
+    top: 60px;
+    width: 70%;
+    margin: -8% 15% 0;
+    z-index: -1;
+  }
+  .cardInfo {
+    display: block;
+    width: 70%;
+    margin: 1% auto 0;
+    height: 3.2em;
+    z-index: 2;
+    background-color: #000000e5;
+    text-align: center;
+  }
+  .name {
+    display: block;
+    width: 100%;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(189, 189, 189);
+    font-weight: bolder;
+    text-shadow: 0px 4px 10px #000000, -2px 3px 0px #0c0a1a,
+      4px -3px 7px #1c1221;
+    z-index: -1;
+  }
+  .avatar {
+    display: block;
+    border-radius: 5%;
+    border: 2px black groove;
+    max-width: 15%;
+    margin-top: -17%;
+    margin-left: 16%;
+    margin-bottom: 5%;
+    overflow: visible;
+    z-index: 1;
+    transition: all 300ms 0ms ease-in-out;
+  }
+  .avatar:hover {
+    max-width: 17%;
+    margin-bottom: 3%;
+  }
+  .containerMax {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 2em;
+    grid-row-gap: 0px;
+    width: 70%;
+    margin: 0 auto;
+  }
+  .card,
+  .cardMore {
+    background: rgba(137, 166, 237, 0);
+    box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1em;
+  }
+
+  .about {
+    font-weight: 1000;
+    display: block;
+  }
+  .candidateInfo {
+    font-weight: 700;
+    margin-top: 1em;
+  }
+  .candidateData {
+    display: block;
+    margin-bottom: 1em;
+    font-weight: 700;
+    text-align: left;
+  }
+  .seeMore {
+    display: none;
+  }
 }
