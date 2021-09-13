@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { reports } from "../data/reports";
+import React from "react";
 import style from "./Table.module.css";
-import { EyeFill } from "react-bootstrap-icons";
 import { TableInfo } from "./TableInfo";
 
 export const Table = (props) => {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ImageGuaranteed from "./UI/ImageGuaranteed.jsx";
 import { PLACEHOLDER_IMG } from "../shared/constants";
 
-import { Card, Col, CardGroup } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import style from "./CandidateCard.module.css";
 
 const CandidateCard = (props) => {
@@ -21,7 +21,7 @@ const CandidateCard = (props) => {
                 alt="No image available"
               />
             ) : (
-              <img alt="No image available" src={PLACEHOLDER_IMG} />
+              <img alt="No file available" src={PLACEHOLDER_IMG} />
             )}
             <Card.Body>
               <Card.Title className="candidateName text-center">
