@@ -10,7 +10,7 @@ import Footer from "./components/UI/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container } from 'react-bootstrap';
-import { getCandidates } from "./services/services";
+
 
 function App() {
   let location = useLocation();

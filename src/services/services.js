@@ -1,7 +1,3 @@
-import Candidate from "../entities/Candidate";
-import Report from "../entities/Report";
-import Company from "../entities/Company";
-
 const AUTH_ENDPOINT = "http://localhost:3333/login";
 const BASE_URL = "http://localhost:3333/api/";
 
