@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 // import { getCandidates } from "../services/services";
 import CandidateCommunicator from "../services/CandidateCommunicator";
-
 import CandidateList from "../components/CandidateList";
 import ErrorDisplay from "./ErrorDisplay";
 
@@ -29,7 +28,7 @@ const Candidates = (props) => {
   if (candidates.length === 0) {
     return (
       <Fragment>
-        <ErrorDisplay message="Sorry, failed to fetch data." />
+        <ErrorDisplay message="Sorry, failed to load data." />
       </Fragment>
     );
   }
