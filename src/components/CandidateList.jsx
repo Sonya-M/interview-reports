@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar.jsx";
 import { includesIgnoreCase } from "../utilities/helpers.js";
 
 import { Row } from "react-bootstrap";
+import ErrorDisplay from "../pages/ErrorDisplay.jsx";
 
 const CandidateList = ({ candidates, searchText }) => {
   let searchResult;
