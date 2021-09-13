@@ -17,12 +17,14 @@ const CandidateList = ({ candidates, searchText }) => {
     });
   }
 
-  return (
+  return searchResult.length !== 0 ? (
     <Row className="g-4 m-5">
       {searchResult.map((item) => (
         <CandidateCard key={item.id} candidate={item} />
       ))}
     </Row>
+  ) : (
+    <ErrorDisplay message="No result" />
   );
 };
 
