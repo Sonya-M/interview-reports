@@ -18,4 +18,14 @@ export default class ReportCommunicator {
         return (json.map(r => new Report(r)));
       });
   }
+
+  static save(report) {
+    return service.saveData("reports", report.id ? "PUT" : "POST", report)
+      .then(json => new Report(json));
+  }
+
+  static delete(reportID) {
+    return service.deleteData("reports", reportID)
+      .then(response => response);
+  }
 }

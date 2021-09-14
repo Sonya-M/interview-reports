@@ -41,7 +41,7 @@ function App() {
   const refreshPage = () => {
     history.push("/");
     window.location.reload();
-  }
+  };
 
   const refreshAdminPage = () => {
     history.push("/admin");
