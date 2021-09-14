@@ -24,4 +24,9 @@ export default class CandidateCommunicator {
         // da li je bolje da vrati null ili prazan niz (kao što vraća server kada nema rezultata)!
       });
   }
+
+  static save(candidate) {
+    return service.saveData("candidates", candidate.id ? "PUT" : "POST", candidate)
+      .then(response => new Candidate(response));
+  }
 }

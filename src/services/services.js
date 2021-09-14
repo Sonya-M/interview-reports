@@ -60,23 +60,25 @@ function concatParams(params) {
 
 export function saveData(action, method, data) {
   let link = BASE_URL + action;
-  return (fetch(link), {
+  return (fetch(link, {
     method: method,
     headers: getHeaders(),
     body: JSON.stringify(data),
-  }).then(response => response.json());
+  }).then(response => response.json()));
   // leave error handling to client
 }
 
 export function deleteData(action, id) {
   let link = BASE_URL + action + "?id=" + id;
-  return (fetch(link), {
-    method: "DELETE",
-    headers: getHeaders(),
-  }).then(response => {
-    if (response) return response.json();
-    else return null; // TODO: Pitaj Nikolu šta da vratim ?????
-  });
+  return (
+    fetch
+      (link, {
+        method: "DELETE",
+        headers: getHeaders(),
+      }).then(response => {
+        if (response) return response.json();
+        else return null; // TODO: Pitaj Nikolu šta da vratim ?????
+      }));
 }
 
 
