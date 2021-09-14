@@ -19,23 +19,20 @@ export const Table = (props) => {
     props.onDelete(id);
   };
 
+  const tableClass = props.admin ? style.table : style.adminTable;
+
   return (
     <div className={style.tableContainer}>
-      <table className={style.table}>
+      <table className={tableClass}>
         <thead className={style.th}>
           <tr>
             <th>Company</th>
-            {props.showCandidateName ? (
-              <th>Candidate Name</th>
-            ) : (
-              <React.Fragment />
-            )}
-            {props.showDeleteBtn ? <Fragment /> : <Fragment />}
+            {props.admin ? <th>Candidate Name</th> : <React.Fragment />}
             <th>Interview Date</th>
             <th>Status</th>
             {/* for the eye icon: */}
             <th></th>
-            {props.showDeleteBtn ? <th></th> : <Fragment />}
+            {props.admin ? <th></th> : <Fragment />}
           </tr>
         </thead>
         <tbody>
@@ -43,9 +40,8 @@ export const Table = (props) => {
             <TableInfo
               reportInfo={report}
               key={report.id}
-              showCandidateName={props.showCandidateName}
-              showDeleteBtn={props.showDeleteBtn}
               onDelete={handleDelete}
+              admin={props.admin}
             />
           ))}
         </tbody>

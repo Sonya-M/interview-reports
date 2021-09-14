@@ -23,7 +23,7 @@ export const TableInfo = (props) => {
       />
       <tr className={style.tr}>
         <td>{info.companyName}</td>
-        {props.showCandidateName ? <td>{info.candidateName}</td> : <Fragment />}
+        {props.admin ? <td>{info.candidateName}</td> : <Fragment />}
         <td>{info.getInterviewDate()}</td>
         <td
           className={info.status === "passed" ? style.passed : style.declined}
@@ -34,7 +34,7 @@ export const TableInfo = (props) => {
           <EyeFill className={style.eyeFill} onClick={handleShow} />
         </td>
         {/* TODO: make a separate TebleInfo.module.css */}
-        {props.showDeleteBtn ? (
+        {props.admin ? (
           <td
             className="deleteBtn"
             onClick={() => props.onDelete(info.id)}

@@ -42,10 +42,9 @@ export default function AdminPage(props) {
       <SearchBar onSearch={handleSearch} />
       <Table
         reports={reports}
-        showCandidateName={true}
         filterText={searchText}
-        showDeleteBtn={true}
         onDelete={deleteReport}
+        admin={true}
       />
     </Fragment>
   );
