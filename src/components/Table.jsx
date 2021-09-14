@@ -19,11 +19,11 @@ export const Table = (props) => {
     props.onDelete(id);
   };
 
-  const tableClass = props.admin ? style.table : style.adminTable;
+  // const tableClass = props.admin ? style.table : style.adminTable;
 
   return (
     <div className={style.tableContainer}>
-      <table className={tableClass}>
+      <table className={style.table}>
         <thead className={style.th}>
           <tr>
             <th>Company</th>
