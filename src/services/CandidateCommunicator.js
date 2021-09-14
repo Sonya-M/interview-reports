@@ -22,6 +22,7 @@ export default class CandidateCommunicator {
         else console.assert(json.length === 1);
         return (noResults ? json : new Candidate(json[0])); // ???? TODO: Pitaj Nikolu
         // da li je bolje da vrati null ili prazan niz (kao što vraća server kada nema rezultata)!
+        // AKO NEMA, VRATI PRAZAN OBJEKAT {} !!!!!!
       });
   }
 

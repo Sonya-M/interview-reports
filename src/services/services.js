@@ -34,6 +34,7 @@ export function authenticate(email, password) {
     }
     return response.json();
   }).then(json => {
+    console.log("Response for auth: ", json);
     const token = json["accessToken"];
     sessionStorage.setItem("accessToken", token); //save accessToken
     sessionStorage.setItem("username", email);
@@ -75,11 +76,10 @@ export function deleteData(action, id) {
       (link, {
         method: "DELETE",
         headers: getHeaders(),
-      }).then(response => {
-        if (response) return response.json();
-        else return null; // TODO: Pitaj Nikolu šta da vratim ?????
-      }));
+      })
+      .then(response => response.json()));
 }
+
 
 
 
