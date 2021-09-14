@@ -44,7 +44,7 @@ function App() {
   }
 
   const refreshAdminPage = () => {
-    history.push("/admin-page");
+    history.push("/admin");
     window.location.reload();
   }
 
@@ -72,7 +72,7 @@ function App() {
             {mainHeader}
             <Candidates />
           </Route >
-          <Route exact path="/admin-page">
+          <Route exact path="/admin">
             {adminHeader}
             <AdminPage />
           </Route>

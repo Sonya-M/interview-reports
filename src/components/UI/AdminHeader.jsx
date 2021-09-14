@@ -15,7 +15,7 @@ export default function AdminHeader(props) {
     </Link>,
   ];
 
-  if (location.pathname === "/admin-page") {
+  if (location.pathname === "/admin") {
     menu.push(
       <Link to="/wizard">
         <Button>
@@ -26,14 +26,11 @@ export default function AdminHeader(props) {
   } else if (location.pathname === "/wizard") {
     menu.push(
       <Button>
-        <Link to="/admin-page">All Reports</Link>
+        <Link to="/admin">All Reports</Link>
       </Button>
     );
   }
   return (
-    <Header
-      title={<Link to="/admin-page">Reports Admin</Link>}
-      menuItems={menu}
-    />
+    <Header title={<Link to="/admin">Reports Admin</Link>} menuItems={menu} />
   );
 }

@@ -13,7 +13,7 @@ export default function MainHeader(props) {
     </span>
   );
   const adminLink = (
-    <Link to="/admin-page">
+    <Link to="/admin">
       <Button className="text-info">Admin</Button>
     </Link>
   );
