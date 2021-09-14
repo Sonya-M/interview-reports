@@ -53,8 +53,21 @@
   }
 }
 @media screen and (min-width: 481px) and (max-width: 913px) {
+  .tableContainer {
+    background-image: url("https://ak.picdn.net/shutterstock/videos/1018020805/thumb/1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 1em;
+    grid-row-gap: 0px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
   .table {
-    margin: 3rem 0;
+    margin: 10% 0;
+    padding: 50% auto;
     background: #c7c7c7;
     box-shadow: -2px -2px 11px #e3e3e3, 2px 2px 11px #ababab;
     width: 100%;
@@ -104,10 +117,10 @@
     color: #fff;
     /* line-height: 1.4; */
     background-color: #6c7ae0;
-    padding: 1em;
+    padding: 0.7em;
   }
   .tr > td {
-    padding: 1em;
+    padding: 0.7em;
     font-weight: 700;
   }
   .th > tr > th:first-child {
