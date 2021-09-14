@@ -1,8 +1,8 @@
 .Header {
   margin: 0;
-  padding: .5rem 2rem .5rem 2rem ;
+  padding: 0.5rem 2rem 0.5rem 2rem;
   height: 4rem;
-  background-color:black;
+  background-color: black;
   color: whitesmoke;
   display: flex;
   justify-content: space-between;
@@ -15,18 +15,20 @@
   color: inherit;
 }
 .Header a:hover {
-  color:inherit;
+  color: inherit;
 }
 .Menu {
   display: flex;
 }
-.Menu button {
+.Menu a,
+.Menu button,
+.Menu a button {
   background: transparent;
   /* border: 1px solid white; */
   border: none;
 }
+Menu a button,
 .Menu button:hover {
   background-color: #333;
   border: 1px solid white;
-
 }
