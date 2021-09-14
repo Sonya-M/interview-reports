@@ -11,6 +11,7 @@ export default function MainHeader(props) {
     </span>
   );
   const candidatesLink = <Link to="/">Candidates</Link>;
+  const reportsLink = <Link to="/reports">Reports</Link>;
   let menu = [];
   if (props.loggedIn) {
     menu = [<LogoutBtn onLogout={props.onLogout} />];
@@ -18,7 +19,7 @@ export default function MainHeader(props) {
   return (
     <Header
       title={logo}
-      menuItems={[location.pathname !== "/" && candidatesLink, ...menu]}
+      menuItems={[location.pathname !== "/" && candidatesLink, location.pathname !== "/reports" && reportsLink, ...menu]}
     />
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Report from "./pages/Report";
 import Candidates from './pages/Candidates';
+import Reports from "./pages/Reports";
 import { Route, Switch, Redirect, useHistory } from 'react-router';
 import ErrorDisplay from "./components/ErrorDisplay";
 import MainHeader from "./components/UI/MainHeader";
@@ -57,7 +58,9 @@ function App() {
           <Route exact path="/">
             <Candidates loggedIn={loggedIn} />
           </Route >
-
+          <Route exact path="/reports">
+            <Reports loggedIn={loggedIn} />
+          </Route >
           <Route>
             <Redirect from="/candidates" to="/"></Redirect>
           </Route>
