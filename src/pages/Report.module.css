@@ -254,6 +254,7 @@
     background-image: url("https://ak.picdn.net/shutterstock/videos/1018020805/thumb/1.jpg");
     background-size: cover;
     background-attachment: fixed;
+    filter: brightness(110%);
 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 -webkit-backdrop-filter: blur( 4px );
 border-radius: 0 0 10px 10px;

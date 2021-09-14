@@ -4,6 +4,8 @@ import CandidateCommunicator from "../services/CandidateCommunicator";
 import CandidateList from "../components/CandidateList";
 import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
+import { style } from "dom-helpers";
+import styles from "./Candidates.module.css"
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
@@ -42,7 +44,9 @@ const Candidates = (props) => {
   return props.loggedIn ? (
     <Fragment>
       <SearchBar onSearch={handleSearch} />
+      <div className={styles.mainContainer}>
       <CandidateList candidates={candidates} searchText={searchText} />
+      </div>
     </Fragment>
   ) : (
     <Fragment />

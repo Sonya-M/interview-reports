@@ -4,39 +4,40 @@ import { Link } from "react-router-dom";
 import ImageGuaranteed from "./UI/ImageGuaranteed.jsx";
 import { PLACEHOLDER_IMG } from "../shared/constants";
 
-import { Card, Col } from "react-bootstrap";
+import { div, Col } from "react-bootstrap";
 import style from "./CandidateCard.module.css";
 
-const CandidateCard = (props) => {
+const Candidatediv = (props) => {
   const { candidate } = props;
   return (
     <Fragment>
-      <Col xs={12} md={6} lg={4} className="mb-5">
+      <Col xs={12} md={6} lg={4} >
         <Link to={"/candidates/" + candidate.id} className={style.linksStyle}>
-          <Card className={`m-3 h-100 ${style.candidateCard}`}>
+          <div className={`m-1 h-100 ${style.candidateCard}`}>
             {candidate.avatar ? (
               <ImageGuaranteed
                 preferredImg={candidate.avatar}
                 placeholderImg={PLACEHOLDER_IMG}
                 preferredImgAlt={candidate.name}
                 alt="avatar"
+                className={style.avatar}
               />
             ) : (
-              <img alt="No file available" src={PLACEHOLDER_IMG} />
+              <img alt="No file available" src={PLACEHOLDER_IMG} className={style.avatar} />
             )}
-            <Card.Body>
-              <Card.Title className="candidateName text-center">
+            <div className={style.candidateInfo}>
+              <div className="candidateName text-center">
                 {candidate.name}
-              </Card.Title>
-              <Card.Text className="candidateEmail text-center">
+              </div>
+              <div className="candidateEmail text-center">
                 {candidate.email}
-              </Card.Text>
-            </Card.Body>
-          </Card>
+              </div>
+            </div>
+          </div>
         </Link>
       </Col>
     </Fragment>
   );
 };
 
-export default CandidateCard;
+export default Candidatediv;

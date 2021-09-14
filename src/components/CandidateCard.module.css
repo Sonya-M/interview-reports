@@ -1,9 +1,32 @@
 .candidateCard {
+    display: block;
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    background: rgba( 255, 255, 255, 0.25 );
+/* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+
 }
 .linksStyle {
     text-decoration: none;
     color: black;
+    
+    /* background: rgba( 255, 255, 255, 0.25 ); */
+}
+.avatar {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 2em auto;
+    border: silver 1px solid;
+    border-radius: 5%;
+    box-shadow: 10px 10px 5px 0px hsla(0, 0%, 0%, 0.50);
+}
+.candidateInfo {
+    background: rgba( 255, 255, 255, 0.55 );
+    margin-bottom: 0;
 }
