@@ -38,9 +38,6 @@ export function authenticate(email, password) {
     sessionStorage.setItem("accessToken", token); //save accessToken
     sessionStorage.setItem("username", email);
     return { email, token };
-  }).catch(error => {
-    console.log(error);
-    throw new Error(error);
   });
 }
 
@@ -61,52 +58,27 @@ function concatParams(params) {
   return result.join("&");
 }
 
-/* export function getReportsForCandidate(candidateId) {
-  return getData("reports", [{ key: "candidateId", value: candidateId }])
-    .then(json => {
-      return (json.map(r => new Report(r)));
-    });
+export function saveData(action, method, data) {
+  let link = BASE_URL + action;
+  return (fetch(link), {
+    method: method,
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  }).then(response => response.json());
+  // leave error handling to client
 }
 
-export function getSingleCandidate(id) {
-  return getData("candidates", [{ key: "id", value: id }])
-    .then(json => {
-      console.log("getSingleCandidate", json);
-      const noResults = json.length === 0;
-      if (noResults) console.log("getSingleCandidate: No results!");
-      return (noResults ? [] : new Candidate(json[0]));
-    });
+export function deleteData(action, id) {
+  let link = BASE_URL + action + "?id=" + id;
+  return (fetch(link), {
+    method: "DELETE",
+    headers: getHeaders(),
+  }).then(response => {
+    if (response) return response.json();
+    else return null; // TODO: Pitaj Nikolu šta da vratim ?????
+  });
 }
 
-export function getCandidates() {
-  return getData("candidates")
-    .then(json => {
-      // console.log("Results", json);
-      // console.log(("Candidates:", json.map(c => new Candidate(c))));
-      return (json.map(c => new Candidate(c)));
-    });
-}
-
-
-
-export function getReports() {
-  return getData("reports")
-    .then(json => {
-      // console.log("Reports results: ", json);
-      // console.log("Reports:", json.map(r => new Report(r)));
-      return (json.map(r => new Report(r)));
-    });
-}
-
-export function getCompanies() {
-  return getData("companies")
-    .then(json => {
-      // console.log("Companies json: ", json);
-      // console.log("Companies", json.map(c => new Company(c)));
-      return json.map(c => new Company(c));
-    });
-}
- */
 
 
 ///////////////////////////////////////////////////////
