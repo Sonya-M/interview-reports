@@ -39,13 +39,11 @@ const Candidates = (props) => {
     );
   }
 
-  return props.loggedIn ? (
+  return (
     <Fragment>
       <SearchBar onSearch={handleSearch} />
       <CandidateList candidates={candidates} searchText={searchText} />
     </Fragment>
-  ) : (
-    <Fragment />
   );
 };
 
