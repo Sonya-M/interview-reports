@@ -5,7 +5,10 @@ import Candidates from './pages/Candidates';
 import { Route, Switch, Redirect, useHistory } from 'react-router';
 import ErrorDisplay from "./components/ErrorDisplay";
 import MainHeader from "./components/UI/MainHeader";
+import AdminHeader from "./components/UI/AdminHeader";
 import Footer from "./components/UI/Footer";
+import AdminPage from "./pages/AdminPage";
+import Wizard from "./pages/Wizard";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -38,34 +41,53 @@ function App() {
   const refreshPage = () => {
     history.push("/");
     window.location.reload();
+  };
+
+  const refreshAdminPage = () => {
+    history.push("/admin");
+    window.location.reload();
   }
 
+  const mainHeader = (
+    <MainHeader
+      loggedIn={loggedIn}
+      onLogout={handleLogout}
+      onLogoClick={refreshPage} />);
+  const adminHeader = (
+    <AdminHeader
+      onLogoClick={refreshAdminPage}
+    />
+  );
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
-      <MainHeader loggedIn={loggedIn} onLogout={handleLogout} onLogoClick={refreshPage} />
-
       {(!loggedIn) ?
         <LoginForm onLogin={handleLogin} /> :
         <Switch>
-          {/* <Route exact path="/login">
-          <LoginForm onLogin={handleLogin} />
-        </Route> */}
           <Route exact path="/candidates/:id">
-            <Report loggedIn={loggedIn} />
+            {mainHeader}
+            <Report />
           </Route>
           <Route exact path="/">
-            <Candidates loggedIn={loggedIn} />
+            {mainHeader}
+            <Candidates />
           </Route >
-
+          <Route exact path="/admin">
+            {adminHeader}
+            <AdminPage />
+          </Route>
+          <Route exact path="/wizard">
+            {adminHeader}
+            <Wizard />
+          </Route>
           <Route>
             <Redirect from="/candidates" to="/"></Redirect>
           </Route>
-
           <Route>
             <ErrorDisplay message="Page not found" />
           </Route>
         </Switch>}
+
 
       <Footer />
     </Container>
