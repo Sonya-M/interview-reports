@@ -4,6 +4,7 @@ import CandidateCommunicator from "../services/CandidateCommunicator";
 import CandidateList from "../components/CandidateList";
 import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
+import StepCandidateList from "../components/StepCandidateList"
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
@@ -38,11 +39,17 @@ const Candidates = (props) => {
       </Fragment>
     );
   }
+  if (props.adminpage) {
+    return (<Fragment>
+      <CandidateList adminpage={true} candidates={candidates} searchText={searchText} />
+    </Fragment>)
+  }
 
   return (
     <Fragment>
       <SearchBar onSearch={handleSearch} />
       <CandidateList candidates={candidates} searchText={searchText} />
+      {console.log(props)}
     </Fragment>
   );
 };

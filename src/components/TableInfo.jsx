@@ -23,6 +23,7 @@ export const TableInfo = (props) => {
       />
       <tr className={style.tr}>
         <td>{info.companyName}</td>
+        {props.admin ? <th>{info.candidateName}</th> : <React.Fragment />}
         <td>{info.getInterviewDate()}</td>
         <td
           className={info.status === "passed" ? style.passed : style.declined}

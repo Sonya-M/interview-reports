@@ -6,7 +6,7 @@ import { includesIgnoreCase } from "../utilities/helpers.js";
 import { Row } from "react-bootstrap";
 import ErrorDisplay from "./ErrorDisplay";
 
-const CandidateList = ({ candidates, searchText, adminpage }) => {
+const StepCandidateList = ({ candidates, searchText }) => {
   let searchResult;
   if (searchText === "") {
     searchResult = candidates;
@@ -14,15 +14,6 @@ const CandidateList = ({ candidates, searchText, adminpage }) => {
     searchResult = candidates.filter((c) => {
       return includesIgnoreCase(c.name, searchText);
     });
-  }
-  if (adminpage){
-    return (
-      <Row className="g-4 m-5">
-      {searchResult.map((item) => (
-        <CandidateCard key={item.id} candidate={item} adminpage={true}/>
-      ))}
-    </Row>
-    )
   }
   
 
@@ -37,4 +28,4 @@ const CandidateList = ({ candidates, searchText, adminpage }) => {
   );
 };
 
-export default CandidateList;
+export default StepCandidateList;
