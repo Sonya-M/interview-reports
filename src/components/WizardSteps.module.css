@@ -4,12 +4,14 @@ ol.stepList li {
 }
 
 ol.stepList li {
+  margin: 0;
   display: block;
   padding: 0.5rem;
-  font-size: larger;
+  font-size: 1.1rem;
+  /* font-weight: lighter; */
 }
 
 ol.stepList li.currentStep {
   color: rgb(0, 140, 255);
-  font-weight: bold;
+  font-weight: bolder;
 }

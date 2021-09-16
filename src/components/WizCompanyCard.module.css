@@ -1,0 +1,19 @@
+.optionCard {
+  border: 1px solid #999;
+  border-radius: 0.3rem;
+  max-width: 100vw;
+  width: 15rem;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  margin: 0.6rem;
+  word-break: break-all;
+  padding: 0;
+}
+
+.selected {
+  border-color: dodgerblue;
+  border-width: 2px;
+  background-color: rgba(30, 143, 255, 0.11);
+}
