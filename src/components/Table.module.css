@@ -96,8 +96,24 @@
     width: 100%;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.192);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.144);
   }
+  .adminTable {
+    width: 100%;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.192);
+    border-radius: 10px;
+  }
+  .create {
+    
+    margin-right: 0;
+    margin-left: auto;
+    width: 50%;
+    color: #ffffff;
+    float: right;
+    background-color: #4c4c4e;
+
+  }
+  
+  
 
   .th > tr > th {
     font-size: 1em;
@@ -106,20 +122,28 @@
     background-color: #6c7ae0;
     padding: 1em;
   }
-  .tr > td {
+  .adminTable > .th > tr > th {
+    font-size: 1em;
+    color: #fff;
+    /* line-height: 1.4; */
+    background-color: #4c4c4e;
+    padding: 1em;
+    
+  }
+   .tr > td {
     padding: 1em;
     font-weight: 700;
   }
-  .th > tr > th:first-child {
+  .table > .th > tr > th:first-child {
     border-top-left-radius: 10px;
   }
-  .th > tr > th:last-child {
+  .table > .th > tr > th:last-child {
     border-top-right-radius: 10px;
   }
-  .tr:last-child > td:first-child {
+  .table > .tb > .tr:last-child > td:first-child {
     border-bottom-left-radius: 10px;
   }
-  .tr:last-child > td:last-child {
+  .table > .tb > .tr:last-child > td:last-child {
     border-bottom-right-radius: 10px;
   }
   .passed {
@@ -137,7 +161,14 @@
     background: hsl(0, 0%, 90%);
     color: hsl(0, 0%, 27%);
   }
+  
+  .eyeFill {
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+  }
   .eyeFill:hover {
     cursor: pointer;
+    
   }
 }

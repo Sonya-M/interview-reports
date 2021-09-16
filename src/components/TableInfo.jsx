@@ -5,6 +5,7 @@ import style from "./Table.module.css";
 import ModalWrapper from "./ModalWrapper";
 import ReportDetails from "./ReportDetails";
 
+
 export const TableInfo = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -23,7 +24,7 @@ export const TableInfo = (props) => {
       />
       <tr className={style.tr}>
         <td>{info.companyName}</td>
-        {props.admin ? <th>{info.candidateName}</th> : <React.Fragment />}
+        {props.admin ? <td>{info.candidateName}</td> : <React.Fragment />}
         <td>{info.getInterviewDate()}</td>
         <td
           className={info.status === "passed" ? style.passed : style.declined}

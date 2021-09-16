@@ -8,6 +8,8 @@ import CandidateList from "../components/CandidateList";
 import SearchBar from "../components/SearchBar";
 import Candidates from "./Candidates";
 import Company from "./Company";
+import adminStyle from "./AdminPage.module.css"
+import Steps from "../components/Steps";
 
 
 export let candidateName = [];
@@ -20,7 +22,7 @@ export let status = "";
 export let notes = "";
 
 export default function AdminPage(props) {
-  let [step, setStep] = useState(0);
+  let [step, setStep] = useState(1);
   const [loading, setLoading] = useState(true);
   const [reports, setReports] = useState([]);
   const [company, setCompany] = useState([]);
@@ -94,37 +96,44 @@ export default function AdminPage(props) {
   //       setLoading(false);
   //     });
   // }, []);
-  if (step === 0) {
-    return (
-      <Fragment>
-        <Table reports={reports} admin={true} />
-        <button onClick={nextStepHandler}>Create report</button>
-        {console.log(`reports: ${reports}`)}
-        {console.log(candidates)}
-      </Fragment>
-    );
-  }
+  // if (step === 0) {
+  //   return (
+  //     <Fragment>
+  //       <Table reports={reports} admin={true} />
+  //       <button onClick={nextStepHandler}>Create report</button>
+  //       {console.log(`reports: ${reports}`)}
+  //       {console.log(candidates)}
+  //     </Fragment>
+  //   );
+  // }
   if (step === 1) {
     return (
-      <Fragment>
-        
+      <div className={adminStyle.container}>
+        <Steps step={step}/>
         <Candidates adminpage={true}/>
         <button onClick={candidateStepHandler}>Next</button>
         <button onClick={prevStepHandler}>Back</button>
-      </Fragment>
+      </div>
     );
   }
   if (step === 2){
     return (
-    <Fragment>
+    <div className={adminStyle.container}>
+        <Steps step={step}/>
+
       {console.log(candidateName)}
+      <div>
     <Company company={company}/>
+    <button onClick={prevStepHandler}>Back</button>
     <button onClick={companyHandler}>Next</button>
-    </Fragment>)
+    </div>
+    </div>)
   }
   if (step === 3){
     return (
-      <Fragment>
+      <div className={adminStyle.container}>
+        <Steps />
+        <div>
         <label htmlFor="date">Interview date</label>
         <input type="date" id="date" onChange={dateHandler}></input>
         <label htmlFor="phase">Phase</label>
@@ -141,7 +150,8 @@ export default function AdminPage(props) {
         <label htmlFor="notes">Notes</label>
         <br/>
         <textarea id="notes" onChange={notesHandler}></textarea>
-      </Fragment>
+        </div>
+      </div>
     )
   }
 }
