@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
-import ErrorDisplay from "../components/ErrorDisplay"; 
+import ErrorDisplay from "../components/ErrorDisplay";
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
 import { Envelope, Gift, Book } from "react-bootstrap-icons";
 
@@ -58,13 +58,13 @@ export default function Report(props) {
     return <ErrorDisplay message="Sorry, failed to load data" />;
   }
 
-  if (
-    !selectedCandidate ||
-    selectedCandidate.length === 0 ||
-    reports.length === 0
-  ) {
-    return <ErrorDisplay message="No data available." />;
-  }
+  // if (
+  //   !selectedCandidate ||
+  //   selectedCandidate.length === 0 ||
+  //   reports.length === 0
+  // ) {
+  //   return <ErrorDisplay message="No data available." />;
+  // }
   return (
     <Fragment>
       <div className={style.data}>
@@ -74,7 +74,6 @@ export default function Report(props) {
           className={style.cover}
         />
         <div>
-          
           <ImageGuaranteed
             preferredImg={selectedCandidate.avatar}
             placeholderImg="/Profile_avatar_placeholder_large.png"
@@ -114,7 +113,9 @@ export default function Report(props) {
               {!showMore ? "Show more" : "Show  less "}
             </button>
             <div className={style.tableDiv}>
-            <Table reports={reports} />
+              {!selectedCandidate ||
+                selectedCandidate.length === 0 || reports.length === 0 ? <ErrorDisplay message="No data available." /> : <Table reports={reports} />}
+              
             </div>
           </div>
         </div>
