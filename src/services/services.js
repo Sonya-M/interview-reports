@@ -70,7 +70,7 @@ export function saveData(action, method, data) {
 }
 
 export function deleteData(action, id) {
-  let link = BASE_URL + action + "?id=" + id;
+  let link = BASE_URL + action + "/" + id;
   return (
     fetch
       (link, {
@@ -78,29 +78,5 @@ export function deleteData(action, id) {
         headers: getHeaders(),
       })
       .then(response => response.json()));
+  // leave error handling to client
 }
-
-
-
-
-///////////////////////////////////////////////////////
-// TODO: adapt Nikola's code for save and delete below:
-// export async function saveData(action, method, data) {
-//   let link = url + action;
-//   var result = await fetch(link, {
-//     method: method,
-//     headers: headers,
-//     body: JSON.stringify(data)
-//   });
-
-//   let jsonResult = await result.json();
-//   return jsonResult;
-// }
-
-// export async function deleteData(action, id) {
-//   let link = url + action + "?id=" + id;
-//   let result = await fetch(link, { method: "DELETE", headers: headers });
-//   let data = await result.json();
-//   return data;
-// }
-////////////////////////////////////////////////////////////
