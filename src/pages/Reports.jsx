@@ -36,7 +36,7 @@ const Reports = () => {
   return (
     <Fragment>
       <SearchBar onSearch={handleSearch}/>
-      <ListOfReports reports={reports}/>
+      <ListOfReports reports={reports} searchText={searchText}/>
     </Fragment>
   )
 }
