@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import CandidateCard from "./CandidateCard.jsx";
 import { includesIgnoreCase } from "../utilities/helpers.js";
@@ -17,21 +17,21 @@ const CandidateList = ({ candidates, searchText, adminpage }) => {
   }
   if (adminpage){
     return (
-      <Row className="g-4 m-5">
+      <Fragment >
       {searchResult.map((item) => (
         <CandidateCard key={item.id} candidate={item} adminpage={true}/>
       ))}
-    </Row>
+    </Fragment>
     )
   }
   
 
   return searchResult.length !== 0 ? (
-    <Row className="g-4 m-5">
+    <Fragment>
       {searchResult.map((item) => (
         <CandidateCard key={item.id} candidate={item} />
       ))}
-    </Row>
+    </Fragment>
   ) : (
     <ErrorDisplay message="No result" />
   );

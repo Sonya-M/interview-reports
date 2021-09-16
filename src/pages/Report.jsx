@@ -74,15 +74,16 @@ export default function Report(props) {
           className={style.cover}
         />
         <div>
-          <div className={style.cardInfo}>
-            <div className={style.name}>{selectedCandidate.name}</div>
-          </div>
+          
           <ImageGuaranteed
             preferredImg={selectedCandidate.avatar}
             placeholderImg="/Profile_avatar_placeholder_large.png"
             preferredImgAlt={selectedCandidate.name}
             className={style.avatar}
           />
+          <div className={style.cardInfo}>
+            <div className={style.name}>{selectedCandidate.name}</div>
+          </div>
           <div className={style.containerMax}>
             <div className={showMore ? style.cardMore : style.card}>
               <span className={style.about}>About</span>
@@ -112,7 +113,9 @@ export default function Report(props) {
             <button className={style.seeMore} onClick={handleShowMore}>
               {!showMore ? "Show more" : "Show  less "}
             </button>
+            <div className={style.tableDiv}>
             <Table reports={reports} />
+            </div>
           </div>
         </div>
       </div>

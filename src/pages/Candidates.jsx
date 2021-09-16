@@ -5,6 +5,7 @@ import CandidateList from "../components/CandidateList";
 import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
 import StepCandidateList from "../components/StepCandidateList"
+import styles from "./Candidates.module.css"
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
@@ -45,13 +46,14 @@ const Candidates = (props) => {
     </Fragment>)
   }
 
-  return (
+  return  (
     <Fragment>
       <SearchBar onSearch={handleSearch} />
+      <div className={styles.mainContainer}>
       <CandidateList candidates={candidates} searchText={searchText} />
-      {console.log(props)}
+      </div>
     </Fragment>
-  );
+  ) 
 };
 
 export default Candidates;

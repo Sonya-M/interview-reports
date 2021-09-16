@@ -24,31 +24,31 @@ const CandidateCard = (props) => {
   }
   return (
     <Fragment>
-      {console.log(props)}
-      <Col xs={12} md={6} lg={4} className="mb-5">
+      
         <Link to={"/candidates/" + candidate.id} className={style.linksStyle}>
-          <Card className={`m-3 h-100 ${style.candidateCard}`}>
+          <div className={`${style.candidateCard} `}>
             {candidate.avatar ? (
               <ImageGuaranteed
                 preferredImg={candidate.avatar}
                 placeholderImg={PLACEHOLDER_IMG}
                 preferredImgAlt={candidate.name}
                 alt="avatar"
+                className={style.avatar}
               />
             ) : (
-              <img alt="No file available" src={PLACEHOLDER_IMG} />
+              <img alt="No file available" src={PLACEHOLDER_IMG} className={style.avatar} />
             )}
-            <Card.Body>
-              <Card.Title className="candidateName text-center">
+            <div className={style.candidateInfo}>
+              <div className={style.name}>
                 {candidate.name}
-              </Card.Title>
-              <Card.Text className="candidateEmail text-center">
+              </div>
+              <div className={style.email}>
                 {candidate.email}
-              </Card.Text>
-            </Card.Body>
-          </Card>
+              </div>
+            </div>
+          </div>
         </Link>
-      </Col>
+      
     </Fragment>
   );
 };
