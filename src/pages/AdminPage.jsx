@@ -53,7 +53,7 @@ export default function AdminPage(props) {
   }
   if (loading) return <p>Loading...</p>;
   return (
-    <Fragment>
+    <div className={styles.tableContainer}>
       <SearchBar onSearch={handleSearch} />
       <Table
         reports={reports}
@@ -61,6 +61,6 @@ export default function AdminPage(props) {
         onDelete={deleteReport}
         admin={true}
       />
-    </Fragment>
+    </div>
   );
 }

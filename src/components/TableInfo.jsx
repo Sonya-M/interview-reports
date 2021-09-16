@@ -27,7 +27,11 @@ export const TableInfo = (props) => {
         {props.admin ? <td>{info.candidateName}</td> : <Fragment />}
         <td>{info.getInterviewDate()}</td>
         <td
-          className={info.status === "passed" ? style.passed : style.declined}
+          className={
+            info.status.toLowerCase() === "passed"
+              ? style.passed
+              : style.declined
+          }
         >
           {info.status.toUpperCase()}
         </td>

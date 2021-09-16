@@ -11,7 +11,7 @@ export default function WizCompanyCard(props) {
   }  ${props.selected ? styles.selected : " "} `;
 
   return (
-    <div className={classes} onClick={handleClick}>
+    <div className={`${classes} px-3`} onClick={handleClick}>
       <span>{company.name}</span>
     </div>
   );

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ImageGuaranteed from "./UI/ImageGuaranteed";
 import { PLACEHOLDER_IMG } from "../shared/constants";
+
+import { Col } from "react-bootstrap";
 import styles from "./WizCandidateCard.module.css";
 
 export default function WizCandidateCard(props) {

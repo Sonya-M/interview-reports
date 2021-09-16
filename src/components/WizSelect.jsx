@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ErrorDisplay from "./ErrorDisplay";
 // import WizCandidateCard from "./WizCandidateCard";
 
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import styles from "./WizSelect.module.css";
 
 export default function WizSelect(props) {
@@ -42,28 +42,32 @@ export default function WizSelect(props) {
   if (error) return <ErrorDisplay message={error} />;
 
   return (
-    <React.Fragment>
-      <div className="d-flex row">
+    <div className={styles.selectBox}>
+      <Row>
         {items.map((item) => (
-          <ItemCard
-            key={item.id}
-            item={item}
-            onSelect={handleSelect}
-            selected={selected ? item.id === selected.id : false}
-          />
+          <Col key={item.id}>
+            <ItemCard
+              className="mx-auto"
+              item={item}
+              onSelect={handleSelect}
+              selected={selected ? item.id === selected.id : false}
+            />
+          </Col>
         ))}
-      </div>
-      <div className="d-flex justify-content-between">
+      </Row>
+
+      <div className={`${styles.buttonBox} d-flex  justify-content-between `}>
         <Button
           className={props.currentStep === 0 ? "disabled" : " "}
           onClick={props.onBackBtnClick}
         >
           Back
         </Button>
+
         <Button className={!selected ? "disabled" : " "} onClick={handleClick}>
           Next
         </Button>
       </div>
-    </React.Fragment>
+    </div>
   );
 }

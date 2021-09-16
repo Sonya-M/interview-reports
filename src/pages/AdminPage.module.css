@@ -1,0 +1,17 @@
+.tableContainer {
+  max-width: 900px;
+}
+
+@media screen and (min-width: 600px) {
+  .tableContainer {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .tableContainer {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

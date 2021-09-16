@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Report from "./Report";
 import ReportCommunicator from "../services/ReportCommunicator";
 import { getDefaultNormalizer } from "@testing-library/react";
@@ -13,10 +14,13 @@ import WizCompanyCard from "../components/WizCompanyCard";
 import WizReportForm from "../components/WizReportForm";
 
 import styles from "./Wizard.module.css";
+import ErrorDisplay from "../components/ErrorDisplay";
 
 export default function Wizard(props) {
+  const history = useHistory();
   const [currentStep, setCurrentStep] = useState(0);
   const [input, setInput] = useState({});
+  const [error, setError] = useState("");
 
   const handleSelectCandidate = (candidate) => {
     setInput((prevInput) => ({
@@ -37,13 +41,13 @@ export default function Wizard(props) {
   };
 
   const handleFormSubmit = (formInput) => {
-    setInput((prevInput) => ({
-      ...prevInput,
-      interviewDate: formInput.date,
-      phase: formInput.phase,
-      status: formInput.status,
-      note: formInput.note,
-    }));
+    const { interviewDate, phase, status, note } = formInput;
+    const reportData = { ...input, interviewDate, phase, status, note };
+    console.log("reportData: ", reportData);
+    ReportCommunicator.save(reportData)
+      .then((response) => console.log(response))
+      .then(history.push("/admin"))
+      .catch((error) => setError(error));
   };
 
   const handleBackBtnClick = () => {
@@ -52,9 +56,11 @@ export default function Wizard(props) {
 
   const sharedSelectProps = { currentStep, onBackBtnClick: handleBackBtnClick };
 
+  if (error) return <ErrorDisplay message={error} />;
+
   return (
     <Row className="mt-4  m-0">
-      <Col sm={3} className={styles.stepsDiv}>
+      <Col sm={3} lg={2} className={styles.stepsDiv}>
         <WizardSteps currentStep={currentStep} />
       </Col>
       <Col sm={8} className={styles.optionsDiv}>
@@ -75,7 +81,10 @@ export default function Wizard(props) {
           />
         )}
         {currentStep === 2 && (
-          <WizReportForm onBackBtnClick={handleBackBtnClick} />
+          <WizReportForm
+            onBackBtnClick={handleBackBtnClick}
+            onSubmit={handleFormSubmit}
+          />
         )}
       </Col>
     </Row>
