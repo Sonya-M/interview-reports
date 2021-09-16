@@ -1,0 +1,15 @@
+ol.stepList,
+ol.stepList li {
+  all: unset;
+}
+
+ol.stepList li {
+  display: block;
+  padding: 0.5rem;
+  font-size: larger;
+}
+
+ol.stepList li.currentStep {
+  color: rgb(0, 140, 255);
+  font-weight: bold;
+}

@@ -1,0 +1,22 @@
+.stepsDiv {
+  margin: 2rem;
+  padding: 0.5rem;
+}
+
+.optionsDiv {
+  display: flex;
+  border-left: 2px solid gray;
+  justify-content: space-around;
+  align-items: center;
+  justify-items: center;
+}
+
+.optionsDiv .option {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .optionsDiv .option {
+    flex-basis: 45%;
+  }
+}
