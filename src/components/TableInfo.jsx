@@ -4,6 +4,7 @@ import { EyeFill } from "react-bootstrap-icons";
 import style from "./Table.module.css";
 import ModalWrapper from "./ModalWrapper";
 import ReportDetails from "./ReportDetails";
+import { TrashFill } from "react-bootstrap-icons";
 
 export const TableInfo = (props) => {
   const [show, setShow] = useState(false);
@@ -35,15 +36,13 @@ export const TableInfo = (props) => {
         </td>
         {/* TODO: make a separate TebleInfo.module.css */}
         {props.admin ? (
-          <td
-            className="deleteBtn"
-            onClick={() => props.onDelete(info.id)}
-            style={{
-              cursor: "pointer",
-              color: "darkred",
-            }}
-          >
-            <span>X</span>
+          <td>
+            <span
+              style={{ color: "darkred", cursor: "pointer" }}
+              onClick={() => props.onDelete(info.id)}
+            >
+              <TrashFill />
+            </span>
           </td>
         ) : (
           <Fragment />
