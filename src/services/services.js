@@ -78,4 +78,5 @@ export function deleteData(action, id) {
         headers: getHeaders(),
       })
       .then(response => response.json()));
+  // leave error handling to client
 }

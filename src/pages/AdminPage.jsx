@@ -5,6 +5,9 @@ import { Table } from "../components/Table";
 
 import ReportCommunicator from "../services/ReportCommunicator";
 
+import { Button } from "react-bootstrap";
+import styles from "./AdminPage.module.css";
+
 export default function AdminPage(props) {
   const [reports, setReports] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -36,14 +39,17 @@ export default function AdminPage(props) {
     // setReports(reports.filter((r) => r.id !== id));
     // TODO: Pitaj Nikolu da li ovo valja!!!
     ReportCommunicator.delete(id)
-      .then(getReports())
+      .then((response) => {
+        console.log(response);
+        getReports();
+      })
       .catch((error) => {
         setError(error);
       });
   };
 
   if (error) {
-    return <ErrorDisplay message={`Error: ${error}`} />;
+    return <ErrorDisplay message={error.toString()} />;
   }
   if (loading) return <p>Loading...</p>;
   return (
