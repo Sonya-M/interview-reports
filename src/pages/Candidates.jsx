@@ -6,6 +6,7 @@ import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
 import StepCandidateList from "../components/StepCandidateList"
 import styles from "./Candidates.module.css"
+import BBTLogo from "../components/UI/BBTLogo";
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);

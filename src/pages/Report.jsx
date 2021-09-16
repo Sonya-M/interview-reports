@@ -114,7 +114,7 @@ export default function Report(props) {
             </button>
             <div className={style.tableDiv}>
               {!selectedCandidate ||
-                selectedCandidate.length === 0 || reports.length === 0 ? <ErrorDisplay message="No data available." /> : <Table reports={reports} />}
+                selectedCandidate.length === 0 || reports.length === 0 ? <ErrorDisplay message="No reports yet." /> : <Table reports={reports} />}
               
             </div>
           </div>
