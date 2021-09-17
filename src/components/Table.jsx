@@ -8,9 +8,9 @@ export const Table = (props) => {
 
   if (props.filterText) {
     reports = reports.filter((r) => {
-      return (
-        includesIgnoreCase(r.companyName, props.filterText) ||
-        includesIgnoreCase(r.candidateName, props.filterText)
+      return includesIgnoreCase(
+        r.companyName + " " + r.candidateName,
+        props.filterText
       );
     });
   }
