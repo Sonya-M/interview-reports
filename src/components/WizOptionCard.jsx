@@ -7,7 +7,7 @@ export default function WizOptionCard(props) {
     props.className ? props.className : " "
   }  ${props.selected ? styles.selected : " "} `;
   return (
-    <Col sm="auto">
+    <Col xs="auto">
       <div className={classes} onClick={props.onClick}>
         {props.children}
       </div>

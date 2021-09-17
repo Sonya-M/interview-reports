@@ -40,7 +40,7 @@ export default function WizSelect(props) {
 
   return (
     <div className={styles.selectBox}>
-      <Row className="g-1 justify-content-center">
+      <Row className="justify-content-center">
         <SearchBar onSearch={handleSearch} />
         <WizOptionList
           items={items}
