@@ -4,8 +4,8 @@ import {
   EyeFill,
   HandThumbsUpFill,
   HandThumbsDownFill,
-  XCircleFill,
-  CheckCircleFill,
+  // XCircleFill,
+  // CheckCircleFill,
 } from "react-bootstrap-icons";
 import style from "./Table.module.css";
 import ModalWrapper from "./ModalWrapper";

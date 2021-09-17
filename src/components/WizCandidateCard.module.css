@@ -27,7 +27,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   align-content: center;
   flex-basis: 70%;
 }

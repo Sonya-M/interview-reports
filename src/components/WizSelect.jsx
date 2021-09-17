@@ -27,7 +27,7 @@ export default function WizSelect(props) {
       })
       .catch((error) => setError(error))
       .finally(setLoading(false));
-  }, []);
+  }, [communicator]);
 
   const handleSelect = (item) => {
     if (selected && selected.id === item.id) setSelected(null);
