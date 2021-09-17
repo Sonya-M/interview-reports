@@ -2,13 +2,3 @@
   /* border: 1px solid black; */
   width: 100%;
 }
-
-.buttonBox {
-  /* border: 1px solid red; */
-}
-
-@media screen and(min-width: 1332px) {
-  .buttonBox {
-    /* width: 90%; */
-  }
-}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import CandidateCommunicator from "../services/CandidateCommunicator";
 import ErrorDisplay from "./ErrorDisplay";
-// import WizCandidateCard from "./WizCandidateCard";
+import WizSelectBtns from "./WizSelectBtns";
 
 import { Button, Col, Row } from "react-bootstrap";
 import styles from "./WizSelect.module.css";
@@ -52,18 +51,31 @@ export default function WizSelect(props) {
         ))}
       </Row>
 
-      <div className={`${styles.buttonBox} d-flex  justify-content-between `}>
-        <Button
-          className={props.currentStep === 0 ? "disabled" : " "}
-          onClick={props.onBackBtnClick}
-        >
-          Back
-        </Button>
-
-        <Button className={!selected ? "disabled" : " "} onClick={handleClick}>
-          Next
-        </Button>
-      </div>
+      <WizSelectBtns
+        currentStep={props.currentStep}
+        onBackBtnClick={props.onBackBtnClick}
+        onNextBtnClick={handleClick}
+        selected={selected}
+      />
     </div>
   );
 }
+
+// function WizSelectBtns(props) {
+//   return (
+//     <div className={`${styles.buttonBox} d-flex  justify-content-between `}>
+//       props.currentStep === 0 ?
+//       <Button
+//         className={props.currentStep === 0 ? "disabled" : " "}
+//         onClick={props.onBackBtnClick}
+//       >
+//         Back
+//       </Button>{" "}
+//       :
+//       <React.Fragment />
+//       <Button className={!selected ? "disabled" : " "} onClick={handleClick}>
+//         Next
+//       </Button>
+//     </div>
+//   );
+// }

@@ -52,12 +52,12 @@ export default function WizReportForm(props) {
   useEffect(() => {
     const timerID = setTimeout(() => {
       setFormIsValid(
-        dateState.isValid,
-        phaseState.isValid,
-        statusState.isValid,
-        noteState.isValid
+        dateState.isValid &&
+          phaseState.isValid &&
+          statusState.isValid &&
+          noteState.isValid
       );
-    }, 300);
+    }, 1);
 
     return () => {
       clearTimeout(timerID);
