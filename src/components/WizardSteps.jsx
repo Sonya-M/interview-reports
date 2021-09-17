@@ -18,7 +18,7 @@ export default function WizardSteps(props) {
     let classes = i === props.currentStep ? styles.currentStep : "";
     steps.push(
       <li
-        className={`${classes} ${props.currentStep > i ? styles.active : " "}`}
+        className={`${classes} ${props.nextStep >= i ? styles.active : " "}`}
         key={i}
         onClick={() => handleClick(i)}
       >

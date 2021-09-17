@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 export default function WizSelectedInfo(props) {
   return (
-    <section>
+    <section className="text-muted">
       {props.candidateName ? (
         <Fragment>
           <h6>Candidate:</h6>

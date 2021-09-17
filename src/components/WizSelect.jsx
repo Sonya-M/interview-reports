@@ -35,13 +35,12 @@ export default function WizSelect(props) {
     <div className={styles.selectBox}>
       <Row className="g-1 justify-content-center">
         {items.map((item) => (
-          <Col sm="auto" key={item.id}>
-            <ItemCard
-              item={item}
-              onSelect={handleSelect}
-              selected={props.selected ? item.id === props.selected.id : false}
-            />
-          </Col>
+          <ItemCard
+            key={item.id}
+            item={item}
+            onSelect={handleSelect}
+            selected={props.selected ? item.id === props.selected.id : false}
+          />
         ))}
       </Row>
 

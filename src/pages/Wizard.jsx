@@ -98,7 +98,8 @@ export default function Wizard(props) {
 
   const handleStepClick = (step) => {
     // only react if going back:
-    if (currentStep > step) {
+    const nextStep = selectedCompany ? 2 : selectedCandidate ? 1 : 0;
+    if (nextStep >= step) {
       setCurrentStep(step);
     }
   };
@@ -109,12 +110,18 @@ export default function Wizard(props) {
     onNextBtnClick: handleNextBtnClick,
   };
 
+  const nextStep = selectedCompany ? 2 : selectedCandidate ? 1 : 0;
+
   if (error) return <ErrorDisplay message={error} />;
 
   return (
     <Row className="mt-4  m-0">
       <Col sm={3} lg={2} className={styles.stepsDiv}>
-        <WizardSteps currentStep={currentStep} onClick={handleStepClick} />
+        <WizardSteps
+          currentStep={currentStep}
+          nextStep={nextStep}
+          onClick={handleStepClick}
+        />
         <hr />
         <WizSelectedInfo
           candidateName={selectedCandidate ? selectedCandidate.name : ""}
@@ -143,7 +150,6 @@ export default function Wizard(props) {
         {currentStep === 2 && (
           <WizReportForm
             onBackBtnClick={handleBackBtnClick}
-            onNextBtnClick={handleNextBtnClick}
             onSubmit={handleFormSubmit}
           />
         )}

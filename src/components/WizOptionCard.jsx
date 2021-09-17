@@ -1,4 +1,5 @@
 import React from "react";
+import { Col } from "react-bootstrap";
 import styles from "./WizOptionCard.module.css";
 
 export default function WizOptionCard(props) {
@@ -6,8 +7,10 @@ export default function WizOptionCard(props) {
     props.className ? props.className : " "
   }  ${props.selected ? styles.selected : " "} `;
   return (
-    <div className={classes} onClick={props.onClick}>
-      {props.children}
-    </div>
+    <Col sm="auto">
+      <div className={classes} onClick={props.onClick}>
+        {props.children}
+      </div>
+    </Col>
   );
 }
