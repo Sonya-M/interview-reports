@@ -98,7 +98,8 @@ export default function Wizard(props) {
 
   const handleStepClick = (step) => {
     // only react if going back:
-    const nextStep = selectedCompany ? 2 : selectedCandidate ? 1 : 0;
+    const nextStep =
+      selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
     if (nextStep >= step) {
       setCurrentStep(step);
     }
@@ -110,7 +111,8 @@ export default function Wizard(props) {
     onNextBtnClick: handleNextBtnClick,
   };
 
-  const nextStep = selectedCompany ? 2 : selectedCandidate ? 1 : 0;
+  const nextStep =
+    selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
 
   if (error) return <ErrorDisplay message={error} />;
 
