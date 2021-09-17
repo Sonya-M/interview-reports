@@ -1,6 +1,12 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import { EyeFill } from "react-bootstrap-icons";
+import {
+  EyeFill,
+  HandThumbsUpFill,
+  HandThumbsDownFill,
+  XCircleFill,
+  CheckCircleFill,
+} from "react-bootstrap-icons";
 import style from "./Table.module.css";
 import ModalWrapper from "./ModalWrapper";
 import ReportDetails from "./ReportDetails";
@@ -14,6 +20,8 @@ export const TableInfo = (props) => {
   const info = props.reportInfo;
   const modalBody = <ReportDetails info={info} />;
 
+  const passed = info.status.toLowerCase() === "passed";
+
   return (
     <Fragment>
       <ModalWrapper
@@ -26,14 +34,8 @@ export const TableInfo = (props) => {
         <td>{info.companyName}</td>
         {props.admin ? <td>{info.candidateName}</td> : <Fragment />}
         <td>{info.getInterviewDate()}</td>
-        <td
-          className={
-            info.status.toLowerCase() === "passed"
-              ? style.passed
-              : style.declined
-          }
-        >
-          {info.status.toUpperCase()}
+        <td className={`text-center ${passed ? style.passed : style.declined}`}>
+          {passed ? <HandThumbsUpFill /> : <HandThumbsDownFill />}
         </td>
         <td>
           <EyeFill className={style.eyeFill} onClick={handleShow} />
