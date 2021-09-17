@@ -11,9 +11,9 @@ export default function Header(props) {
         {props.menuItems.map((item, index) => {
           if (!item) return null;
           return (
-            <Button key={index} className={menuItemClasses} size="sm">
+            <span key={index} className={menuItemClasses} size="sm">
               {item}
-            </Button>
+            </span>
           );
         })}
       </div>
