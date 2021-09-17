@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import ErrorDisplay from "./ErrorDisplay";
 import WizSelectBtns from "./WizSelectBtns";
 
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styles from "./WizSelect.module.css";
 
 export default function WizSelect(props) {
   const [items, setItems] = useState([]);
-  const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -26,12 +25,7 @@ export default function WizSelect(props) {
   }, [communicator]);
 
   const handleSelect = (item) => {
-    if (selected && selected.id === item.id) setSelected(null);
-    else setSelected(item);
-  };
-
-  const handleClick = () => {
-    props.onSelectItem(selected);
+    props.onSelectItem(item);
   };
 
   if (loading) return <div>Loading...</div>; //TODO
@@ -39,13 +33,13 @@ export default function WizSelect(props) {
 
   return (
     <div className={styles.selectBox}>
-      <Row g-1 className="justify-content-center">
+      <Row className="g-1 justify-content-center">
         {items.map((item) => (
           <Col sm="auto" key={item.id}>
             <ItemCard
               item={item}
               onSelect={handleSelect}
-              selected={selected ? item.id === selected.id : false}
+              selected={props.selected ? item.id === props.selected.id : false}
             />
           </Col>
         ))}
@@ -54,28 +48,9 @@ export default function WizSelect(props) {
       <WizSelectBtns
         currentStep={props.currentStep}
         onBackBtnClick={props.onBackBtnClick}
-        onNextBtnClick={handleClick}
-        selected={selected}
+        onNextBtnClick={props.onNextBtnClick}
+        selected={props.selected}
       />
     </div>
   );
 }
-
-// function WizSelectBtns(props) {
-//   return (
-//     <div className={`${styles.buttonBox} d-flex  justify-content-between `}>
-//       props.currentStep === 0 ?
-//       <Button
-//         className={props.currentStep === 0 ? "disabled" : " "}
-//         onClick={props.onBackBtnClick}
-//       >
-//         Back
-//       </Button>{" "}
-//       :
-//       <React.Fragment />
-//       <Button className={!selected ? "disabled" : " "} onClick={handleClick}>
-//         Next
-//       </Button>
-//     </div>
-//   );
-// }

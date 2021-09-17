@@ -21,23 +21,62 @@ export default function Wizard(props) {
   const [currentStep, setCurrentStep] = useState(0);
   const [input, setInput] = useState({});
   const [error, setError] = useState("");
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
   const handleSelectCandidate = (candidate) => {
-    setInput((prevInput) => ({
-      ...prevInput,
-      candidateName: candidate.name,
-      candidateId: candidate.id,
-    }));
-    setCurrentStep((prevStep) => prevStep + 1);
+    setSelectedCandidate((prevSelectedCandidate) => {
+      if (prevSelectedCandidate && prevSelectedCandidate.id === candidate.id) {
+        return null; // deselect
+      } else {
+        return candidate;
+      }
+    });
+
+    setInput((prevInput) => {
+      if (prevInput.candidateId && prevInput.candidateId === candidate.id) {
+        // reset input to init state
+        const newInput = { ...prevInput };
+        delete newInput.candidateName;
+        delete newInput.candidateId;
+        return {
+          ...newInput,
+        };
+      } else {
+        return {
+          ...prevInput,
+          candidateName: candidate.name,
+          candidateId: candidate.id,
+        };
+      }
+    });
   };
 
   const handleSelectCompany = (company) => {
-    setInput((prevInput) => ({
-      ...prevInput,
-      companyName: company.name,
-      companyId: company.id,
-    }));
-    setCurrentStep((prevStep) => prevStep + 1);
+    setSelectedCompany((prevSelectedCompany) => {
+      if (prevSelectedCompany && prevSelectedCompany.id === company.id) {
+        return null; // deselect
+      } else {
+        return company;
+      }
+    });
+
+    setInput((prevInput) => {
+      if (prevInput.companyId && prevInput.companyId === company.id) {
+        // reset input to init state
+        const newInput = { ...prevInput };
+        delete newInput.companyName;
+        delete newInput.companyId;
+        return {
+          ...newInput,
+        };
+      } else
+        return {
+          ...prevInput,
+          companyName: company.name,
+          companyId: company.id,
+        };
+    });
   };
 
   const handleFormSubmit = (formInput) => {
@@ -54,7 +93,15 @@ export default function Wizard(props) {
     if (currentStep !== 0) setCurrentStep((prevStep) => prevStep - 1);
   };
 
-  const sharedSelectProps = { currentStep, onBackBtnClick: handleBackBtnClick };
+  const handleNextBtnClick = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
+  };
+
+  const sharedSelectProps = {
+    currentStep,
+    onBackBtnClick: handleBackBtnClick,
+    onNextBtnClick: handleNextBtnClick,
+  };
 
   if (error) return <ErrorDisplay message={error} />;
 
@@ -69,6 +116,7 @@ export default function Wizard(props) {
             onSelectItem={handleSelectCandidate}
             communicator={CandidateCommunicator}
             ItemCard={WizCandidateCard}
+            selected={selectedCandidate}
             {...sharedSelectProps}
           />
         )}
@@ -77,12 +125,14 @@ export default function Wizard(props) {
             onSelectItem={handleSelectCompany}
             communicator={CompanyCommunicator}
             ItemCard={WizCompanyCard}
+            selected={selectedCompany}
             {...sharedSelectProps}
           />
         )}
         {currentStep === 2 && (
           <WizReportForm
             onBackBtnClick={handleBackBtnClick}
+            onNextBtnClick={handleNextBtnClick}
             onSubmit={handleFormSubmit}
           />
         )}
