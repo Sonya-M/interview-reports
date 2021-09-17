@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ImageGuaranteed from "./UI/ImageGuaranteed";
+import WizOptionCard from "./WizOptionCard";
 import { PLACEHOLDER_IMG } from "../shared/constants";
 
-import { Col } from "react-bootstrap";
 import styles from "./WizCandidateCard.module.css";
 
 export default function WizCandidateCard(props) {
@@ -12,24 +12,25 @@ export default function WizCandidateCard(props) {
     props.onSelect(candidate);
   };
 
-  let classes = `${styles.optionCard} ${
-    props.className ? props.className : " "
-  }  ${props.selected ? styles.selected : " "} `;
+  let classes = ` ${props.className ? props.className : " "}  
+   `;
 
   return (
-    <div className={classes} onClick={handleClick}>
-      <ImageGuaranteed
-        className={styles.cardImg}
-        preferredImg={candidate.avatar}
-        placeholderImg={PLACEHOLDER_IMG}
-      />
-      <div className={`${styles.info} `}>
-        <span>
-          {candidate.name}
-          <br />
-          {candidate.email}
-        </span>
+    <WizOptionCard onClick={handleClick} selected={props.selected}>
+      <div className={classes}>
+        <ImageGuaranteed
+          className={styles.cardImg}
+          preferredImg={candidate.avatar}
+          placeholderImg={PLACEHOLDER_IMG}
+        />
+        <div className={`${styles.info} `}>
+          <span>
+            {candidate.name}
+            <br />
+            {candidate.email}
+          </span>
+        </div>
       </div>
-    </div>
+    </WizOptionCard>
   );
 }

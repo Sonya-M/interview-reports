@@ -13,10 +13,7 @@ export default function WizSelect(props) {
   const [error, setError] = useState("");
 
   const { communicator } = props;
-  // const communicator = CandidateCommunicator;
-
   const { ItemCard } = props;
-  // const ItemCard = WizCandidateCard;
 
   useEffect(() => {
     communicator
@@ -43,11 +40,10 @@ export default function WizSelect(props) {
 
   return (
     <div className={styles.selectBox}>
-      <Row>
+      <Row g-1 className="justify-content-center">
         {items.map((item) => (
-          <Col key={item.id}>
+          <Col sm="auto" key={item.id}>
             <ItemCard
-              className="mx-auto"
               item={item}
               onSelect={handleSelect}
               selected={selected ? item.id === selected.id : false}
