@@ -23,6 +23,7 @@
 .logo {
   display: inline-block;
   float: right;
+  margin-right: 1em;
 }
 /* .logo {
   position: fixed;

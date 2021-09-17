@@ -10,6 +10,7 @@ import Footer from "./components/UI/Footer";
 import AdminPage from "./pages/AdminPage";
 import AdminTable from "./pages/AdminTable"
 import Wizard from "./pages/Wizard";
+import AboutUs from "./pages/AboutUs";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -83,6 +84,11 @@ function App() {
 
             <AdminTable />
             </Route>
+            
+             <Route exact path="/about">
+               {mainHeader}
+            <AboutUs />
+            </Route>
           <Route exact path="/wizard">
             {adminHeader}
             <Wizard />
@@ -93,6 +99,7 @@ function App() {
           <Route>
             <ErrorDisplay message="Page not found" />
           </Route>
+         
         </Switch>}
 
 

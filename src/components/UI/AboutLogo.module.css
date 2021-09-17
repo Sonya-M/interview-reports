@@ -1,14 +1,11 @@
 * {
-    margin: 0;
+    margin: auto 0;
     padding: 0;
 }
-.cont {
-    display: inline-block;
-    vertical-align: middle;
-}
+
 .main {
-    height: 35px;
-    width: 35px;
+    height: 100%;
+    width: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,21 +19,22 @@
 }
 .center {
     position: relative;
-    width: 2px;
-    height: 2px;
+    width: 29px;
+    height: 29px;
     border-radius: 50%;
-    background-color:rgb(0, 174, 255) ;
+    background:rgb(0, 174, 255) ;
    
     
 }
 .center span {
     position: absolute;
-    bottom: -15px;
-    left: -2px;
-    width: 300%;
-    height: 30px;
+    top: -100%;
+    left: -102px;
+    width: 800%;
+    height: 80px;
     border-radius: 50%;
-    border: 3px double hsl(197, 76%, 47%);
+    /* background: black; */
+    border: 6px double hsl(197, 76%, 47%);
     /* box-shadow: 0px 0px 1px 1px rgba(0,174,255,0.85); */
 
     animation: anime 5s infinite;
@@ -48,20 +46,10 @@
     animation: animeone 5s infinite;
 }
 .center span:nth-child(2){
-    transform: rotate(-90deg);
+    transform: rotate(-60deg);
     animation: animetwo 5s infinite;
 }
-.brandName {
-    display: inline-block;
-    font-size: 1.1em;
-    font-weight: 900;
-    margin-left: 0.5em;
-    background: linear-gradient(311deg, hsl(197, 76%, 47%), hsl(0, 0%, 65%));
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: AnimationName 5s infinite;
-}
+
 @keyframes anime {
     0%{transform: rotate(0deg);}
     50%{transform: rotate(180deg);}
@@ -76,9 +64,4 @@
     0%{transform: rotate(60deg);}
     50%{transform: rotate(300deg);}
     100%{transform: rotate(60deg);}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
 }
