@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Report from "./Report";
 import ReportCommunicator from "../services/ReportCommunicator";
-import { getDefaultNormalizer } from "@testing-library/react";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import CompanyCommunicator from "../services/CompanyCommunicator";
 
@@ -12,6 +10,7 @@ import WizSelect from "../components/WizSelect";
 import WizCandidateCard from "../components/WizCandidateCard";
 import WizCompanyCard from "../components/WizCompanyCard";
 import WizReportForm from "../components/WizReportForm";
+import WizSelectedInfo from "../components/WizSelectedInfo";
 
 import styles from "./Wizard.module.css";
 import ErrorDisplay from "../components/ErrorDisplay";
@@ -97,6 +96,13 @@ export default function Wizard(props) {
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
+  const handleStepClick = (step) => {
+    // only react if going back:
+    if (currentStep > step) {
+      setCurrentStep(step);
+    }
+  };
+
   const sharedSelectProps = {
     currentStep,
     onBackBtnClick: handleBackBtnClick,
@@ -108,7 +114,12 @@ export default function Wizard(props) {
   return (
     <Row className="mt-4  m-0">
       <Col sm={3} lg={2} className={styles.stepsDiv}>
-        <WizardSteps currentStep={currentStep} />
+        <WizardSteps currentStep={currentStep} onClick={handleStepClick} />
+        <hr />
+        <WizSelectedInfo
+          candidateName={selectedCandidate ? selectedCandidate.name : ""}
+          companyName={selectedCompany ? selectedCompany.name : ""}
+        />
       </Col>
       <Col sm={8} className={styles.optionsDiv}>
         {currentStep === 0 && (

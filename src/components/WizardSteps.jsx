@@ -9,11 +9,19 @@ export default function WizardSteps(props) {
     "Fill Report Details",
   ];
 
+  const handleClick = (step) => {
+    props.onClick(step);
+  };
+
   const steps = [];
   for (let i = 0; i < 3; i++) {
     let classes = i === props.currentStep ? styles.currentStep : "";
     steps.push(
-      <li className={classes} key={i}>
+      <li
+        className={`${classes} ${props.currentStep > i ? styles.active : " "}`}
+        key={i}
+        onClick={() => handleClick(i)}
+      >
         {stepsDesc[i]}
       </li>
     );
