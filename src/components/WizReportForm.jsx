@@ -57,7 +57,7 @@ export default function WizReportForm(props) {
           statusState.isValid &&
           noteState.isValid
       );
-    }, 1);
+    }, 100);
 
     return () => {
       clearTimeout(timerID);
