@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
-import ErrorDisplay from "../components/ErrorDisplay"; 
+import ErrorDisplay from "../components/ErrorDisplay";
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
 import { Envelope, Gift, Book } from "react-bootstrap-icons";
 
@@ -58,31 +58,33 @@ export default function Report(props) {
     return <ErrorDisplay message="Sorry, failed to load data" />;
   }
 
-  if (
-    !selectedCandidate ||
-    selectedCandidate.length === 0 ||
-    reports.length === 0
-  ) {
-    return <ErrorDisplay message="No data available." />;
-  }
+  // if (
+  //   !selectedCandidate ||
+  //   selectedCandidate.length === 0 ||
+  //   reports.length === 0
+  // ) {
+  //   return <ErrorDisplay message="No data available." />;
+  // }
   return (
-    <Fragment>
+    <div style={{position: "relative"}}>
       <div className={style.data}>
+        <div style={{position: "relative"}}>
         <img
           src="https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/mckinseybets810.jpg"
           alt="cover"
           className={style.cover}
         />
-        <div>
-          <div className={style.cardInfo}>
-            <div className={style.name}>{selectedCandidate.name}</div>
-          </div>
+     
           <ImageGuaranteed
             preferredImg={selectedCandidate.avatar}
             placeholderImg="/Profile_avatar_placeholder_large.png"
             preferredImgAlt={selectedCandidate.name}
             className={style.avatar}
           />
+          </div>
+          <div className={style.cardInfo}>
+            <div className={style.name}>{selectedCandidate.name}</div>
+          </div>
           <div className={style.containerMax}>
             <div className={showMore ? style.cardMore : style.card}>
               <span className={style.about}>About</span>
@@ -112,10 +114,14 @@ export default function Report(props) {
             <button className={style.seeMore} onClick={handleShowMore}>
               {!showMore ? "Show more" : "Show  less "}
             </button>
-            <Table reports={reports} />
+            <div className={style.tableDiv}>
+              {!selectedCandidate ||
+                selectedCandidate.length === 0 || reports.length === 0 ? <ErrorDisplay message="No reports yet." /> : <Table reports={reports} />}
+              
+            </div>
           </div>
         </div>
-      </div>
-    </Fragment>
+      
+    </div>
   );
 }

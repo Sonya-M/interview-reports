@@ -8,6 +8,7 @@ import MainHeader from "./components/UI/MainHeader";
 import AdminHeader from "./components/UI/AdminHeader";
 import Footer from "./components/UI/Footer";
 import AdminPage from "./pages/AdminPage";
+
 import Wizard from "./pages/Wizard";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -75,7 +76,10 @@ function App() {
           <Route exact path="/admin">
             {adminHeader}
             <AdminPage />
+            
           </Route>
+         
+            
           <Route exact path="/wizard">
             {adminHeader}
             <Wizard />

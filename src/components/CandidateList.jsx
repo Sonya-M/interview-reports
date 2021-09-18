@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import CandidateCard from "./CandidateCard.jsx";
 import { includesIgnoreCase } from "../utilities/helpers.js";
@@ -6,7 +6,7 @@ import { includesIgnoreCase } from "../utilities/helpers.js";
 import { Row } from "react-bootstrap";
 import ErrorDisplay from "./ErrorDisplay";
 
-const CandidateList = ({ candidates, searchText }) => {
+const CandidateList = ({ candidates, searchText, adminpage }) => {
   let searchResult;
   if (searchText === "") {
     searchResult = candidates;
@@ -15,13 +15,23 @@ const CandidateList = ({ candidates, searchText }) => {
       return includesIgnoreCase(c.name, searchText);
     });
   }
+  if (adminpage){
+    return (
+      <Fragment >
+      {searchResult.map((item) => (
+        <CandidateCard key={item.id} candidate={item} adminpage={true}/>
+      ))}
+    </Fragment>
+    )
+  }
+  
 
   return searchResult.length !== 0 ? (
-    <Row className="g-4 m-5">
+    <Fragment>
       {searchResult.map((item) => (
         <CandidateCard key={item.id} candidate={item} />
       ))}
-    </Row>
+    </Fragment>
   ) : (
     <ErrorDisplay message="No result" />
   );
