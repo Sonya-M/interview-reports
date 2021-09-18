@@ -1,0 +1,12 @@
+.cardImg {
+  width: 4rem;
+  max-width: 100%;
+  margin: 0.3rem;
+}
+
+.info {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 70%;
+}

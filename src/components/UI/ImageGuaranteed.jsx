@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function ImageGuaranteed(props) {
-  let classes = props.className;
+  let classes = props.className ? `${props.className} ` : " ";
   return (
     <img
       className={classes}

@@ -1,0 +1,10 @@
+.stepsDiv {
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 576px) {
+  .optionsDiv {
+    border-left: 1px solid lightgray;
+  }
+}

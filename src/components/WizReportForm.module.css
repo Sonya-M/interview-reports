@@ -1,0 +1,10 @@
+.invalid {
+  box-shadow: 0px 0px 5px 1px #ff0000;
+}
+
+.invalidMsg {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 350;
+  color: #f00;
+}

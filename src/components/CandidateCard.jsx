@@ -7,21 +7,13 @@ import { PLACEHOLDER_IMG } from "../shared/constants";
 import { Card, Col } from "react-bootstrap";
 import style from "./CandidateCard.module.css";
 import AdminPage, {candidateName, candidateId} from "../pages/AdminPage" 
-import CandidateCardAdmin from "./CandidateCardAdmin.jsx";
+
 
 const CandidateCard = (props) => {
   const { candidate } = props;
-  const handleCandidate = () => {
-    candidateName.push(candidate.name)
-    candidateId.push(candidate.id)
-    console.log(candidateName)
-    console.log(candidateId)
-  }
-  if (props.adminpage){
-    return (
-      <CandidateCardAdmin candidate={candidate}/>
-      )
-  }
+  
+ 
+    
   return (
     <Fragment>
       
