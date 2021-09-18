@@ -36,7 +36,7 @@ return (
                 <FormControl
                   type="date"
                   aria-describedby="basic-addon1"
-                  onClick={(e) => updateData("reportDetails", e.target.value)}
+                  onClick={(e) => updateData("interviewDate", e.target.value)}
                 />
               </InputGroup>
               <InputGroup className="mb-3">
@@ -51,7 +51,7 @@ return (
               </InputGroup>
               <InputGroup className="mb-3">
                 <InputGroup.Text>Status</InputGroup.Text>
-                <Form.Select>
+                <Form.Select onClick={(e) => updateData("status", e.target.value)}>
                   <option>Select status</option>
                   <option value="Passed">Passed</option>
                   <option value="Declined">Declined</option>
@@ -62,6 +62,7 @@ return (
                 as="textarea"
                 placeholder="Leave a note here"
                 style={{ height: '100px' }}
+                onClick={(e) => updateData("note", e.target.value)}
               />
             </Form>
         </Col>
