@@ -66,20 +66,22 @@ export default function Report(props) {
   //   return <ErrorDisplay message="No data available." />;
   // }
   return (
-    <Fragment>
+    <div style={{position: "relative"}}>
       <div className={style.data}>
+        <div style={{position: "relative"}}>
         <img
           src="https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/mckinseybets810.jpg"
           alt="cover"
           className={style.cover}
         />
-        <div>
+     
           <ImageGuaranteed
             preferredImg={selectedCandidate.avatar}
             placeholderImg="/Profile_avatar_placeholder_large.png"
             preferredImgAlt={selectedCandidate.name}
             className={style.avatar}
           />
+          </div>
           <div className={style.cardInfo}>
             <div className={style.name}>{selectedCandidate.name}</div>
           </div>
@@ -119,7 +121,7 @@ export default function Report(props) {
             </div>
           </div>
         </div>
-      </div>
-    </Fragment>
+      
+    </div>
   );
 }

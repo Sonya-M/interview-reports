@@ -1,6 +1,18 @@
 * {
   box-sizing: border-box;
 }
+.th > tr > th:first-child {
+  border-top-left-radius: 10px;
+}
+.th > tr > th:last-child {
+  border-top-right-radius: 10px;
+}
+.tr:last-child > td:first-child {
+  border-bottom-left-radius: 10px;
+}
+.tr:last-child > td:last-child {
+  border-bottom-right-radius: 10px;
+}
 @media screen and (max-width: 480px) {
   .table {
     margin: 1rem auto;
@@ -54,10 +66,10 @@
 }
 @media screen and (min-width: 481px) and (max-width: 913px) {
   .table {
-    margin: 3rem 0;
+    margin: 3rem auto;
     background: #c7c7c7;
     box-shadow: -2px -2px 11px #e3e3e3, 2px 2px 11px #ababab;
-    width: 100%;
+    width: 96%;
   }
 
   .th > tr > th {

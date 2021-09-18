@@ -5,7 +5,6 @@
   }
   .cover {
     position: absolute;
-    top: 60px;
     width: 100%;
     z-index: -1;
   }
@@ -77,24 +76,33 @@
     overflow: hidden;
   }
   .cover {
-    position: absolute;
-    top: 60px;
-    width: 100%;
+    position: relative;
+  
+    max-width: 100%;
+    width: 100vw;
+    height: 40vw;
     /* overflow: hidden; */
     z-index: -1;
   }
+  .mainDisplay {
+    padding-bottom: 0;
+  }
   .avatar {
     display: block;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
     border-radius: 10%;
     border: 2px black groove;
+
     width: 10em;
     height: 10em;
-    margin-top: 10%;
-    margin-left: 4%;
+    /* margin-top: 20%;
+    margin-left: 2%; */
     z-index: 1;
   }
   .cardInfo {
-    margin-top: 62%;
+    /* margin-top: 57%; */
     width: 100%;
     z-index: 2;
     background-color: #000000;
@@ -102,8 +110,8 @@
   .name {
     display: block;
     width: 100%;
-    margin-top: -60%;
-    margin-left: 20%;
+    /* margin-top: -60%;
+    margin-left: 20%; */
     font-size: 1.5em;
     text-align: center;
     color: rgb(189, 189, 189);
@@ -114,7 +122,7 @@
   }
   .card {
     position: absolute;
-    top: 0%;
+    top: -5%;
     right: 0;
     bottom: 0%;
     height: 1em;
@@ -132,7 +140,7 @@
 
   .cardMore {
     position: absolute;
-    top: 5%;
+    top: -1%;
     right: 0;
 
     height: 60%;
@@ -152,7 +160,7 @@
     backdrop-filter: blur(7px);
   }
   .containerMax {
-    background-image: url("https://ak.picdn.net/shutterstock/videos/1018020805/thumb/1.jpg");
+    /* background-image: url("https://ak.picdn.net/shutterstock/videos/1018020805/thumb/1.jpg"); */
     background-size: cover;
     padding: 1em 0;
   }
