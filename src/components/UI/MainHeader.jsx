@@ -14,7 +14,7 @@ export default function MainHeader(props) {
   );
   const adminLink = (
     <Link to="/admin">
-      {/* <Button className="text-info">Admin</Button> */}
+      <Button className="text-info">Admin</Button>
     </Link>
   );
 
