@@ -1,45 +1,161 @@
-import React, { useEffect } from "react";
-import Report from "./Report";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ReportCommunicator from "../services/ReportCommunicator";
-import { getDefaultNormalizer } from "@testing-library/react";
 import CandidateCommunicator from "../services/CandidateCommunicator";
+import CompanyCommunicator from "../services/CompanyCommunicator";
+
+import { Row, Col } from "react-bootstrap";
+import WizardSteps from "../components/WizardSteps";
+import WizSelect from "../components/WizSelect";
+import WizCandidateCard from "../components/WizCandidateCard";
+import WizCompanyCard from "../components/WizCompanyCard";
+import WizReportForm from "../components/WizReportForm";
+import WizSelectedInfo from "../components/WizSelectedInfo";
+
+import styles from "./Wizard.module.css";
+import ErrorDisplay from "../components/ErrorDisplay";
 
 export default function Wizard(props) {
-  // TODO: delete all this tester code:
+  const history = useHistory();
+  const [currentStep, setCurrentStep] = useState(0);
+  const [input, setInput] = useState({});
+  const [error, setError] = useState("");
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
-  // const newCandidate = {
-  //   name: "Sonja Musicki",
-  //   birthday: new Date("May 11, 1979"),
-  //   email: "whatsittoyou@gmail.com",
-  //   education: "BIT",
-  //   avatar: "",
-  // };
-  // useEffect(() => {
-  //   CandidateCommunicator.save(newCandidate).then((response) => {
-  //     console.log("Response from creating new candidate: ", response);
-  //   });
-  // });
+  const handleSelectCandidate = (candidate) => {
+    setSelectedCandidate((prevSelectedCandidate) => {
+      if (prevSelectedCandidate && prevSelectedCandidate.id === candidate.id) {
+        return null; // deselect
+      } else {
+        return candidate;
+      }
+    });
 
-  // const newReport = {
-  //   candidateName: "Sonja Musicki",
-  //   candidateId: 99087458,
-  //   companyId: 11081915,
-  //   companyName: "Krajcik Inc",
-  //   interviewDate: "Tue Sept 14 2021 10:00:00 GMT+0100 (CET)",
-  //   phase: "cv",
-  //   status: "passed",
-  //   note: "Huge potential",
-  // };
-  // console.log("Creating new report...");
+    setInput((prevInput) => {
+      if (prevInput.candidateId && prevInput.candidateId === candidate.id) {
+        // reset input to init state
+        const newInput = { ...prevInput };
+        delete newInput.candidateName;
+        delete newInput.candidateId;
+        return {
+          ...newInput,
+        };
+      } else {
+        return {
+          ...prevInput,
+          candidateName: candidate.name,
+          candidateId: candidate.id,
+        };
+      }
+    });
+  };
 
-  // useEffect(() => {
-  //   console.log(
-  //     "calling ReportCommunicator.save(newReport) and logging the response..."
-  //   );
-  //   ReportCommunicator.save(newReport).then((response) => {
-  //     console.log("Response: ", response);
-  //   });
-  // });
+  const handleSelectCompany = (company) => {
+    setSelectedCompany((prevSelectedCompany) => {
+      if (prevSelectedCompany && prevSelectedCompany.id === company.id) {
+        return null; // deselect
+      } else {
+        return company;
+      }
+    });
 
-  return <h1>Wizard goes here</h1>;
+    setInput((prevInput) => {
+      if (prevInput.companyId && prevInput.companyId === company.id) {
+        // reset input to init state
+        const newInput = { ...prevInput };
+        delete newInput.companyName;
+        delete newInput.companyId;
+        return {
+          ...newInput,
+        };
+      } else
+        return {
+          ...prevInput,
+          companyName: company.name,
+          companyId: company.id,
+        };
+    });
+  };
+
+  const handleFormSubmit = (formInput) => {
+    const { interviewDate, phase, status, note } = formInput;
+    const reportData = { ...input, interviewDate, phase, status, note };
+    console.log("reportData: ", reportData);
+    ReportCommunicator.save(reportData)
+      .then((response) => console.log(response))
+      .then(history.push("/admin"))
+      .catch((error) => setError(error));
+  };
+
+  const handleBackBtnClick = () => {
+    if (currentStep !== 0) setCurrentStep((prevStep) => prevStep - 1);
+  };
+
+  const handleNextBtnClick = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
+  };
+
+  const handleStepClick = (step) => {
+    // only react if going back:
+    const nextStep =
+      selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
+    if (nextStep >= step) {
+      setCurrentStep(step);
+    }
+  };
+
+  const sharedSelectProps = {
+    currentStep,
+    onBackBtnClick: handleBackBtnClick,
+    onNextBtnClick: handleNextBtnClick,
+  };
+
+  const nextStep =
+    selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
+
+  if (error) return <ErrorDisplay message={error} />;
+
+  return (
+    <Row className="mt-4  m-0">
+      <Col sm={3} lg={2} className={styles.stepsDiv}>
+        <WizardSteps
+          currentStep={currentStep}
+          nextStep={nextStep}
+          onClick={handleStepClick}
+        />
+        <hr />
+        <WizSelectedInfo
+          candidateName={selectedCandidate ? selectedCandidate.name : ""}
+          companyName={selectedCompany ? selectedCompany.name : ""}
+        />
+      </Col>
+      <Col sm={8} className={styles.optionsDiv}>
+        {currentStep === 0 && (
+          <WizSelect
+            onSelectItem={handleSelectCandidate}
+            communicator={CandidateCommunicator}
+            ItemCard={WizCandidateCard}
+            selected={selectedCandidate}
+            {...sharedSelectProps}
+          />
+        )}
+        {currentStep === 1 && (
+          <WizSelect
+            onSelectItem={handleSelectCompany}
+            communicator={CompanyCommunicator}
+            ItemCard={WizCompanyCard}
+            selected={selectedCompany}
+            {...sharedSelectProps}
+          />
+        )}
+        {currentStep === 2 && (
+          <WizReportForm
+            onBackBtnClick={handleBackBtnClick}
+            onSubmit={handleFormSubmit}
+          />
+        )}
+      </Col>
+    </Row>
+  );
 }

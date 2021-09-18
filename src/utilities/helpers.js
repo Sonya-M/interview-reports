@@ -11,6 +11,15 @@ export function formatDate(date) {
   let y = date.getFullYear();
   return d + ". " + m + ". " + y + ".";
 }
+
+export function formatDateForHtmlInput(date) {
+  let d = date.getDate();
+  if (d < 10) d = "0" + d;
+  let m = date.getMonth() + 1;
+  if (m < 10) m = "0" + m;
+  let y = date.getFullYear();
+  return ([y, m, d]).join("-");
+}
 /**
  * 
  * @param {string} stringToSearch 
