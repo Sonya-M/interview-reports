@@ -34,16 +34,16 @@ export const TableInfo = (props) => {
       <tr className={style.tr}>
         <td>{info.companyName}</td>
         {props.admin ? <td>{info.candidateName}</td> : <Fragment />}
-        <td>{info.getInterviewDate()}</td>
+        <td className="text-center">{info.getInterviewDate()}</td>
         <td className={`text-center ${passed ? style.passed : style.declined}`}>
           {passed ? <HandThumbsUpFill /> : <HandThumbsDownFill />}
         </td>
-        <td>
+        <td className="text-center">
           <EyeFill className={style.eyeFill} onClick={handleShow} />
         </td>
         {/* TODO: make a separate TebleInfo.module.css */}
         {props.admin ? (
-          <td>
+          <td className="text-center"> 
             <span
               style={{ color: "darkred", cursor: "pointer" }}
               onClick={() => props.onDelete(info.id)}

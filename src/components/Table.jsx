@@ -28,8 +28,8 @@ export const Table = (props) => {
           <tr>
             <th>Company</th>
             {props.admin ? <th>Candidate Name</th> : <React.Fragment />}
-            <th>Interview Date</th>
-            <th>Status</th>
+            <th className="text-center">Interview Date</th>
+            <th className="text-center">Status</th>
             {/* for the eye icon: */}
             <th></th>
             {props.admin ? <th></th> : <Fragment />}

@@ -27,7 +27,7 @@
     color: #fff;
     line-height: 1.4;
     background-color: #6c7ae0;
-    padding: 0.3em;
+    text-align: center;
   }
   .th > tr > th:first-child {
     border-top-left-radius: 10px;
