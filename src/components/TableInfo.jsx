@@ -12,7 +12,6 @@ import ModalWrapper from "./ModalWrapper";
 import ReportDetails from "./ReportDetails";
 import { TrashFill } from "react-bootstrap-icons";
 
-
 export const TableInfo = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -43,7 +42,7 @@ export const TableInfo = (props) => {
         </td>
         {/* TODO: make a separate TebleInfo.module.css */}
         {props.admin ? (
-          <td className="text-center"> 
+          <td className="text-center">
             <span
               style={{ color: "darkred", cursor: "pointer" }}
               onClick={() => props.onDelete(info.id)}

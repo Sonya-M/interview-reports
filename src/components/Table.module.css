@@ -115,17 +115,13 @@
     border-radius: 10px;
   }
   .create {
-    
     margin-right: 0;
     margin-left: auto;
     width: 50%;
     color: #ffffff;
     float: right;
     background-color: #4c4c4e;
-
   }
-  
-  
 
   .th > tr > th {
     font-size: 1em;
@@ -140,9 +136,8 @@
     /* line-height: 1.4; */
     background-color: #4c4c4e;
     padding: 1em;
-    
   }
-   .tr > td {
+  .tr > td {
     padding: 1em;
     font-weight: 700;
   }
@@ -173,14 +168,8 @@
     background: hsl(0, 0%, 90%);
     color: hsl(0, 0%, 27%);
   }
-  
-  .eyeFill {
-    text-align: center;
-    margin: 0 auto;
-    width: 50%;
-  }
+
   .eyeFill:hover {
     cursor: pointer;
-    
   }
 }
