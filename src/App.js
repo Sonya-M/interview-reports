@@ -6,10 +6,9 @@ import Reports from "./pages/Reports";
 import { Route, Switch, Redirect, useHistory } from 'react-router';
 import ErrorDisplay from "./components/ErrorDisplay";
 import MainHeader from "./components/UI/MainHeader";
-import AdminHeader from "./components/UI/AdminHeader";
+import Wizard from "./pages/Wizard"
 import Footer from "./components/UI/Footer";
-import AdminPage from "./pages/AdminPage";
-import Wizard from "./pages/Wizard";
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -54,11 +53,7 @@ function App() {
       loggedIn={loggedIn}
       onLogout={handleLogout}
       onLogoClick={refreshPage} />);
-  const adminHeader = (
-    <AdminHeader
-      onLogoClick={refreshAdminPage}
-    />
-  );
+ 
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
@@ -74,8 +69,13 @@ function App() {
             <Candidates />
           </Route >
           <Route exact path="/reports">
-            <Reports loggedIn={loggedIn} />
+            {mainHeader}
+            <Reports />
           </Route >
+          <Route exact path="/wizard">
+            {mainHeader}
+            <Wizard />
+          </Route>  
           <Route>
             <Redirect from="/candidates" to="/"></Redirect>
           </Route>

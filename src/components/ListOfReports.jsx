@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import ReportRow from "./ReportRow"
 import { includesIgnoreCase } from "../utilities/helpers.js";
@@ -7,7 +7,7 @@ import { ListGroup } from "react-bootstrap";
 
 
 const ListOfReports = (props) => {
-  const {reports, searchText} = props;
+  const {reports, searchText, deleteReport} = props;
   
 
   let searchResult;
@@ -21,14 +21,15 @@ const ListOfReports = (props) => {
   
   
   return (
-  <ListGroup className="m-2">
-    {searchResult.map(r => (
-    <ListGroup.Item key={r.id}>
-       <ReportRow report={r} />
-    </ListGroup.Item>
-    ))}
-
-  </ListGroup>
+    <Fragment>
+      <ListGroup className="m-2">
+        {searchResult.map(r => (
+          <ListGroup.Item key={r.id}>
+            <ReportRow report={r} deleteReport={deleteReport} />
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+    </Fragment>
   )
 }
 

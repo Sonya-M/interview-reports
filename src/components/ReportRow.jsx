@@ -3,15 +3,20 @@ import React, { Fragment, useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import ReportDetails from "./ReportDetails"
 
+
 import { Table } from "react-bootstrap";
 import { EyeFill, Trash } from "react-bootstrap-icons";
 import style from "./ReportRow.module.css"
 
 const ReportRow = (props) => {
-  const { report } = props;
+  const { report, deleteReport } = props;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const delReport = () => {
+    deleteReport(report.id);
+  }
 
   return (
     <Fragment>
@@ -32,7 +37,7 @@ const ReportRow = (props) => {
               <EyeFill  onClick={handleShow} className="align-self-center" />
             </td>
             <td rowSpan={2}>  
-              <Trash />
+              <Trash onClick={delReport}/>
             </td>
           </tr>
           <tr className={style.labelTr}>

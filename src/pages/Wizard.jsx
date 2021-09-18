@@ -1,45 +1,102 @@
-import React, { useEffect } from "react";
-import Report from "./Report";
-import ReportCommunicator from "../services/ReportCommunicator";
-import { getDefaultNormalizer } from "@testing-library/react";
+import React, { Fragment, useState, useEffect } from "react";
+
+import WizardFirstStep from "../components/WizardFirstStep";
+import WizardSecondStep from "../components/WizardSecondStep";
+import WizardThirdStep from "../components/WizardThirdStep";
 import CandidateCommunicator from "../services/CandidateCommunicator";
+import CompanyCommunicator from "../services/CompanyCommunicator";
 
-export default function Wizard(props) {
-  // TODO: delete all this tester code:
+import { Button, ProgressBar } from "react-bootstrap";
 
-  // const newCandidate = {
-  //   name: "Sonja Musicki",
-  //   birthday: new Date("May 11, 1979"),
-  //   email: "whatsittoyou@gmail.com",
-  //   education: "BIT",
-  //   avatar: "",
-  // };
-  // useEffect(() => {
-  //   CandidateCommunicator.save(newCandidate).then((response) => {
-  //     console.log("Response from creating new candidate: ", response);
-  //   });
-  // });
+const Wizard = () => {
+  const [page, setPage] = useState(1);
+  const [candidates, setCandidates] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [dataFromWizard, setDataFromWizard] = useState({
+    candidate: {},
+    company: {},
+    interviewDate: "",
+    phase: "",
+    status: "",
+    note: ""
+    
+  })
 
-  // const newReport = {
-  //   candidateName: "Sonja Musicki",
-  //   candidateId: 99087458,
-  //   companyId: 11081915,
-  //   companyName: "Krajcik Inc",
-  //   interviewDate: "Tue Sept 14 2021 10:00:00 GMT+0100 (CET)",
-  //   phase: "cv",
-  //   status: "passed",
-  //   note: "Huge potential",
-  // };
-  // console.log("Creating new report...");
+  const updateWizardData = (type, newData) => {
+    setDataFromWizard(dataFromWizard => {
+      return {...dataFromWizard, [type]: newData}
+    })
+  }
 
-  // useEffect(() => {
-  //   console.log(
-  //     "calling ReportCommunicator.save(newReport) and logging the response..."
-  //   );
-  //   ReportCommunicator.save(newReport).then((response) => {
-  //     console.log("Response: ", response);
-  //   });
-  // });
+  const getCandidates = () => {
+    CandidateCommunicator.getAll()
+      .then((data) => {
+        console.log("candidates: ", data);
+        setCandidates(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
-  return <h1>Wizard goes here</h1>;
+  const getCompanies = () => {
+    CompanyCommunicator.getAll()
+      .then((data) => {
+        console.log("companies: ", data);
+        setCompanies(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+  // const deleteReport = (id) => {
+  //   ReportCommunicator.delete(id)
+  //     .then((response) => {
+  //     console.log(response);
+  //     getReports()})
+  //     .catch((error) =>
+  //     setError(error))
+  // }
+
+
+  useEffect(() => {
+    getCandidates();
+    getCompanies();
+  }, []);
+
+  const nextPage = () => {
+    if(page === 3) return;
+    setPage(page => page + 1)
+    console.log(page)
+  }
+
+  const prevPage = () => {
+    setPage(page => page - 1)
+  }
+   console.log(dataFromWizard)
+  return (
+    <Fragment>
+      <div className="text-center m-3">
+        <ProgressBar max="3" now={page} variant="dark"/>
+      </div>
+      {page === 1 && <WizardFirstStep candidates={candidates} data={dataFromWizard} updateData={updateWizardData}/>}
+      {page === 2 && <WizardSecondStep companies={companies} data={dataFromWizard} updateData={updateWizardData}/>}
+      {page === 3 && <WizardThirdStep data={dataFromWizard} updateData={updateWizardData}/>}
+      {page >= 2 && <Button onClick={prevPage} className="m-2" variant="dark" >Back</Button>}
+      {page < 3 && <Button  onClick={nextPage} className="m-2" variant="dark" >Next</Button>}
+      {page === 3 && <Button type="submit" >Create Report</Button>}
+    </Fragment>
+  )
 }
+
+export default Wizard;
