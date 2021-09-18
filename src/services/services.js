@@ -49,8 +49,22 @@ export function getData(action, params) {
     method: "GET",
     headers: getHeaders(),
   }).then(response => {
-    if (!response.ok) throw new Error(response.status);
+    if (response === "jwt expired") {
+      console.log("response headers: ", response.headers);
+      throw new Error(response);
+    }
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    if (response === "jwt expired") {
+      console.log("response headers: ", response.headers);
+      throw new Error(response);
+    }
     return response.json();
+  }).catch((error) => {
+    console.log("Catching error in services.js: ", error);
+    console.log("Error: 401 ? ", error.message == "401")
+    throw new Error(error);
   }));
 }
 
