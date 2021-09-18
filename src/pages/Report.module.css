@@ -136,20 +136,21 @@
     overflow: hidden;
     z-index: -1;
     transition: all 800ms 0ms ease-in-out;
+    opacity: 0.2;
   }
 
   .cardMore {
     position: absolute;
-    top: -1%;
+    top: 0%;
     right: 0;
 
-    height: 60%;
+    height: 40vw;
 
     background: hsla(0, 0%, 100%, 0.37);
 
     backdrop-filter: blur(1.5px);
     -webkit-backdrop-filter: blur(1.5px);
-    border-radius: 10px;
+    /* border-radius: 10px; */
 
     padding: 1rem 2rem;
     overflow: hidden;
