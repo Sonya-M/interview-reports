@@ -9,7 +9,7 @@ export default function MainHeader(props) {
   let location = useLocation();
   const logo = (
     <span onClick={props.onLogoClick} style={{ cursor: "pointer" }}>
-      Interview Reports
+      JobBook
     </span>
   );
   const adminLink = (

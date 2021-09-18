@@ -30,7 +30,5 @@ export default function AdminHeader(props) {
       </Button>
     );
   }
-  return (
-    <Header title={<Link to="/admin">Reports Admin</Link>} menuItems={menu} />
-  );
+  return <Header title={<Link to="/admin">Admin</Link>} menuItems={menu} />;
 }
