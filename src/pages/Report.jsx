@@ -58,70 +58,69 @@ export default function Report(props) {
     return <ErrorDisplay message="Sorry, failed to load data" />;
   }
 
-  // if (
-  //   !selectedCandidate ||
-  //   selectedCandidate.length === 0 ||
-  //   reports.length === 0
-  // ) {
-  //   return <ErrorDisplay message="No data available." />;
-  // }
+  if (!selectedCandidate || selectedCandidate.length === 0) {
+    return <ErrorDisplay message="No data available." />;
+  }
   return (
-    <div style={{position: "relative"}}>
+    <div style={{ position: "relative" }}>
       <div className={style.data}>
-        <div style={{position: "relative"}}>
-        <img
-          src="https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/mckinseybets810.jpg"
-          alt="cover"
-          className={style.cover}
-        />
-     
+        <div style={{ position: "relative" }}>
+          <img
+            src="https://content.linkedin.com/content/dam/business/marketing-solutions/global/en_US/blog/mckinseybets810.jpg"
+            alt="cover"
+            className={style.cover}
+          />
+
           <ImageGuaranteed
             preferredImg={selectedCandidate.avatar}
             placeholderImg="/Profile_avatar_placeholder_large.png"
             preferredImgAlt={selectedCandidate.name}
             className={style.avatar}
           />
+        </div>
+        <div className={style.cardInfo}>
+          <div className={style.name}>{selectedCandidate.name}</div>
+        </div>
+        <div className={style.containerMax}>
+          <div className={showMore ? style.cardMore : style.card}>
+            <span className={style.about}>About</span>
+            <p className={style.candidateInfo}>
+              Email
+              <span className={style.candidateData}>
+                <Envelope /> {selectedCandidate.email}
+              </span>
+            </p>
+
+            <p className={style.candidateInfo}>
+              Birthday
+              <span className={style.candidateData}>
+                <Gift /> {selectedCandidate.getBirthday()}
+              </span>
+            </p>
+
+            <p className={style.candidateInfo}>
+              Education
+              <span className={style.candidateData}>
+                <Book /> {selectedCandidate.education}
+              </span>
+            </p>
+
+            {console.log(showMore)}
           </div>
-          <div className={style.cardInfo}>
-            <div className={style.name}>{selectedCandidate.name}</div>
-          </div>
-          <div className={style.containerMax}>
-            <div className={showMore ? style.cardMore : style.card}>
-              <span className={style.about}>About</span>
-              <p className={style.candidateInfo}>
-                Email
-                <span className={style.candidateData}>
-                  <Envelope /> {selectedCandidate.email}
-                </span>
-              </p>
-
-              <p className={style.candidateInfo}>
-                Birthday
-                <span className={style.candidateData}>
-                  <Gift /> {selectedCandidate.getBirthday()}
-                </span>
-              </p>
-
-              <p className={style.candidateInfo}>
-                Education
-                <span className={style.candidateData}>
-                  <Book /> {selectedCandidate.education}
-                </span>
-              </p>
-
-              {console.log(showMore)}
-            </div>
-            <button className={style.seeMore} onClick={handleShowMore}>
-              {!showMore ? "Show more" : "Show  less "}
-            </button>
-            <div className={style.tableDiv}>
-              {!selectedCandidate ||
-                selectedCandidate.length === 0 || reports.length === 0 ? <ErrorDisplay message="No reports yet." /> : <Table reports={reports} />}
-              
-            </div>
+          <button className={style.seeMore} onClick={handleShowMore}>
+            {!showMore ? "Show more" : "Show  less "}
+          </button>
+          <div className={style.tableDiv}>
+            {!selectedCandidate ||
+            selectedCandidate.length === 0 ||
+            reports.length === 0 ? (
+              <ErrorDisplay message="No reports yet." />
+            ) : (
+              <Table reports={reports} />
+            )}
           </div>
         </div>
-      
+      </div>
     </div>
   );
 }
