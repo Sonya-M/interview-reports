@@ -9,20 +9,20 @@ const AboutContent = () => {
       <div className={style.brandBackground}>
         <div className={style.brandName}>BigBangTeam</div>
       </div>
-      <div className={style.textContent}> Mladi tim strebera koji se okupio da uradi finalni projekat na BiT bootcamp-u. Projekat Job Book daje izvestaj o statusima ljudi koji su aplicirali u odredjenim firmama. Tehnologije koje smo koristili na projektu: 
+      <div className={style.textContent}><p>We are a motley crew of geeks who joined forces on their final project at BiT Bootcamp. JobBook is a React app for viewing and creating reports about candidates and their job applications in various companies. The technologies used for the project include:</p>
       <ul className={style.tehnology}>
           <li className={style.html5}>HTML5</li>
           <li className={style.css3}>CSS3</li>
           <li className={style.boots}>BootStrap</li>
           <li className={style.react}>React (JavaScript)</li>
       </ul>
-      Veliku zahvalnost zelimo da iskazemo profesorima:
+      <p>A huge thank you to our instructors:</p>
       <ul className={style.professors}>
           <li><a href="https://www.linkedin.com/in/ivanbalic2/" target="_blank" >Ivan Balic</a></li>
           <li><a href="https://www.linkedin.com/in/nikola-ali%C4%87-0310b0138/" target="_blank" >Nikola Alic</a></li>
           <li><a href="https://www.linkedin.com/in/tijana-pavlovic-304a27bb/" target="_blank" >Tijana Pavlovic</a></li>
       </ul>
-       Za vise informacija budite slobodni da nas kontaktirate.</div>
+       For anything else you are curious about, feel free to contact us.</div>
       <Developers/>
     </RisingContainer>
   );
