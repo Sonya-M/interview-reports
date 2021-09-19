@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 export default function LogoutBtn(props) {
   return (
     <Fragment className={styles.LogoutBtn}>
-      <DoorOpenFill onClick={props.onLogout} /> Log out
+      <span onClick={props.onLogout} ><DoorOpenFill/> Log out</span>
     </Fragment>
   );
 }
