@@ -14,7 +14,9 @@ export default function Report(props) {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
 
-  const [loading, setLoading] = useState(true);
+  const [loadingCandidates, setLoadingCandidates] = useState(true);
+  const [loadingReports, setLoadingReports] = useState(true);
+
   const [error, setError] = useState(false);
 
   const [showMore, setShowMore] = useState(false);
@@ -31,7 +33,7 @@ export default function Report(props) {
         setError(true);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingCandidates(false);
       });
   }, [id]);
 
@@ -46,11 +48,11 @@ export default function Report(props) {
         setError(true);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingReports(false);
       });
   }, [id]);
 
-  if (loading) {
+  if (loadingCandidates || loadingReports) {
     return <p>Loading</p>; // TODO: add spinner
   }
 
@@ -59,7 +61,7 @@ export default function Report(props) {
   }
 
   if (!selectedCandidate || selectedCandidate.length === 0) {
-    return <ErrorDisplay message="No data available." />;
+    return <ErrorDisplay message="An unexpected error occurred." />;
   }
   return (
     <div style={{ position: "relative" }}>
