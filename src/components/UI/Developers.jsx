@@ -9,7 +9,7 @@ const Developers = () => {
         <div className={style.thecard}>
           <div className={style.thefront}>
             <img
-              src="https://media-exp1.licdn.com/dms/image/C4D03AQFacTu2x4PUDg/profile-displayphoto-shrink_800_800/0/1624276145520?e=1637193600&v=beta&t=oxvlxmUFmjyqyrJ4O3YupJ-Ed3JwQC6oFjIYNotdreo"
+              src="https://i.imgur.com/pY4BnLI.png"
               className={style.avatar}
             />
             <div className={style.frontname}>Sonja Musicki</div>
@@ -69,7 +69,7 @@ const Developers = () => {
         <div className={style.thecard}>
           <div className={style.thefront}>
             <img
-              src="https://media-exp1.licdn.com/dms/image/C5603AQEBhYg2VHuuJw/profile-displayphoto-shrink_800_800/0/1520870684400?e=1637193600&v=beta&t=0-1geCM8IMLAZB-al6QzzXQjnLt9eJYPsgMwzv_5-r8"
+              src="https://i.imgur.com/urRG7mO.png"
               className={style.avatar}
             />
             <div className={style.frontname}>Dragana Bogicevic</div>
@@ -99,7 +99,7 @@ const Developers = () => {
         <div className={style.thecard}>
           <div className={style.thefront}>
             <img
-              src="https://i.imgur.com/8ITHVGN.jpg"
+              src="https://i.imgur.com/NmCq6od.png"
               className={style.avatar}
             />
             <div className={style.frontname}>Nikola Jankovic</div>

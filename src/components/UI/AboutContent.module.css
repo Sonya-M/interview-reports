@@ -73,6 +73,23 @@
   background-repeat: no-repeat;
   margin-left: -35px;
 }
+.professors {
+    list-style: none;
+}
+.professors > li::before {
+    content: "";
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    background-image: url("https://i.imgur.com/7xqQsdv.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+     /* background-color: black; */
+    /* border-radius: 50%;  */
+    margin-top: 15px;
+    margin-left: -35px;
+    margin-right: 20px;
+  }
 .professors > li > a {
   text-decoration: none;
   color: black;
