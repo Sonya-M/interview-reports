@@ -14,6 +14,7 @@ import Wizard from "./pages/Wizard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container } from 'react-bootstrap';
+import About from "./pages/About";
 
 
 function App() {
@@ -83,13 +84,19 @@ function App() {
           <Route exact path="/wizard">
             {adminHeader}
             <Wizard />
+          </Route> 
+          <Route exact path="/about">
+            {mainHeader}
+            <About/>
           </Route>
           <Route>
             <Redirect from="/candidates" to="/"></Redirect>
           </Route>
+         
           <Route>
             <ErrorDisplay message="Page not found" />
           </Route>
+          
         </Switch>}
 
 

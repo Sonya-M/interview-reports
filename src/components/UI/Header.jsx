@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import styles from "./Header.module.css";
 
 export default function Header(props) {
-  const menuItemClasses = `m-1 ${props.className}`;
+  const menuItemClasses = props.className;
   return (
     <header className={styles.Header}>
       <h1 className="display-5">{props.title}</h1>

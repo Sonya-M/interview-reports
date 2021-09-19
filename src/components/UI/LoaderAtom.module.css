@@ -25,7 +25,7 @@
 .mainDisappear {
     
     display: flex;
-    margin: -1000px auto;
+    margin: -100% auto;
     justify-content: center;
     align-items: center;
     background: black;

@@ -6,7 +6,7 @@ const LoaderAtom = () => {
     useEffect(()=>{
         const timer = setTimeout(()=>{
             setPhase(1)
-        },4200);
+        },3000);
         return (()=>clearTimeout(timer))
     },[])
   return (
