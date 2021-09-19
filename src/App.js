@@ -18,9 +18,7 @@ import { Container } from 'react-bootstrap';
 
 function App() {
   let history = useHistory();
-
   const [loggedIn, setLoggedIn] = useState(false);
-
 
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken");
@@ -32,18 +30,21 @@ function App() {
   const handleLogin = () => {
     setLoggedIn(true);
   };
+
   const handleLogout = () => {
-    // sessionStorage.removeItem("accessToken");
-    // sessionStorage.removeItem("username");
-    // setLoggedIn(false);
-    // history.push("/");
-    handleSessionExpired();
+    clearSession();
   };
 
   const handleSessionExpired = () => {
-    AuthCommunicator.clearSession();
+    clearSession();
+  };
+
+  const clearSession = () => {
     setLoggedIn(false);
-    history.push("/");
+    AuthCommunicator.clearSession(() => {
+      history.push("/");
+    });
+    // history.push("/");
   };
 
   const refreshPage = () => {
@@ -78,18 +79,18 @@ function App() {
           </Route>
           <Route exact path="/">
             {mainHeader}
-            <Candidates />
+            <Candidates onSessionExpired={handleSessionExpired} />
           </Route >
           <Route exact path="/admin">
             {adminHeader}
-            <AdminPage />
+            <AdminPage onSessionExpired={handleSessionExpired} />
 
           </Route>
 
 
           <Route exact path="/wizard">
             {adminHeader}
-            <Wizard />
+            <Wizard onSessionExpired={handleSessionExpired} />
           </Route>
           <Route>
             <Redirect from="/candidates" to="/"></Redirect>

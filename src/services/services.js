@@ -13,11 +13,11 @@ function getHeaders() {
 // NB: throw new Error returns an Error obj with property `message`!!!
 const getNiceErrorMessage = (error) => {
   const errorStr = error.toString();
-  if (errorStr === "TypeError: Failed to fetch") {
+  if (errorStr.includes("Failed to fetch")) {
     return constants.CONNECTION_FAILED;
-  } else if (errorStr === "Error: 400" || errorStr === "Error: Bad Request") {
+  } else if (errorStr.includes("400")) {
     return constants.INVALID_CREDENTIALS;
-  } else if (errorStr === "Error: 401" || errorStr.includes("Unauthorized")) {
+  } else if (errorStr.includes("401")) {
     return constants.SESSION_EXPIRED;
   } else {
     return errorStr;
@@ -26,7 +26,7 @@ const getNiceErrorMessage = (error) => {
 
 const handleResponse = (response) => {
   if (!response.ok) {
-    throw new Error(response.statusText);
+    throw new Error(response.status);
   }
   return response.json();
 };
@@ -39,7 +39,7 @@ export function authenticate(email, password) {
   }).then(response => {
     return handleResponse(response);
   }).then(json => {
-    console.log("Response for auth: ", json);
+    // console.log("Response for auth: ", json);
     const token = json["accessToken"];
     sessionStorage.setItem("accessToken", token);
     sessionStorage.setItem("username", email);
