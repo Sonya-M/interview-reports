@@ -1,32 +1,83 @@
-/* .animated {
-    position: absolute;
-    top: 470px;
-    left: 15%;
-    right: 15%;
-    width: 70%;
-    margin: 0 auto;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    opacity: 0;
-    transition: all 800ms 0ms ease-in-out;
+.brandBackground {
+  background-color: black;
 }
-.fixed {
-    position: absolute;
-  top: 170px;
-  left: 15%;
-  right: 15%;
-  width: 70%;
-  margin: 0 auto 10%;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  opacity: 1;
-  transition: all 1s 0ms ease-in-out;
-} */
+.brandName {
+  display: inline-block;
+  font-size: 2em;
+  font-weight: 900;
+  margin: 2em auto;
+  background: linear-gradient(125deg, #fc9ffb, #28a6da);
+  background-size: 400% 400%;
+  animation: textBackground 10s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes textBackground {
+  0% {
+    background-position: 77% 0%;
+  }
+  50% {
+    background-position: 24% 100%;
+  }
+  100% {
+    background-position: 77% 0%;
+  }
+}
+.textContent {
+  margin: 1em 0;
+  font-size: 1.5em;
+  padding: 2em;
+  text-align: justify;
+  line-height: 1.7em;
+}
+.tehnology {
+  list-style: none;
+}
+.html5::before {
+  content: "";
+  display: inline-block;
+  height: 25px;
+  width: 35px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: -35px;
+}
+.css3::before {
+  content: "";
+  display: inline-block;
+  height: 25px;
+  width: 35px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/CSS.3.svg/1200px-CSS.3.svg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: -35px;
+}
+.boots::before {
+  content: "";
+  display: inline-block;
+  height: 25px;
+  width: 35px;
+  background-image: url("http://www.unwater.org/app/plugins/wp-views/vendor/toolset/onthego-resources/onthegosystems-icons/vectors/bootstrap-original-logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: -35px;
+}
+.react::before {
+  content: "";
+  display: inline-block;
+  height: 25px;
+  width: 35px;
+  background-image: url("https://www.javascript.ba/system/posts/images/000/001/091/original/open-uri20200710-12620-woileb");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: -35px;
+}
+.professors > li > a {
+  text-decoration: none;
+  color: black;
+}
+.professors > li > a:hover {
+  text-decoration: none;
+  color: rgb(30, 0, 99);
+}
