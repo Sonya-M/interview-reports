@@ -10,7 +10,7 @@ const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     CandidateCommunicator.getAll()
@@ -19,7 +19,7 @@ const Candidates = (props) => {
       })
       .catch((error) => {
         console.log(error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -33,7 +33,7 @@ const Candidates = (props) => {
   if (error) {
     //!!!! cannot problems appear when trying to display error,
     // since the error appears to be an empty object
-    return <ErrorDisplay message={"error"} />;
+    return <ErrorDisplay message={error} />;
   }
   if (loading) {
     return <div>Loading ...</div>;

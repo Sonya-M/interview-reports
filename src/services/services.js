@@ -1,3 +1,4 @@
+import * as constants from "../shared/constants";
 const AUTH_ENDPOINT = "http://localhost:3333/login";
 const BASE_URL = "http://localhost:3333/api/";
 
@@ -9,37 +10,49 @@ function getHeaders() {
   });
 }
 
-// class HttpService {
-//   get(url, config, body) {
-//     const params = { method: 'GET', ...headers, body };
-//     return fetch(url, params);
-//   }
-//   post(url, headers, body) {
-//     const params = { method: 'POST', ...headers, body };
-//     return fetch(url, params);
-//   }
-// }
+// NB: throw new Error returns an Error obj with property `message`!!!
+const getNiceErrorMessage = (error) => {
+  const errorStr = error.toString();
+  if (errorStr === "TypeError: Failed to fetch") {
+    return constants.CONNECTION_FAILED;
+  } else if (errorStr === "Error: 400" || errorStr === "Error: Bad Request") {
+    return constants.INVALID_CREDENTIALS;
+  } else if (errorStr === "Error: 401" || errorStr.includes("Unauthorized")) {
+    return constants.SESSION_EXPIRED;
+  } else {
+    return errorStr;
+  }
+};
+
+const handleResponse = (response) => {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return response.json();
+};
 
 export function authenticate(email, password) {
-  // const headers = new Headers();
-  // headers.set('Authorization', 'Basic ' + Buffer.from(email + ":" + password).toString('base64'));
   return fetch(AUTH_ENDPOINT, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
   }).then(response => {
-    if (!response.ok) {
-      console.log(response.status);
-      throw new Error(response.status);
-    }
-    return response.json();
+    return handleResponse(response);
   }).then(json => {
     console.log("Response for auth: ", json);
     const token = json["accessToken"];
-    sessionStorage.setItem("accessToken", token); //save accessToken
+    sessionStorage.setItem("accessToken", token);
     sessionStorage.setItem("username", email);
     return { email, token };
+  }).catch(error => {
+    throw new Error(getNiceErrorMessage(error));
   });
+}
+
+export function clearToken() {
+  console.assert(sessionStorage.getItem("accessToken"));
+  sessionStorage.removeItem("accessToken");
+  sessionStorage.removeItem("username");
 }
 
 export function getData(action, params) {
@@ -48,24 +61,10 @@ export function getData(action, params) {
   return (fetch(link, {
     method: "GET",
     headers: getHeaders(),
-  }).then(response => {
-    if (response === "jwt expired") {
-      console.log("response headers: ", response.headers);
-      throw new Error(response);
-    }
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    if (response === "jwt expired") {
-      console.log("response headers: ", response.headers);
-      throw new Error(response);
-    }
-    return response.json();
-  }).catch((error) => {
-    console.log("Catching error in services.js: ", error);
-    console.log("Error: 401 ? ", error.message == "401")
-    throw new Error(error);
-  }));
+  }).then(response => handleResponse(response))
+    .catch((error) => {
+      throw new Error(getNiceErrorMessage(error));
+    }));
 }
 
 function concatParams(params) {
@@ -79,8 +78,11 @@ export function saveData(action, method, data) {
     method: method,
     headers: getHeaders(),
     body: JSON.stringify(data),
-  }).then(response => response.json()));
-  // leave error handling to client
+  }).then(response => handleResponse(response))
+    .catch(error => {
+      console.log(error);
+      throw new Error(getNiceErrorMessage(error));
+    }));
 }
 
 export function deleteData(action, id) {
@@ -91,6 +93,14 @@ export function deleteData(action, id) {
         method: "DELETE",
         headers: getHeaders(),
       })
-      .then(response => response.json()));
-  // leave error handling to client
+      .then(response => handleResponse(response))
+      .catch(error => {
+        console.log(error);
+        throw new Error(getNiceErrorMessage(error));
+      })
+  );
 }
+
+////////////////////////////////
+  // const headers = new Headers();
+  // headers.set('Authorization', 'Basic ' + Buffer.from(email + ":" + password).toString('base64'));

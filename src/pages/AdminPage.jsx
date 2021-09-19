@@ -21,7 +21,7 @@ export default function AdminPage(props) {
       })
       .catch((error) => {
         console.log(error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -44,12 +44,12 @@ export default function AdminPage(props) {
         getReports();
       })
       .catch((error) => {
-        setError(error);
+        setError(error.message);
       });
   };
 
   if (error) {
-    return <ErrorDisplay message={error.toString()} />;
+    return <ErrorDisplay message={error} />;
   }
   if (loading) return <p>Loading...</p>;
   return (

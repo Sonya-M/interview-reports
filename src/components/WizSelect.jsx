@@ -23,7 +23,7 @@ export default function WizSelect(props) {
         console.log("items: ", data);
         setItems(data);
       })
-      .catch((error) => setError(error))
+      .catch((error) => setError(error.message))
       .finally(setLoading(false));
   }, [communicator]);
 

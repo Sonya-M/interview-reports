@@ -85,7 +85,7 @@ export default function Wizard(props) {
     ReportCommunicator.save(reportData)
       .then((response) => console.log(response))
       .then(history.push("/admin"))
-      .catch((error) => setError(error));
+      .catch((error) => setError(error.message));
   };
 
   const handleBackBtnClick = () => {

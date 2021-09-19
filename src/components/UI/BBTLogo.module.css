@@ -1,81 +1,101 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
-}
+} */
 .cont {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 .main {
-    height: 35px;
-    width: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: 400% 400%;
-    -webkit-animation: AnimationName 4s ease infinite;
-    -moz-animation: AnimationName 4s ease infinite;
-    animation: AnimationName 4s ease infinite;
-    border: solid 1px rgb(0, 174, 255);
-    border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 4s ease infinite;
+  -moz-animation: AnimationName 4s ease infinite;
+  animation: AnimationName 4s ease infinite;
+  border: solid 1px rgb(0, 174, 255);
+  border-radius: 50%;
 }
 .center {
-    position: relative;
-    width: 2px;
-    height: 2px;
-    border-radius: 50%;
-    background-color:rgb(0, 174, 255) ;
-   
-    
+  position: relative;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: rgb(0, 174, 255);
 }
 .center span {
-    position: absolute;
-    bottom: -15px;
-    left: -2px;
-    width: 300%;
-    height: 30px;
-    border-radius: 50%;
-    border: 3px double hsl(197, 76%, 47%);
-    animation: anime 4s infinite;
-    
-
+  position: absolute;
+  bottom: -15px;
+  left: -2px;
+  width: 300%;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px double hsl(197, 76%, 47%);
+  animation: anime 4s infinite;
 }
-.center span:nth-child(1){
-    transform: rotate(-180deg);
-    animation: animeone 4s infinite;
+.center span:nth-child(1) {
+  transform: rotate(-180deg);
+  animation: animeone 4s infinite;
 }
-.center span:nth-child(2){
-    transform: rotate(-60deg);
-    animation: animetwo 4s infinite;
+.center span:nth-child(2) {
+  transform: rotate(-60deg);
+  animation: animetwo 4s infinite;
 }
 .brandName {
-    display: inline-block;
-    font-size: 1.1em;
-    font-weight: 900;
-    margin-left: 0.5em;
-    background: linear-gradient(311deg, hsl(197, 76%, 47%), hsl(0, 0%, 65%));
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
+  display: inline-block;
+  font-size: 1.1em;
+  font-weight: 900;
+  margin-left: 0.5em;
+  background: linear-gradient(311deg, hsl(197, 76%, 47%), hsl(0, 0%, 65%));
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: AnimationName 4s infinite;
 }
 @keyframes anime {
-    0%{transform: rotate(0deg);}
-    50%{transform: rotate(180deg);}
-    100%{transform: rotate(0deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 @keyframes animeone {
-    0%{transform: rotate(-60deg);}
-    50%{transform: rotate(-300deg);}
-    100%{transform: rotate(-60deg);}
+  0% {
+    transform: rotate(-60deg);
+  }
+  50% {
+    transform: rotate(-300deg);
+  }
+  100% {
+    transform: rotate(-60deg);
+  }
 }
 @keyframes animetwo {
-    0%{transform: rotate(60deg);}
-    50%{transform: rotate(300deg);}
-    100%{transform: rotate(60deg);}
+  0% {
+    transform: rotate(60deg);
+  }
+  50% {
+    transform: rotate(300deg);
+  }
+  100% {
+    transform: rotate(60deg);
+  }
 }
 @keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

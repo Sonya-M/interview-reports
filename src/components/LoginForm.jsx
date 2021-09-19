@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { authenticate } from "../services/services";
-
 import { Form, Button } from "react-bootstrap";
 import styles from "./LoginForm.module.css";
+import AuthCommunicator from "../services/AuthCommunicator";
 
 const LoginForm = (props) => {
   let history = useHistory();
@@ -21,17 +20,17 @@ const LoginForm = (props) => {
     setPassword(e.target.value);
   };
 
+  const loginAndRedirect = (path) => {
+    props.onLogin();
+    history.push(path);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    authenticate(name, password)
-      .then((response) => {
-        props.onLogin();
-        history.push(props.redirectPath);
-      })
-      .catch((error) => {
-        console.log(error.status);
-        setMessage("Please provide valid name and password!");
-      });
+    AuthCommunicator.login(name, password, loginAndRedirect, [
+      props.redirectPath,
+    ]).catch((error) => {
+      setMessage(error.message);
+    });
   };
 
   return (

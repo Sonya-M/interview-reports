@@ -10,7 +10,7 @@ import Footer from "./components/UI/Footer";
 import AdminPage from "./pages/AdminPage";
 
 import Wizard from "./pages/Wizard";
-
+import AuthCommunicator from "./services/AuthCommunicator";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container } from 'react-bootstrap';
@@ -33,8 +33,15 @@ function App() {
     setLoggedIn(true);
   };
   const handleLogout = () => {
-    sessionStorage.removeItem("accessToken");
-    sessionStorage.removeItem("username");
+    // sessionStorage.removeItem("accessToken");
+    // sessionStorage.removeItem("username");
+    // setLoggedIn(false);
+    // history.push("/");
+    handleSessionExpired();
+  };
+
+  const handleSessionExpired = () => {
+    AuthCommunicator.clearSession();
     setLoggedIn(false);
     history.push("/");
   };
@@ -76,10 +83,10 @@ function App() {
           <Route exact path="/admin">
             {adminHeader}
             <AdminPage />
-            
+
           </Route>
-         
-            
+
+
           <Route exact path="/wizard">
             {adminHeader}
             <Wizard />
