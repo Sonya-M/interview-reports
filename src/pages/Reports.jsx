@@ -56,7 +56,7 @@ const Reports = () => {
     <Fragment>
       <Link to="/wizard">
         <Button variant="dark m-2" size="lg"> 
-          + 
+          Add new report 
         </Button>
       </Link>
       <SearchBar onSearch={handleSearch}/>

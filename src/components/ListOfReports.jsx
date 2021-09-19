@@ -4,7 +4,7 @@ import ReportRow from "./ReportRow"
 import { includesIgnoreCase } from "../utilities/helpers.js";
 
 import { ListGroup } from "react-bootstrap";
-
+import style from "./ListOfReports.module.css"
 
 const ListOfReports = (props) => {
   const {reports, searchText, deleteReport} = props;
@@ -24,7 +24,7 @@ const ListOfReports = (props) => {
     <Fragment>
       <ListGroup className="m-2">
         {searchResult.map(r => (
-          <ListGroup.Item key={r.id}>
+          <ListGroup.Item key={r.id} className={style.reportsOverview}>
             <ReportRow report={r} deleteReport={deleteReport} />
           </ListGroup.Item>
         ))}
