@@ -1,34 +1,66 @@
-.Header {
-  margin: 0;
-  padding: 0.5rem 2rem 0.5rem 2rem;
-  height: 4rem;
-  background-color: black;
-  color: whitesmoke;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: lighter;
+.Header { 
+  width: 100%;
+  height: 56px;
+  background: black;
 }
-.Header a {
-  text-decoration: none;
-  color: inherit;
+.container { 
+  width: 70%;
+  margin: auto;
+  overflow: hidden;
 }
-.Header a:hover {
-  color: inherit;
+.title { 
+  color: white;
+  float: left;
 }
 .Menu {
-  display: flex;
+  float: right;
+  margin-top: 12px;
+  overflow: hidden;
 }
-.Menu a,
-.Menu button,
-.Menu a button {
-  background: transparent;
-  /* border: 1px solid white; */
+.dropdownBtn {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(199, 199, 199);
+  color: rgb(13, 13, 14);
+  border-radius: 50%;
   border: none;
+  margin-right: 1em;
 }
-Menu a button,
-.Menu button:hover {
-  background-color: #333;
-  border: 1px solid white;
+.dropdownBtn:hover {
+  background-color: rgb(224, 224, 224);
+
 }
+.dropdownContentHide { 
+  display: none;
+ 
+}
+.dropdownContentShow {
+  display: block;
+  position: absolute;
+  top: 56px;
+  right: 15%;
+  min-width: 160px;
+  list-style: none;
+  z-index: 1;
+}
+.dropdownContentShow > li {
+  background: black;
+  color: aliceblue;
+  border-bottom: 1px solid gray;
+  font-size: 1.1em;
+  padding: 0.8em 5em 0.8em 1em;
+  cursor: pointer;
+}
+.dropdownContentShow > li > a{
+  color: aliceblue;
+  text-decoration: none;
+}
+.dropdownContentShow > li:hover {
+  background-color: aliceblue;
+  color: black;
+}
+.dropdownContentShow > li:hover> a {
+  color: black;
+}
+
+

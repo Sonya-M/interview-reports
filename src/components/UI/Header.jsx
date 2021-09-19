@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import styles from "./Header.module.css";
+import { ChevronDoubleDown } from "react-bootstrap-icons";
+
+
 
 export default function Header(props) {
-  const menuItemClasses = `m-1 ${props.className}`;
+  const menuItemClasses = props.className;
+  const [showOptions, setShowOptions] = useState(false)
+  const handleOptions = () => {
+    setShowOptions(!showOptions)
+  }
   return (
     <header className={styles.Header}>
-      <h1 className="display-5">{props.title}</h1>
+      <nav className={styles.container}>
+      <h1 className={styles.title}>{props.title}</h1>
       <div className={styles.Menu}>
+        <button className={styles.dropdownBtn} onClick={handleOptions}>  &#9660; </button>
+        <ul className={showOptions ? styles.dropdownContentShow : styles.dropdownContentHide}>
         {props.menuItems.map((item, index) => {
           if (!item) return null;
           return (
-            <span key={index} className={menuItemClasses} size="sm">
+            <li key={index} className={menuItemClasses}>
               {item}
-            </span>
+            </li>
           );
         })}
+        </ul>
       </div>
+      </nav>
     </header>
   );
 }
