@@ -63,11 +63,16 @@
     margin-top: 1em;
 }
 .backinfo {
-    text-align: left;
+    text-align: justify;
     width: 92%;
     margin: 1em auto 2em;
-    font-weight: 600;
-    height: 144px;
+    font-size: 0.9em;
+    font-weight: 500;
+    height: 148px;
+    background: rgba(54, 54, 54, 0.075);
+    border: 1px solid rgba(255, 255, 255, 0.068);
+    padding: 2%;
+
 }
 button > a {
     color: white;

@@ -14,7 +14,7 @@ const AboutContent = () => {
           <li className={style.html5}>HTML5</li>
           <li className={style.css3}>CSS3</li>
           <li className={style.boots}>BootStrap</li>
-          <li className={style.react}>React(JavaScript)</li>
+          <li className={style.react}>React (JavaScript)</li>
       </ul>
       Veliku zahvalnost zelimo da iskazemo profesorima:
       <ul className={style.professors}>
