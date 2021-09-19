@@ -14,7 +14,7 @@ export default function Report(props) {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [reports, setReports] = useState([]);
 
-  const [loadingCandidates, setLoadingCandidates] = useState(true);
+  const [loadingCandidate, setLoadingCandidate] = useState(true);
   const [loadingReports, setLoadingReports] = useState(true);
 
   const [error, setError] = useState(false);
@@ -33,7 +33,7 @@ export default function Report(props) {
         setError(true);
       })
       .finally(() => {
-        setLoadingCandidates(false);
+        setLoadingCandidate(false);
       });
   }, [id]);
 
@@ -52,7 +52,7 @@ export default function Report(props) {
       });
   }, [id]);
 
-  if (loadingCandidates || loadingReports) {
+  if (loadingCandidate || loadingReports) {
     return <p>Loading</p>; // TODO: add spinner
   }
 
