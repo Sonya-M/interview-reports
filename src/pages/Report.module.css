@@ -1,25 +1,28 @@
+.cover {
+  position: relative;
+  max-width: 100%;
+  width: 100vw;
+  height: 40vh;
+  z-index: -1;
+}
 @media screen and (max-width: 480px) {
   .data {
     display: block;
     overflow: hidden;
   }
-  .cover {
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-  }
   .avatar {
     display: block;
+    position: absolute;
+    bottom: 0.3em;
+    left: 0.3em;
     border-radius: 50%;
     border: 5px rgb(34, 58, 92) double;
     width: 7em;
     height: 7em;
-    margin-top: 15%;
-    margin-left: 5%;
     overflow: visible;
   }
   .cardInfo {
-    margin-top: -8%;
+    /* margin-top: -8%; */
     width: 100%;
     background-color: #000000;
   }
@@ -75,15 +78,10 @@
     display: block;
     overflow: hidden;
   }
-  .cover {
-    position: relative;
-  
-    max-width: 100%;
-    width: 100vw;
-    height: 40vw;
-    /* overflow: hidden; */
-    z-index: -1;
-  }
+  /* .cover {
+    height: 45vh;
+  } */
+
   .mainDisplay {
     padding-bottom: 0;
   }
@@ -136,7 +134,7 @@
     overflow: hidden;
     z-index: -1;
     transition: all 800ms 0ms ease-in-out;
-    opacity: 0.2;
+    opacity: 0;
   }
 
   .cardMore {
@@ -144,7 +142,7 @@
     top: 0%;
     right: 0;
 
-    height: 40vw;
+    height: 40vh;
 
     background: hsla(0, 0%, 100%, 0.37);
 
@@ -209,7 +207,6 @@
 }
 @media screen and (min-width: 913px) {
   .cover {
-    position: relative;
     top: 70px;
     width: 70%;
     margin: -8% 15% 0;
