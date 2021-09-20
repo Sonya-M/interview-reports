@@ -12,6 +12,8 @@ import WizCompanyCard from "../components/WizCompanyCard";
 import WizReportForm from "../components/WizReportForm";
 import WizSelectedInfo from "../components/WizSelectedInfo";
 
+import { SESSION_EXPIRED } from "../shared/constants";
+
 import styles from "./Wizard.module.css";
 import ErrorDisplay from "../components/ErrorDisplay";
 
@@ -85,7 +87,10 @@ export default function Wizard(props) {
     ReportCommunicator.save(reportData)
       .then((response) => console.log(response))
       .then(history.push("/admin"))
-      .catch((error) => setError(error));
+      .catch((error) => {
+        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
+        setError(error.message);
+      });
   };
 
   const handleBackBtnClick = () => {
@@ -137,6 +142,7 @@ export default function Wizard(props) {
             communicator={CandidateCommunicator}
             ItemCard={WizCandidateCard}
             selected={selectedCandidate}
+            onSessionExpired={props.onSessionExpired}
             {...sharedSelectProps}
           />
         )}

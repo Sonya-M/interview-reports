@@ -1,11 +1,10 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
 import { Table } from "../components/Table";
 
 import ReportCommunicator from "../services/ReportCommunicator";
-
-import { Button } from "react-bootstrap";
+import { SESSION_EXPIRED } from "../shared/constants";
 import styles from "./AdminPage.module.css";
 
 export default function AdminPage(props) {
@@ -14,6 +13,7 @@ export default function AdminPage(props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(""); // error as a string with the error msg
 
+  const { onSessionExpired } = props;
   const getReports = () => {
     ReportCommunicator.getAll()
       .then((data) => {
@@ -21,7 +21,8 @@ export default function AdminPage(props) {
       })
       .catch((error) => {
         console.log(error);
-        setError(error);
+        if (error.message === SESSION_EXPIRED) onSessionExpired();
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -30,7 +31,7 @@ export default function AdminPage(props) {
 
   useEffect(() => {
     getReports();
-  }, []);
+  }, [onSessionExpired]);
 
   const handleSearch = (searchInput) => {
     setSearchText(searchInput);
@@ -44,12 +45,12 @@ export default function AdminPage(props) {
         getReports();
       })
       .catch((error) => {
-        setError(error);
+        setError(error.message);
       });
   };
 
   if (error) {
-    return <ErrorDisplay message={error.toString()} />;
+    return <ErrorDisplay message={error} />;
   }
   if (loading) return <p>Loading...</p>;
   return (

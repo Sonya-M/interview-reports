@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-
-import { authenticate } from "../services/services";
-
+import React, { Fragment, useState } from "react";
+import AuthCommunicator from "../services/AuthCommunicator";
 import { Form, Button } from "react-bootstrap";
 import styles from "./LoginForm.module.css";
 
 const LoginForm = (props) => {
-  let history = useHistory();
-
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -23,23 +18,33 @@ const LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    authenticate(name, password)
-      .then((response) => {
+    AuthCommunicator.login(name, password)
+      .then(() => {
         props.onLogin();
-        history.push(props.redirectPath);
       })
       .catch((error) => {
-        console.log(error.status);
-        setMessage("Please provide valid name and password!");
+        console.log(error);
+        setMessage(error.message);
       });
   };
 
   return (
     <div className="m-5  text-center">
-      <h2 className="display-4">Welcome</h2>
-      <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
-        Please log in to view the content.
-      </p>
+      {!props.sessionExpired ? (
+        <Fragment>
+          <h2 className="display-4">Welcome</h2>
+          <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
+            Please log in to view the content.
+          </p>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <h5 className="display-5">Session expired.</h5>
+          <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
+            Please log in again.
+          </p>
+        </Fragment>
+      )}
       <Form className={styles.LoginForm} onSubmit={handleSubmit}>
         <Form.Control
           type="text"

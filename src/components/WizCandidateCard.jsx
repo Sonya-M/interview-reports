@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ImageGuaranteed from "./UI/ImageGuaranteed";
 import WizOptionCard from "./WizOptionCard";
 import { PLACEHOLDER_IMG } from "../shared/constants";
