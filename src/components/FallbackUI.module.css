@@ -1,0 +1,12 @@
+.fallback {
+  font-weight: lighter;
+  font-size: 1.2rem;
+}
+
+.refreshAction {
+  color: dodgerblue;
+  font-weight: bolder;
+  font-size: 1.3rem;
+  text-decoration: underline;
+  cursor: pointer;
+}

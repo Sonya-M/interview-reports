@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Report from "./pages/Report";
-import Candidates from './pages/Candidates';
-import { Route, Switch, Redirect, useHistory } from 'react-router';
+import Candidates from "./pages/Candidates";
+import { Route, Switch, Redirect, useHistory } from "react-router";
 import ErrorDisplay from "./components/ErrorDisplay";
 import MainHeader from "./components/UI/MainHeader";
 import AdminHeader from "./components/UI/AdminHeader";
 import Footer from "./components/UI/Footer";
 import AdminPage from "./pages/AdminPage";
-
 import Wizard from "./pages/Wizard";
+import ErrorBoundary from "./components/ErrorBoundary";
+import AuthCommunicator from "./services/AuthCommunicator";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import { Container } from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { Container } from "react-bootstrap";
 import About from "./pages/About";
-
+import NavHeader from "./components/UI/NavHeader";
 
 function App() {
   let history = useHistory();
-
   const [loggedIn, setLoggedIn] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
 
 
   useEffect(() => {
@@ -29,82 +30,72 @@ function App() {
       setLoggedIn(true);
     }
   }, [loggedIn]);
-
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
-  const handleLogout = () => {
-    sessionStorage.removeItem("accessToken");
-    sessionStorage.removeItem("username");
-    setLoggedIn(false);
-    history.push("/");
-  };
-
   const refreshPage = () => {
     history.push("/");
     window.location.reload();
   };
 
-  const refreshAdminPage = () => {
-    history.push("/admin");
-    window.location.reload();
-  }
+  const handleLogin = () => {
+    setLoggedIn(true);
+    history.push("/");
+  };
 
-  const mainHeader = (
-    <MainHeader
-      loggedIn={loggedIn}
-      onLogout={handleLogout}
-      onLogoClick={refreshPage} />);
-  const adminHeader = (
-    <AdminHeader
-      onLogoClick={refreshAdminPage}
-      onLogout={handleLogout}
-    />
-  );
+  const handleLogout = () => {
+    clearSession();
+  };
+
+  const handleSessionExpired = () => {
+    setSessionExpired(true);
+    clearSession();
+  };
+
+  const clearSession = () => {
+    setLoggedIn(false);
+    AuthCommunicator.clearSession();
+    history.push("/");
+  };
+  
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
-      {(!loggedIn) ?
-        <LoginForm onLogin={handleLogin} /> :
-        <Switch>
-          <Route exact path="/candidates/:id">
-            {mainHeader}
-            <Report />
-          </Route>
-          <Route exact path="/">
-            {mainHeader}
-            <Candidates />
-          </Route >
-          <Route exact path="/admin">
-            {adminHeader}
-            <AdminPage />
-            
-          </Route>
-         
-            
-          <Route exact path="/wizard">
-            {adminHeader}
-            <Wizard />
-          </Route> 
-          <Route exact path="/about">
-            {mainHeader}
-            <About/>
-          </Route>
-          <Route>
-            <Redirect from="/candidates" to="/"></Redirect>
-          </Route>
-         
-          <Route>
-            <ErrorDisplay message="Page not found" />
-          </Route>
-          
-        </Switch>}
-
-
-      <Footer />
+      <ErrorBoundary>
+        <NavHeader loggedIn={loggedIn} onLogout={handleLogout} />
+        {!loggedIn ? (
+          <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} />
+        ) : (
+          <Switch>
+            {/* ErrorBoundary can also be inside Switch */}
+            {/* <ErrorBoundary> */}
+            <Route exact path="/">
+              <Candidates onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/candidates/:id">
+              <Report onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/admin">
+              <AdminPage onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/wizard">
+              <Wizard onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/about">
+              <About onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route>
+              <Redirect from="/candidates" to="/"></Redirect>
+            </Route>
+            {/* </ErrorBoundary> */}
+            {/* For some reason, Page not found below is rendered below other pages when wrapped in ErrorBoundary, so I placed it outside
+            TODO: ask why!!!*/}
+            <Route>
+              <ErrorDisplay message="Page not found" />
+            </Route>
+          </Switch>
+        )}
+        <Footer />
+      </ErrorBoundary>
     </Container>
   );
 }
 
 export default App;
-

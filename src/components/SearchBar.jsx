@@ -40,7 +40,7 @@ const SearchBar = (props) => {
             value={searchText}
             onChange={(e) => handleChange(e.target.value)}
           />
-          <Button className="bg-danger text-light" onClick={handleClear} style={{['z-index']: '0'}}>
+          <Button className="bg-danger text-light" onClick={handleClear} style={{zIndex: '0'}}>
             x
           </Button>
         </InputGroup>

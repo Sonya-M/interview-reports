@@ -1,14 +1,24 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Button } from "react-bootstrap";
 import { HouseFill, PlusCircleFill } from "react-bootstrap-icons";
 import LogoutBtn from "./LogoutBtn";
 
-
 export default function AdminHeader(props) {
   const iconClasses = "fs-4";
+  let history = useHistory();
   let location = useLocation();
+
+  const refreshPage = () => {
+    history.push("/admin");
+    window.location.reload();
+  };
+  const logo = (
+    <span onClick={refreshPage} style={{ cursor: "pointer" }}>
+      Admin
+    </span>
+  );
   let menu = [
     <Link to="/">
       <Button>
@@ -32,6 +42,6 @@ export default function AdminHeader(props) {
       </Link>
     );
   }
-  menu.push(<LogoutBtn onLogout={props.onLogout} />)
-  return <Header title={<Link to="/admin">Admin</Link>} menuItems={menu} />;
+  menu.push(<LogoutBtn onLogout={props.onLogout} />);
+  return <Header title={logo} menuItems={menu} loggedIn={props.loggedIn}/>;
 }
