@@ -66,7 +66,7 @@
 }
 @media screen and (min-width: 481px) and (max-width: 913px) {
   .table {
-    margin: 3rem auto;
+    margin: 0 auto;
     background: #c7c7c7;
     box-shadow: -2px -2px 11px #e3e3e3, 2px 2px 11px #ababab;
     width: 96%;

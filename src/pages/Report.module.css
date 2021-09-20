@@ -1,25 +1,30 @@
+.cover {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  height: 40vh;
+  z-index: -1;
+  object-fit: cover;
+}
+
 @media screen and (max-width: 480px) {
   .data {
     display: block;
     overflow: hidden;
   }
-  .cover {
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-  }
   .avatar {
     display: block;
+    position: absolute;
+    bottom: 0.3em;
+    left: 0.3em;
     border-radius: 50%;
     border: 5px rgb(34, 58, 92) double;
     width: 7em;
     height: 7em;
-    margin-top: 15%;
-    margin-left: 5%;
     overflow: visible;
   }
   .cardInfo {
-    margin-top: -8%;
+    /* margin-top: -8%; */
     width: 100%;
     background-color: #000000;
   }
@@ -75,15 +80,7 @@
     display: block;
     overflow: hidden;
   }
-  .cover {
-    position: relative;
-  
-    max-width: 100%;
-    width: 100vw;
-    height: 40vw;
-    /* overflow: hidden; */
-    z-index: -1;
-  }
+
   .mainDisplay {
     padding-bottom: 0;
   }
@@ -135,8 +132,8 @@
     padding: 1rem 2rem;
     overflow: hidden;
     z-index: -1;
-    transition: all 800ms 0ms ease-in-out;
-    opacity: 0.2;
+    transition: all 2000ms 5000ms ease-in-out;
+    opacity: 0;
   }
 
   .cardMore {
@@ -144,7 +141,7 @@
     top: 0%;
     right: 0;
 
-    height: 40vw;
+    height: 40vh;
 
     background: hsla(0, 0%, 100%, 0.37);
 
@@ -208,18 +205,20 @@
   } */
 }
 @media screen and (min-width: 913px) {
-  .cover {
-    position: relative;
-    top: 70px;
+  .data {
     width: 70%;
-    margin: -8% 15% 0;
+    margin: 0 auto;
+  }
+  .cover {
+    
+    height: 50vh;
+
     z-index: -1;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   }
   .cardInfo {
     display: block;
-    max-width: 70%;
-    margin: -1% auto 0;
+    /* margin: 0 auto; */
     /* height: 15em; */
     z-index: 2;
     background-color: #000000f5;
@@ -239,13 +238,15 @@
     z-index: 2;
   }
   .avatar {
+    position: absolute;
+    bottom: 0.7em;
+    left: 0.7em;
     display: block;
     border-radius: 5%;
     border: 2px black groove;
     width: 14em;
     height: 14em;
-    margin-top: -20%;
-    margin-left: 16%;
+    
     /* margin-bottom: 5%; */
     overflow: visible;
     z-index: 1;
@@ -276,8 +277,8 @@
     grid-template-rows: 1fr;
     grid-column-gap: 1em;
     grid-row-gap: 0px;
-    max-width: 70%;
-    margin: 0 auto;
+    /* max-width: 70%;
+    margin: 0 auto; */
   }
   .card,
   .cardMore {
