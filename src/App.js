@@ -20,6 +20,7 @@ import About from "./pages/About";
 function App() {
   let history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
 
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken");
@@ -38,6 +39,7 @@ function App() {
   };
 
   const handleSessionExpired = () => {
+    setSessionExpired(true);
     clearSession();
   };
 
@@ -71,7 +73,7 @@ function App() {
   return (
     <Container fluid className="m-0 p-0 mb-5">
       {(!loggedIn) ?
-        <LoginForm onLogin={handleLogin} /> :
+        <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} /> :
         <Switch>
           <Route exact path="/candidates/:id">
             {mainHeader}

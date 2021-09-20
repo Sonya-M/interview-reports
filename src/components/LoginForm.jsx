@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import AuthCommunicator from "../services/AuthCommunicator";
 import { Form, Button } from "react-bootstrap";
 import styles from "./LoginForm.module.css";
@@ -30,10 +30,21 @@ const LoginForm = (props) => {
 
   return (
     <div className="m-5  text-center">
-      <h2 className="display-4">Welcome</h2>
-      <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
-        Please log in to view the content.
-      </p>
+      {!props.sessionExpired ? (
+        <Fragment>
+          <h2 className="display-4">Welcome</h2>
+          <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
+            Please log in to view the content.
+          </p>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <h5 className="display-5">Session expired.</h5>
+          <p style={{ fontSize: "1.1rem", fontWeight: "lighter" }}>
+            Please log in again.
+          </p>
+        </Fragment>
+      )}
       <Form className={styles.LoginForm} onSubmit={handleSubmit}>
         <Form.Control
           type="text"

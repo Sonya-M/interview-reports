@@ -1,12 +1,10 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
 import { Table } from "../components/Table";
 
 import ReportCommunicator from "../services/ReportCommunicator";
 import { SESSION_EXPIRED } from "../shared/constants";
-
-import { Button } from "react-bootstrap";
 import styles from "./AdminPage.module.css";
 
 export default function AdminPage(props) {
@@ -15,6 +13,7 @@ export default function AdminPage(props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(""); // error as a string with the error msg
 
+  const { onSessionExpired } = props;
   const getReports = () => {
     ReportCommunicator.getAll()
       .then((data) => {
@@ -22,7 +21,7 @@ export default function AdminPage(props) {
       })
       .catch((error) => {
         console.log(error);
-        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
+        if (error.message === SESSION_EXPIRED) onSessionExpired();
         setError(error.message);
       })
       .finally(() => {
@@ -32,7 +31,7 @@ export default function AdminPage(props) {
 
   useEffect(() => {
     getReports();
-  }, []);
+  });
 
   const handleSearch = (searchInput) => {
     setSearchText(searchInput);

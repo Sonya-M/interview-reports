@@ -17,6 +17,7 @@ export default function WizSelect(props) {
   const { communicator } = props;
   const { ItemCard } = props;
 
+  const { onSessionExpired } = props;
   useEffect(() => {
     communicator
       .getAll()
@@ -25,11 +26,11 @@ export default function WizSelect(props) {
         setItems(data);
       })
       .catch((error) => {
-        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
+        if (error.message === SESSION_EXPIRED) onSessionExpired();
         setError(error.message);
       })
       .finally(setLoading(false));
-  }, [communicator]);
+  }, [communicator, onSessionExpired]);
 
   const handleSelect = (item) => {
     props.onSelectItem(item);

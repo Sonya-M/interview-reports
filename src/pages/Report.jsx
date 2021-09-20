@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
@@ -23,6 +23,7 @@ export default function Report(props) {
   const [showMore, setShowMore] = useState(false);
   const handleShowMore = () => setShowMore(!showMore);
 
+  const { onSessionExpired } = props;
   useEffect(() => {
     CandidateCommunicator.getById(id)
       .then((data) => {
@@ -31,13 +32,13 @@ export default function Report(props) {
       })
       .catch((error) => {
         console.log(error);
-        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
+        if (error.message === SESSION_EXPIRED) onSessionExpired();
         setError(error.message);
       })
       .finally(() => {
         setLoadingCandidate(false);
       });
-  }, [id]);
+  }, [id, onSessionExpired]); //TODO: pitaj!
 
   useEffect(() => {
     ReportCommunicator.getAllForCandidate(id)
@@ -47,12 +48,13 @@ export default function Report(props) {
       })
       .catch((error) => {
         console.log(error);
+        if (error.message === SESSION_EXPIRED) onSessionExpired();
         setError(error.message);
       })
       .finally(() => {
         setLoadingReports(false);
       });
-  }, [id]);
+  }, [id, onSessionExpired]); //TODO: pitaj!
 
   if (error) {
     return <ErrorDisplay message={error} />;
