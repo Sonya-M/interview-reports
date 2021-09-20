@@ -5,7 +5,7 @@ import LogoutBtn from "./LogoutBtn";
 
 export default function Header(props) {
   const menuItemClasses = props.className;
-  const [showMenu, setShowMenu] = useState(true)
+  const [showMenu, setShowMenu] = useState(false)
   const handleMenuBtn = () => {
     setShowMenu(!showMenu)
   }

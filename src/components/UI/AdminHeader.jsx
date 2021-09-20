@@ -3,6 +3,8 @@ import { useLocation, Link } from "react-router-dom";
 import Header from "./Header";
 import { Button } from "react-bootstrap";
 import { HouseFill, PlusCircleFill } from "react-bootstrap-icons";
+import LogoutBtn from "./LogoutBtn";
+
 
 export default function AdminHeader(props) {
   const iconClasses = "fs-4";
@@ -10,7 +12,7 @@ export default function AdminHeader(props) {
   let menu = [
     <Link to="/">
       <Button>
-        <HouseFill className={iconClasses} />
+        <HouseFill className={iconClasses} /> Home
       </Button>
     </Link>,
   ];
@@ -19,16 +21,17 @@ export default function AdminHeader(props) {
     menu.push(
       <Link to="/wizard">
         <Button>
-          <PlusCircleFill className={iconClasses} />
+          <PlusCircleFill className={iconClasses} /> Create new report
         </Button>
       </Link>
     );
   } else if (location.pathname === "/wizard") {
     menu.push(
-      <Button>
-        <Link to="/admin">All Reports</Link>
-      </Button>
+      <Link to="/admin">
+        <Button>All Reports</Button>
+      </Link>
     );
   }
+  menu.push(<LogoutBtn onLogout={props.onLogout} />)
   return <Header title={<Link to="/admin">Admin</Link>} menuItems={menu} />;
 }

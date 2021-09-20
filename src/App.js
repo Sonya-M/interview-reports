@@ -58,6 +58,7 @@ function App() {
   const adminHeader = (
     <AdminHeader
       onLogoClick={refreshAdminPage}
+      onLogout={handleLogout}
     />
   );
 

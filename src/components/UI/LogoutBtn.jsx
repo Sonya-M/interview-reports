@@ -5,8 +5,8 @@ import { Button } from "react-bootstrap";
 
 export default function LogoutBtn(props) {
   return (
-    <Button className={styles.LogoutBtn} onClick={props.handleLogout}>
-      <DoorOpenFill/> Log Out
+    <Button className={styles.LogoutBtn}  onClick={props.onLogout}>
+     <DoorOpenFill/> Log Out
     </Button>
   );
 }

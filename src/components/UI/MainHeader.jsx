@@ -31,8 +31,8 @@ export default function MainHeader(props) {
   );
 
   // now header shows only when logged in
-  let menu = [<LogoutBtn onLogout={props.onLogout} />];
+  let menu = [];
   if (location.pathname !== "/") menu.unshift(candidatesLink);
 
-  return <Header title={logo} menuItems={[ ...menu, adminLink, aboutLink]} />;
+  return <Header title={logo} menuItems={[ ...menu, adminLink, aboutLink, <LogoutBtn onLogout={props.onLogout} />]} />;
 }

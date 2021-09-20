@@ -63,11 +63,11 @@
 .menuItem {
   display: block;
   background-color: black;
-  border: 1px solid #0D6EFD;
+  border: 1px solid #92bdff;
   border-top: none;
 }
 
-.menuItem button {
+.menuItem button, .menuItem button:hover {
   width: 100%;
   background-color: transparent;
   border: none;
@@ -77,6 +77,11 @@
 }
 
 .menuItem:last-child {
-  border-bottom-left-radius: 50%;
+  border-bottom-left-radius: 10px;
+}
+
+.menuItem:hover {
+  background-color: #92bdff;
+  color: black;
 }
 /*# sourceMappingURL=Header.module.css.map */
