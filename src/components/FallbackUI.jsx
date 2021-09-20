@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import styles from "./FallbackUI.module.css";
 
 export default function FallbackUI(props) {
@@ -8,6 +9,12 @@ export default function FallbackUI(props) {
       <div className="m-5">
         <p>An unexpected error has occurred.</p>
         <p>Sorry for the inconvenience.</p>
+        <hr />
+        {props.error ? (
+          <p style={{ color: "red" }}>Error: {props.error}</p>
+        ) : (
+          <Fragment />
+        )}
       </div>
       <Link to="/">Home</Link>
     </div>

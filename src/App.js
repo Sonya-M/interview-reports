@@ -8,9 +8,10 @@ import MainHeader from "./components/UI/MainHeader";
 import AdminHeader from "./components/UI/AdminHeader";
 import Footer from "./components/UI/Footer";
 import AdminPage from "./pages/AdminPage";
-
 import Wizard from "./pages/Wizard";
+import ErrorBoundary from "./components/ErrorBoundary";
 import AuthCommunicator from "./services/AuthCommunicator";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container } from 'react-bootstrap';
@@ -72,37 +73,38 @@ function App() {
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
-      {(!loggedIn) ?
-        <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} /> :
-        <Switch>
-          <Route exact path="/candidates/:id">
-            {mainHeader}
-            <Report onSessionExpired={handleSessionExpired} />
-          </Route>
-          <Route exact path="/">
-            {mainHeader}
-            <Candidates onSessionExpired={handleSessionExpired} />
-          </Route >
-          <Route exact path="/admin">
-            {adminHeader}
-            <AdminPage onSessionExpired={handleSessionExpired} />
-          </Route>
-          <Route exact path="/wizard">
-            {adminHeader}
-            <Wizard onSessionExpired={handleSessionExpired} />
-          </Route>
-          <Route exact path="/about">
-            {mainHeader}
-            <About onSessionExpired={handleSessionExpired} />
-          </Route>
-          <Route>
-            <Redirect from="/candidates" to="/"></Redirect>
-          </Route>
-          <Route>
-            <ErrorDisplay message="Page not found" />
-          </Route>
-
-        </Switch>}
+      <ErrorBoundary>
+        {(!loggedIn) ?
+          <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} /> :
+          <Switch>
+            <Route exact path="/candidates/:id">
+              {mainHeader}
+              <Report onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/">
+              {mainHeader}
+              <Candidates onSessionExpired={handleSessionExpired} />
+            </Route >
+            <Route exact path="/admin">
+              {adminHeader}
+              <AdminPage onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/wizard">
+              {adminHeader}
+              <Wizard onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/about">
+              {mainHeader}
+              <About onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route>
+              <Redirect from="/candidates" to="/"></Redirect>
+            </Route>
+            <Route>
+              <ErrorDisplay message="Page not found" />
+            </Route>
+          </Switch>}
+      </ErrorBoundary>
 
 
       <Footer />
