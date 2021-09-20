@@ -15,10 +15,10 @@ const getNiceErrorMessage = (error) => {
   const errorStr = error.toString();
   if (errorStr.includes("Failed to fetch")) {
     return constants.CONNECTION_FAILED;
-  } else if (errorStr.includes("400")) {
-    return constants.INVALID_CREDENTIALS;
-  } else if (errorStr.includes("401")) {
+  } else if (errorStr.includes("401") && sessionStorage.getItem("accessToken")) {
     return constants.SESSION_EXPIRED;
+  } else if (errorStr.includes("400") || errorStr.includes("401")) {
+    return constants.INVALID_CREDENTIALS;
   } else {
     return errorStr;
   }

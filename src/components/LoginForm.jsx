@@ -18,11 +18,14 @@ const LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    AuthCommunicator.login(name, password, () => {
-      props.onLogin();
-    }).catch((error) => {
-      setMessage(error.message);
-    });
+    AuthCommunicator.login(name, password)
+      .then(() => {
+        props.onLogin();
+      })
+      .catch((error) => {
+        console.log(error);
+        setMessage(error.message);
+      });
   };
 
   return (

@@ -30,6 +30,7 @@ function App() {
 
   const handleLogin = () => {
     setLoggedIn(true);
+    history.push("/");
   };
 
   const handleLogout = () => {
@@ -42,10 +43,8 @@ function App() {
 
   const clearSession = () => {
     setLoggedIn(false);
-    AuthCommunicator.clearSession(() => {
-      history.push("/");
-    });
-    // history.push("/");
+    AuthCommunicator.clearSession();
+    history.push("/");
   };
 
   const refreshPage = () => {
