@@ -31,7 +31,7 @@ export default function AdminPage(props) {
 
   useEffect(() => {
     getReports();
-  });
+  }, [onSessionExpired]);
 
   const handleSearch = (searchInput) => {
     setSearchText(searchInput);

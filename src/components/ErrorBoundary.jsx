@@ -15,7 +15,7 @@ export default class ErrorBoundary extends React.Component {
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    this.setState({ error: error });
+
     return { hasError: true };
   }
 
@@ -36,10 +36,7 @@ export default class ErrorBoundary extends React.Component {
 /* 
 Then you can use it as a regular component:
 
-<ErrorBoundary>
-  <MyWidget />
-</ErrorBoundary> 
-
+<ErrorBoundary> <MyWidget /> </ErrorBoundary> 
 
 Error boundaries work like a JavaScript catch {} block, but for components. Only
 class components can be error boundaries. In practice, most of the time you’ll
@@ -51,4 +48,15 @@ tree. An error boundary can’t catch an error within itself. If an error bounda
 fails trying to render the error message, the error will propagate to the
 closest error boundary above it. This, too, is similar to how catch {} block
 works in JavaScript.
+
+NB: errors that were not caught by any error boundary will result in unmounting
+of the whole React component tree. !!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TODO: PITAJ DA LI SAM U PRAVU ZA OVO:
+Pošto ja umotavam celu aplikaciju u ErrorBoundary, to rezultira unmountovanjem 
+cele aplikacije, tj. komponente App.js ????????????????? 
+To rešavam u FallbackUI, tako što imam lažni link za refreshovanje home stranice
+--------------------------------------------------------------------------------
+
 */

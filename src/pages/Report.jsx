@@ -57,6 +57,14 @@ export default function Report(props) {
       });
   }, [id, onSessionExpired]); //TODO: pitaj!
 
+  if (true) {
+    return (
+      <p>{selectedCandidate}</p> // will trigger an error when rendering! TODO:
+      //delete afterwards!
+      // cannot render objects directly, only stringified ones
+    );
+  }
+
   if (error) {
     return <ErrorDisplay message={error} />;
   }

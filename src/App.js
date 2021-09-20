@@ -72,19 +72,24 @@ function App() {
   );
 
   return (
+
     <Container fluid className="m-0 p-0 mb-5">
       <ErrorBoundary>
         {(!loggedIn) ?
-          <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} /> :
+          (
+            <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} />
+          ) :
           <Switch>
-            <Route exact path="/candidates/:id">
-              {mainHeader}
-              <Report onSessionExpired={handleSessionExpired} />
-            </Route>
+            {/* ErrorBoundary can also be inside Switch */}
+            {/* <ErrorBoundary> */}
             <Route exact path="/">
               {mainHeader}
               <Candidates onSessionExpired={handleSessionExpired} />
             </Route >
+            <Route exact path="/candidates/:id">
+              {mainHeader}
+              <Report onSessionExpired={handleSessionExpired} />
+            </Route>
             <Route exact path="/admin">
               {adminHeader}
               <AdminPage onSessionExpired={handleSessionExpired} />
@@ -100,15 +105,18 @@ function App() {
             <Route>
               <Redirect from="/candidates" to="/"></Redirect>
             </Route>
+            {/* </ErrorBoundary> */}
+            {/* For some reason, Page not found below is rendered below other pages when wrapped in ErrorBoundary, so I placed it outside
+            TODO: ask why!!!*/}
             <Route>
               <ErrorDisplay message="Page not found" />
             </Route>
+
           </Switch>}
+        <Footer />
       </ErrorBoundary>
-
-
-      <Footer />
     </Container>
+
   );
 }
 

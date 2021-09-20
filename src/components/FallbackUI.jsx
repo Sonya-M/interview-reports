@@ -1,10 +1,16 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styles from "./FallbackUI.module.css";
 
 export default function FallbackUI(props) {
+  const history = useHistory();
+  const refreshHomePage = () => {
+    history.push("/");
+    window.location.reload();
+  };
+
   return (
-    <div className={`text-center ${styles.fallback}`}>
+    <div className={`text-center mt-5 ${styles.fallback}`}>
       <h2 className="display-4">Something went wrong...</h2>
       <div className="m-5">
         <p>An unexpected error has occurred.</p>
@@ -16,7 +22,9 @@ export default function FallbackUI(props) {
           <Fragment />
         )}
       </div>
-      <Link to="/">Home</Link>
+      <span className={styles.refreshAction} onClick={refreshHomePage}>
+        Home
+      </span>
     </div>
   );
 }
