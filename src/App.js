@@ -14,6 +14,7 @@ import AuthCommunicator from "./services/AuthCommunicator";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container } from 'react-bootstrap';
+import About from "./pages/About";
 
 
 function App() {
@@ -75,7 +76,7 @@ function App() {
         <Switch>
           <Route exact path="/candidates/:id">
             {mainHeader}
-            <Report />
+            <Report onSessionExpired={handleSessionExpired} />
           </Route>
           <Route exact path="/">
             {mainHeader}
@@ -84,13 +85,15 @@ function App() {
           <Route exact path="/admin">
             {adminHeader}
             <AdminPage onSessionExpired={handleSessionExpired} />
-
           </Route>
-
-
           <Route exact path="/wizard">
             {adminHeader}
             <Wizard onSessionExpired={handleSessionExpired} />
+            <Wizard />
+          </Route>
+          <Route exact path="/about">
+            {mainHeader}
+            <About onSessionExpired={handleSessionExpired} />
           </Route>
           <Route>
             <Redirect from="/candidates" to="/"></Redirect>
@@ -98,6 +101,7 @@ function App() {
           <Route>
             <ErrorDisplay message="Page not found" />
           </Route>
+
         </Switch>}
 
 

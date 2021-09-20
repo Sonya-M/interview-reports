@@ -1,0 +1,84 @@
+.cards {
+    margin: 1em auto 6em;
+    width: 96%;
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+     grid-gap: 1.5em; 
+    justify-items: center;
+
+}
+.cardContainer {
+  position: relative;
+  width: 200px;
+  height: 290px;
+  border-radius: 10%;
+}
+.thecard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+.thecard:hover {
+  transform: rotateY(180deg);
+}
+.thefront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: hsla(0, 3%, 93%, 0.384);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.avatar {
+  width: 86%;
+  margin-top: 1.5rem;
+  border-radius: 50%;
+  border: 6px rgb(11,94,215) double;
+}
+.frontname {
+    background: rgb(11,94,215);
+    color: white;
+    position: relative;
+    bottom: -8%;
+    font-size: 1.3em;
+    font-weight: 700;
+    padding: 1em 0;
+}
+.theback {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+
+  transform: rotateY(180deg);
+  color: aliceblue;
+  background: rgb(17, 17, 17);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 1);
+  word-break: break-all;
+}
+.name {
+    margin-top: 1em;
+}
+.backinfo {
+    text-align: justify;
+    width: 92%;
+    margin: 1em auto 2em;
+    font-size: 0.9em;
+    font-weight: 500;
+    height: 148px;
+    background: rgba(54, 54, 54, 0.075);
+    border: 1px solid rgba(255, 255, 255, 0.068);
+    padding: 2%;
+
+}
+button > a {
+    color: white;
+    text-decoration: none;
+}
+button > a:hover {
+    color: white;
+    text-decoration: none;
+}
