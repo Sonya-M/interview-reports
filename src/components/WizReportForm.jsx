@@ -8,6 +8,7 @@ const inputReducer = (state, action) => {
     return { value: action.val, isValid: action.val !== "" };
   }
   if (action.type === "INPUT_BLUR") {
+    // not used here, but included for possible extension
     // `state`: latest state snapshot, guaranteed to be up to date
     return { value: state.value, isValid: state.value !== "" };
   }

@@ -12,6 +12,8 @@ import WizCompanyCard from "../components/WizCompanyCard";
 import WizReportForm from "../components/WizReportForm";
 import WizSelectedInfo from "../components/WizSelectedInfo";
 
+import { SESSION_EXPIRED } from "../shared/constants";
+
 import styles from "./Wizard.module.css";
 import ErrorDisplay from "../components/ErrorDisplay";
 
@@ -114,6 +116,9 @@ export default function Wizard(props) {
   const nextStep =
     selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
 
+  if (error && error === SESSION_EXPIRED) {
+    props.onSessionExpired();
+  }
   if (error) return <ErrorDisplay message={error} />;
 
   return (
@@ -137,6 +142,7 @@ export default function Wizard(props) {
             communicator={CandidateCommunicator}
             ItemCard={WizCandidateCard}
             selected={selectedCandidate}
+            onSessionExpired={props.onSessionExpired}
             {...sharedSelectProps}
           />
         )}

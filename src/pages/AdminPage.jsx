@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar";
 import { Table } from "../components/Table";
 
 import ReportCommunicator from "../services/ReportCommunicator";
+import { SESSION_EXPIRED } from "../shared/constants";
 
 import { Button } from "react-bootstrap";
 import styles from "./AdminPage.module.css";
@@ -48,6 +49,9 @@ export default function AdminPage(props) {
       });
   };
 
+  if (error && error === SESSION_EXPIRED) {
+    props.onSessionExpired();
+  }
   if (error) {
     return <ErrorDisplay message={error} />;
   }

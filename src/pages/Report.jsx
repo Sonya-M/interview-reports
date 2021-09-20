@@ -5,6 +5,7 @@ import ReportCommunicator from "../services/ReportCommunicator";
 import ErrorDisplay from "../components/ErrorDisplay";
 import ImageGuaranteed from "../components/UI/ImageGuaranteed";
 import { Envelope, Gift, Book } from "react-bootstrap-icons";
+import { SESSION_EXPIRED } from "../shared/constants";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
@@ -52,14 +53,15 @@ export default function Report(props) {
       });
   }, [id]);
 
-  if (loadingCandidate || loadingReports) {
-    return <p>Loading</p>; // TODO: add spinner
+  if (error && error === SESSION_EXPIRED) {
+    props.onSessionExpired();
   }
-
   if (error) {
     return <ErrorDisplay message={error} />;
   }
-
+  if (loadingCandidate || loadingReports) {
+    return <p>Loading</p>; // TODO: add spinner
+  }
   if (!selectedCandidate || selectedCandidate.length === 0) {
     return <ErrorDisplay message="An unexpected error occurred." />;
   }

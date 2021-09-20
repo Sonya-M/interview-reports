@@ -4,6 +4,7 @@ import CandidateCommunicator from "../services/CandidateCommunicator";
 import CandidateList from "../components/CandidateList";
 import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
+import { SESSION_EXPIRED } from "../shared/constants";
 import styles from "./Candidates.module.css";
 
 const Candidates = (props) => {
@@ -30,6 +31,9 @@ const Candidates = (props) => {
     setSearchText(filterText);
   };
 
+  if (error && error === SESSION_EXPIRED) {
+    props.onSessionExpired();
+  }
   if (error) {
     //!!!! cannot problems appear when trying to display error,
     // since the error appears to be an empty object
