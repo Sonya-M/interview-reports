@@ -88,7 +88,6 @@ function App() {
           <Route exact path="/wizard">
             {adminHeader}
             <Wizard onSessionExpired={handleSessionExpired} />
-            <Wizard />
           </Route>
           <Route exact path="/about">
             {mainHeader}
