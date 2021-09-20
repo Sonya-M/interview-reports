@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom"
 
 import { ListGroup, Row, Col, Container, Form, InputGroup, FormControl, Button } from "react-bootstrap";
@@ -6,14 +6,25 @@ import style from "./WizardThirdStep.module.css";
 
 const WizardThirdStep = (props) => {
   const { data, updateData, createReport, prevPage} = props;
+  const [isValid, setIsValid] = useState({
+    date: false,
+    phase: false,
+    status: false,
+    note: false
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createReport(data);
   }
  
+  const validateForm = (e) => {
+    if(e.target.val) {
+    
+    }
+  }
   
-  
+
   console.log(data)
 return (
   <Fragment>
@@ -28,7 +39,7 @@ return (
               Select Company
             </ListGroup.Item>
             <ListGroup.Item variant="dark">
-              Fill in Report details
+              Fillin Report details
             </ListGroup.Item>
           </ListGroup>
           <p className="mt-5"><i>Selected candidate:</i> {data.candidateName}</p>
@@ -71,8 +82,8 @@ return (
               />
             </Form>
             <div className="d-flex justify-content-between">
-              <Button onClick={prevPage} className="mt-2" variant="dark" >Back</Button>
-              <Button type="submit" className="mt-2" onClick={handleSubmit} variant="dark" disabled={data.note?"":"true"} >
+              <Button onClick={prevPage} className="mt-3" variant="dark" >Back</Button>
+              <Button type="submit" className="mt-3" onClick={handleSubmit} variant="dark" disabled={data.note?"":true} >
                 <Link to="/reports" className={style.linksStyle}>Create Report</Link>
               </Button>
             </div>

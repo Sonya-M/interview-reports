@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react";
 import { includesIgnoreCase } from "../utilities/helpers";
 
 import { ListGroup, Row, Col, Container, Button, Card } from "react-bootstrap";
+import style from "./WizardSecondStep.module.css"
 
 
 const WizardSecondStep = (props) => {
@@ -39,17 +40,25 @@ return (
           <p className="mt-5"><i>Selected company:</i> {selectedCompany}</p>
         </Col>
         <Col md={6} className="m-2">
+          <Row>
             {searchResult.map(c => (
-              <Card key={c.id} className="m-2">
-                <Card.Body onClick={() => [updateData("companyId", c.id), updateData("companyName", c.name), setSelectedCompany(c.name)]} >
-                  {c.name}
-                </Card.Body>
-              </Card>
+              <Col md={6} key={c.id}>
+                <Card className="m-2">
+                  <Card.Body 
+                  onClick={() => [updateData("companyId", c.id), updateData("companyName", c.name), setSelectedCompany(c.name)]}
+                  className={selectedCompany === c.name? style.selected : ""} 
+                  >
+                    {c.name}
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-            <div className="d-flex justify-content-between">
-              <Button onClick={prevPage} className="m-2" variant="dark" >Back</Button>
-              <Button  onClick={nextPage} className="m-2" variant="dark" disabled={selectedCompany?"":"true"} >Next</Button>   
-            </div>  
+            
+          </Row> 
+          <div className="d-flex justify-content-between">
+            <Button onClick={prevPage} className="mt-5 mb-2" variant="dark" >Back</Button>
+            <Button  onClick={nextPage} className="mt-5 mb-2" variant="dark" disabled={selectedCompany?"": true} >Next</Button>   
+          </div>
         </Col>
       </Row>
     </Container>

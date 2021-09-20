@@ -19,7 +19,7 @@ const WizardFirstStep = (props) => {
   
   candidates.map((c) => {
     if(c.name === selectedCandidate) {
-      
+
     }
   })
 
@@ -47,13 +47,14 @@ return (
             <ListGroup.Item 
               key={c.id} 
               onClick={() => [updateData("candidateId", c.id), updateData("candidateName", c.name), setSelectedCandidate(c.name)]}
+              className={selectedCandidate === c.name? style.selected : ""}
             >
                 <img alt="No file available" src={c.avatar} style={{ width: '2rem' }} />
                 <span className="m-2">{c.name}</span>
             </ListGroup.Item>
             ))}   
           </ListGroup>
-          <Button onClick={nextPage} className="mt-3" variant="dark" disabled={selectedCandidate?"":"true"}  >Next</Button>
+          <Button onClick={nextPage} className="mt-3" variant="dark" disabled={selectedCandidate? "" : true}  >Next</Button>
         </Col>
       </Row>
     </Container>
