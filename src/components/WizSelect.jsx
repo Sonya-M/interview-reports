@@ -6,6 +6,7 @@ import WizOptionList from "./WizOptionList";
 import { Row } from "react-bootstrap";
 import styles from "./WizSelect.module.css";
 import SearchBar from "./SearchBar";
+import { SESSION_EXPIRED } from "../shared/constants";
 
 export default function WizSelect(props) {
   const [items, setItems] = useState([]);
@@ -16,6 +17,7 @@ export default function WizSelect(props) {
   const { communicator } = props;
   const { ItemCard } = props;
 
+  const { onSessionExpired } = props;
   useEffect(() => {
     communicator
       .getAll()
@@ -23,9 +25,12 @@ export default function WizSelect(props) {
         console.log("items: ", data);
         setItems(data);
       })
-      .catch((error) => setError(error))
+      .catch((error) => {
+        if (error.message === SESSION_EXPIRED) onSessionExpired();
+        setError(error.message);
+      })
       .finally(setLoading(false));
-  }, [communicator]);
+  }, [communicator, onSessionExpired]);
 
   const handleSelect = (item) => {
     props.onSelectItem(item);
@@ -35,8 +40,8 @@ export default function WizSelect(props) {
     setFilterText(searchInput);
   };
 
-  if (loading) return <div>Loading...</div>; //TODO
   if (error) return <ErrorDisplay message={error} />;
+  if (loading) return <div>Loading...</div>; //TODO
 
   return (
     <div className={styles.selectBox}>
