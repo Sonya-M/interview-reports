@@ -132,7 +132,7 @@
     padding: 1rem 2rem;
     overflow: hidden;
     z-index: -1;
-    transition: all 2000ms 5000ms ease-in-out;
+    transition: all 800ms 0ms ease-in-out;
     opacity: 0;
   }
 
