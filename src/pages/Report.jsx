@@ -62,7 +62,7 @@ export default function Report(props) {
   if (loadingCandidate || loadingReports) {
     return <p>Loading</p>; // TODO: add spinner
   }
-  if (!selectedCandidate || selectedCandidate.length === 0) {
+  if (!selectedCandidate || Object.keys(selectedCandidate).length === 0) {
     return <ErrorDisplay message="An unexpected error occurred." />;
   }
   return (
