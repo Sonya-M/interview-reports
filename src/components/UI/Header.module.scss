@@ -34,7 +34,7 @@
      top: 55px;
     right: 15%;
     width: 250px;
-    z-index: 1;
+    z-index: 1000;
     transition: all 500ms ease;
 }
 .MenuHide {
@@ -43,7 +43,7 @@
      top: 55px;
     right: 15%;
     width: 250px;
-    z-index: 1;
+    z-index: 1000;
     visibility: hidden;
     opacity: 0;
     transition: all 500ms ease;
@@ -54,6 +54,8 @@
     background-color: black;
     border: 1px solid #92bdff;
     border-top: none ;
+    z-index: 1000;
+
     button, button:hover {
         width: 100%;
         background-color: transparent;
@@ -61,6 +63,8 @@
         border-radius: 0;
         text-align: left;
         padding: 0.5em 1em;
+    z-index: 1000;
+
     }
 }
 .menuItem:last-child {
