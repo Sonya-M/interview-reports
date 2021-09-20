@@ -31,6 +31,7 @@ export default function Report(props) {
       })
       .catch((error) => {
         console.log(error);
+        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
         setError(error.message);
       })
       .finally(() => {
@@ -53,9 +54,6 @@ export default function Report(props) {
       });
   }, [id]);
 
-  if (error && error === SESSION_EXPIRED) {
-    props.onSessionExpired();
-  }
   if (error) {
     return <ErrorDisplay message={error} />;
   }

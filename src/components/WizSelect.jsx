@@ -24,7 +24,10 @@ export default function WizSelect(props) {
         console.log("items: ", data);
         setItems(data);
       })
-      .catch((error) => setError(error.message))
+      .catch((error) => {
+        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
+        setError(error.message);
+      })
       .finally(setLoading(false));
   }, [communicator]);
 
@@ -36,9 +39,6 @@ export default function WizSelect(props) {
     setFilterText(searchInput);
   };
 
-  if (error && error === SESSION_EXPIRED) {
-    props.onSessionExpired();
-  }
   if (error) return <ErrorDisplay message={error} />;
   if (loading) return <div>Loading...</div>; //TODO
 

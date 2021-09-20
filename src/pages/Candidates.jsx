@@ -20,6 +20,7 @@ const Candidates = (props) => {
       })
       .catch((error) => {
         console.log(error);
+        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
         setError(error.message);
       })
       .finally(() => {
@@ -31,9 +32,6 @@ const Candidates = (props) => {
     setSearchText(filterText);
   };
 
-  if (error && error === SESSION_EXPIRED) {
-    props.onSessionExpired();
-  }
   if (error) {
     //!!!! cannot problems appear when trying to display error,
     // since the error appears to be an empty object

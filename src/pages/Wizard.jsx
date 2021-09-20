@@ -87,7 +87,10 @@ export default function Wizard(props) {
     ReportCommunicator.save(reportData)
       .then((response) => console.log(response))
       .then(history.push("/admin"))
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        if (error.message === SESSION_EXPIRED) props.onSessionExpired();
+        setError(error.message);
+      });
   };
 
   const handleBackBtnClick = () => {
@@ -116,9 +119,6 @@ export default function Wizard(props) {
   const nextStep =
     selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
 
-  if (error && error === SESSION_EXPIRED) {
-    props.onSessionExpired();
-  }
   if (error) return <ErrorDisplay message={error} />;
 
   return (
