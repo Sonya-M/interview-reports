@@ -1,0 +1,68 @@
+.Header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: black;
+    height: 55px;
+    z-index: 2;
+}
+.navbar {
+    
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+}
+.title {
+    color: white;
+}
+.Menu {
+    margin-left: auto;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    color: black;
+}
+.Menu:hover {
+    background-color: rgb(186, 191, 196);
+    color: black;
+}
+.MenuShow {
+    display: block;
+    position: absolute;
+     top: 55px;
+    right: 15%;
+    width: 250px;
+    z-index: 1;
+    transition: all 500ms ease;
+}
+.MenuHide {
+    display: block;
+    position: absolute;
+     top: 55px;
+    right: 15%;
+    width: 250px;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 500ms ease;
+
+}
+.menuItem {
+    display: block;
+    background-color: black;
+    border: 1px solid #0D6EFD;
+    border-top: none ;
+    button {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        text-align: left;
+        padding: 0.5em 1em;
+    }
+}
+.menuItem:last-child {
+    border-bottom-left-radius: 50%;
+}

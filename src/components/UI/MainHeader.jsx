@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Header from "./Header";
 import LogoutBtn from "./LogoutBtn";
+import { GearFill, PeopleFill, QuestionCircleFill } from "react-bootstrap-icons";
 
 import { Button } from "react-bootstrap";
 
@@ -14,13 +15,18 @@ export default function MainHeader(props) {
   );
   const adminLink = (
     <Link to="/admin">
-      <Button className="text-info">Admin</Button>
+      <Button className="text-info">  <GearFill /> Admin</Button>
     </Link>
   );
 
   const candidatesLink = (
     <Link to="/candidates">
-      <Button>Candidates</Button>
+      <Button>  <PeopleFill /> Candidates</Button>
+    </Link>
+  );
+  const aboutLink = (
+    <Link to="/about">
+      <Button> <QuestionCircleFill /> About </Button>
     </Link>
   );
 
@@ -28,5 +34,5 @@ export default function MainHeader(props) {
   let menu = [<LogoutBtn onLogout={props.onLogout} />];
   if (location.pathname !== "/") menu.unshift(candidatesLink);
 
-  return <Header title={logo} menuItems={[adminLink, ...menu]} />;
+  return <Header title={logo} menuItems={[ ...menu, adminLink, aboutLink]} />;
 }

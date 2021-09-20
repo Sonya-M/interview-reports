@@ -1,34 +1,82 @@
 .Header {
-  margin: 0;
-  padding: 0.5rem 2rem 0.5rem 2rem;
-  height: 4rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
   background-color: black;
-  color: whitesmoke;
+  height: 55px;
+  z-index: 2;
+}
+
+.navbar {
+  width: 70%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: lighter;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.Header a {
-  text-decoration: none;
-  color: inherit;
+
+.title {
+  color: white;
 }
-.Header a:hover {
-  color: inherit;
-}
+
 .Menu {
-  display: flex;
+  margin-left: auto;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: aliceblue;
+  color: black;
 }
-.Menu a,
-.Menu button,
-.Menu a button {
-  background: transparent;
-  /* border: 1px solid white; */
+
+.Menu:hover {
+  background-color: #babfc4;
+  color: black;
+}
+
+.MenuShow {
+  display: block;
+  position: absolute;
+  top: 55px;
+  right: 15%;
+  width: 250px;
+  z-index: 1;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.MenuHide {
+  display: block;
+  position: absolute;
+  top: 55px;
+  right: 15%;
+  width: 250px;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.menuItem {
+  display: block;
+  background-color: black;
+  border: 1px solid #0D6EFD;
+  border-top: none;
+}
+
+.menuItem button {
+  width: 100%;
+  background-color: transparent;
   border: none;
+  border-radius: 0;
+  text-align: left;
+  padding: 0.5em 1em;
 }
-Menu a button,
-.Menu button:hover {
-  background-color: #333;
-  border: 1px solid white;
+
+.menuItem:last-child {
+  border-bottom-left-radius: 50%;
 }
+/*# sourceMappingURL=Header.module.css.map */

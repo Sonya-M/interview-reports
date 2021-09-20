@@ -9,6 +9,7 @@
   background: linear-gradient(125deg, #fc9ffb, #28a6da);
   background-size: 400% 400%;
   animation: textBackground 10s ease infinite;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

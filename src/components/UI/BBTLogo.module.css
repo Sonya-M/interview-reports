@@ -55,6 +55,7 @@
     margin-left: 0.5em;
     background: linear-gradient(311deg, hsl(197, 76%, 47%), hsl(0, 0%, 65%));
     background-size: 400% 400%;
+    background-clip: text;
     -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: AnimationName 4s infinite;
