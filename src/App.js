@@ -18,7 +18,7 @@ import { Container } from "react-bootstrap";
 import About from "./pages/About";
 import NavHeader from "./components/UI/NavHeader";
 
-export const UserContext = React.createContext()
+
 function App() {
   let history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -61,9 +61,9 @@ function App() {
   return (
     <Container fluid className="m-0 p-0 mb-5">
       <ErrorBoundary>
-        <UserContext.Provider value={loggedIn}>
-        <NavHeader onLogout={handleLogout} />
-        </UserContext.Provider>
+        
+        <NavHeader onLogout={handleLogout} loggedIn={loggedIn}/>
+        
         {!loggedIn ? (
           <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} />
         ) : (

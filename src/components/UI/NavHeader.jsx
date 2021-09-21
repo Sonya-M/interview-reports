@@ -6,6 +6,6 @@ import { useLocation } from 'react-router';
 const NavHeader = (props) => {
     let location = useLocation();
     let path = location.pathname
-    return (path === "/admin" || path === "/wizard" ? <AdminHeader onLogout={props.onLogout}/> : <MainHeader onLogout={props.onLogout}/> )
+    return (path === "/admin" || path === "/wizard" ? <AdminHeader onLogout={props.onLogout} loggedIn={props.loggedIn}/> : <MainHeader onLogout={props.onLogout} loggedIn={props.loggedIn}/> )
 }
 export default NavHeader

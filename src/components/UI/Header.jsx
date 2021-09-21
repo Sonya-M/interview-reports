@@ -13,13 +13,12 @@ export default function Header(props) {
   const hideMenu = () => {
     setShowMenu(false);
   };
-  const logged = useContext(UserContext)
-
+ 
   return (
     <header className={styles.Header}>
       <nav className={styles.navbar}>
         <h1 className={styles.title}>{props.title}</h1>
-        {logged ? <Fragment> <Button
+        {props.loggedIn ? <Fragment> <Button
           className={styles.Menu}
           onClick={handleMenuBtn}
           onBlur={hideMenu}
