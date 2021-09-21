@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import { Button } from "react-bootstrap";
 import styles from "./Header.module.css";
 import LogoutBtn from "./LogoutBtn";
+import { UserContext } from "../../App"
 
 export default function Header(props) {
   const menuItemClasses = props.className;
@@ -12,15 +13,17 @@ export default function Header(props) {
   const hideMenu = () => {
     setShowMenu(false);
   };
+  const logged = useContext(UserContext)
 
   return (
     <header className={styles.Header}>
       <nav className={styles.navbar}>
         <h1 className={styles.title}>{props.title}</h1>
-        <Button
+        {logged ? <Fragment> <Button
           className={styles.Menu}
           onClick={handleMenuBtn}
           onBlur={hideMenu}
+          
         >
           &#9660;
         </Button>
@@ -33,7 +36,7 @@ export default function Header(props) {
               </span>
             );
           })}
-        </div>
+        </div> </Fragment> : <Fragment/>}
       </nav>
     </header>
   );

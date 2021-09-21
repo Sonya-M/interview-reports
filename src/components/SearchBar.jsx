@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Row,
@@ -9,10 +9,11 @@ import {
   Button,
 } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
+import style from './SearchBar.module.css'
 
 const SearchBar = (props) => {
   const [searchText, setSearchText] = useState("");
-
+  const [phase, setPhase] = useState (0)
   const handleChange = (inputText) => {
     props.onSearch(inputText);
     setSearchText(inputText);
@@ -26,9 +27,19 @@ const SearchBar = (props) => {
     setSearchText("");
     handleChange("");
   };
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      setOffset(window.pageYOffset)
+    }
+  }, []);
+
+  console.log(offset); 
+
 
   return (
-    <Form as={Row} className="m-5" onSubmit={handleSubmit}>
+    <Form as={Row} className={offset > 100 ? style.searchBarOnNav : style.searchBar} onSubmit={handleSubmit}>
       <Col md={6} className="offset-md-3">
         <InputGroup className="mb-2">
           <InputGroup.Text>

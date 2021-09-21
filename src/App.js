@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import LoginForm from "./components/LoginForm";
 import Report from "./pages/Report";
 import Candidates from "./pages/Candidates";
@@ -18,6 +18,7 @@ import { Container } from "react-bootstrap";
 import About from "./pages/About";
 import NavHeader from "./components/UI/NavHeader";
 
+export const UserContext = React.createContext()
 function App() {
   let history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -55,11 +56,14 @@ function App() {
     history.push("/");
   };
   
+  
 
   return (
     <Container fluid className="m-0 p-0 mb-5">
       <ErrorBoundary>
-        <NavHeader loggedIn={loggedIn} onLogout={handleLogout} />
+        <UserContext.Provider value={loggedIn}>
+        <NavHeader onLogout={handleLogout} />
+        </UserContext.Provider>
         {!loggedIn ? (
           <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} />
         ) : (
@@ -67,10 +71,14 @@ function App() {
             {/* ErrorBoundary can also be inside Switch */}
             {/* <ErrorBoundary> */}
             <Route exact path="/">
+             
               <Candidates onSessionExpired={handleSessionExpired} />
+              
             </Route>
-            <Route exact path="/candidates/:id">
+            <Route exact path="/candidates/:id"> 
+            
               <Report onSessionExpired={handleSessionExpired} />
+              
             </Route>
             <Route exact path="/admin">
               <AdminPage onSessionExpired={handleSessionExpired} />

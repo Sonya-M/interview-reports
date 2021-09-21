@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import ReportCommunicator from "../services/ReportCommunicator";
@@ -10,6 +10,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
+
 
 export default function Report(props) {
   let { id } = useParams(); // candidate id
@@ -56,6 +57,7 @@ export default function Report(props) {
         setLoadingReports(false);
       });
   }, [id, onSessionExpired]); //TODO: pitaj!
+
 
   // if (true) {
   //   return (

@@ -1,0 +1,13 @@
+.searchBar {
+    margin: 6em auto;
+    transition: all 0.2s ease-in-out;
+}
+.searchBarOnNav {
+    position: fixed;
+    width: 50%;
+    top: 10px;
+    left: 300px;
+    z-index: 3000;
+    transition: all 0.2s ease-in-out;
+
+}
