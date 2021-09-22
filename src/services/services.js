@@ -51,8 +51,9 @@ export function authenticate(email, password) {
 
 export function clearToken() {
   console.assert(sessionStorage.getItem("accessToken"));
-  sessionStorage.removeItem("accessToken");
-  sessionStorage.removeItem("username");
+  sessionStorage.clear();
+  // sessionStorage.removeItem("accessToken");
+  // sessionStorage.removeItem("username");
 }
 
 export function getData(action, params) {

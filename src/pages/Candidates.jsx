@@ -27,7 +27,7 @@ const Candidates = (props) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [props]);
+  }, []);
 
   const handleSearch = (filterText) => {
     setSearchText(filterText);

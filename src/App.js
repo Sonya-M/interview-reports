@@ -27,7 +27,7 @@ function App() {
     if (token) {
       setLoggedIn(true);
     }
-  }, [loggedIn]);
+  }, []);
 
   const handleLogin = () => {
     setLoggedIn(true);
@@ -44,9 +44,10 @@ function App() {
   };
 
   const clearSession = () => {
-    setLoggedIn(false);
     AuthCommunicator.clearSession();
+    setLoggedIn(false);
     history.push("/");
+    window.location.reload();
   };
 
   return (
