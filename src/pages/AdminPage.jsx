@@ -32,7 +32,7 @@ export default function AdminPage(props) {
 
   useEffect(() => {
     getReports();
-  });
+  }, []);
 
   const handleSearch = (searchInput) => {
     setSearchText(searchInput);
