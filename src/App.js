@@ -4,8 +4,6 @@ import Report from "./pages/Report";
 import Candidates from './pages/Candidates';
 import { Route, Switch, Redirect, useHistory } from 'react-router';
 import ErrorDisplay from "./components/ErrorDisplay";
-import MainHeader from "./components/UI/MainHeader";
-import AdminHeader from "./components/UI/AdminHeader";
 import Footer from "./components/UI/Footer";
 import AdminPage from "./pages/AdminPage";
 import Wizard from "./pages/Wizard";
@@ -51,32 +49,11 @@ function App() {
     history.push("/");
   };
 
-  const refreshPage = () => {
-    history.push("/");
-    window.location.reload();
-  };
-
-  const refreshAdminPage = () => {
-    history.push("/admin");
-    window.location.reload();
-  }
-
-  const mainHeader = (
-    <MainHeader
-      loggedIn={loggedIn}
-      onLogout={handleLogout}
-      onLogoClick={refreshPage} />);
-  const adminHeader = (
-    <AdminHeader
-      onLogoClick={refreshAdminPage}
-    />
-  );
-
   return (
 
     <Container fluid className="m-0 p-0 mb-5">
       <ErrorBoundary>
-        <NavigationBar loggedIn={loggedIn} onLogout={handleLogout}/>
+        <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
         {(!loggedIn) ?
           (
             <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} />
@@ -85,23 +62,23 @@ function App() {
             {/* ErrorBoundary can also be inside Switch */}
             {/* <ErrorBoundary> */}
             <Route exact path="/">
-           
+
               <Candidates onSessionExpired={handleSessionExpired} />
             </Route >
             <Route exact path="/candidates/:id">
-            
+
               <Report onSessionExpired={handleSessionExpired} />
             </Route>
             <Route exact path="/admin">
-           
+
               <AdminPage onSessionExpired={handleSessionExpired} />
             </Route>
             <Route exact path="/wizard">
-             
+
               <Wizard onSessionExpired={handleSessionExpired} />
             </Route>
             <Route exact path="/about">
-            
+
               <About onSessionExpired={handleSessionExpired} />
             </Route>
             <Route>
