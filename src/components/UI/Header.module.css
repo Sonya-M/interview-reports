@@ -1,5 +1,4 @@
 .Header {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 100%;
@@ -10,12 +9,8 @@
   line-height: 55px;
   z-index: 2;
   color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .Header a {
@@ -30,12 +25,8 @@
 .navbar {
   width: 70%;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -68,9 +59,8 @@
   position: absolute;
   top: 55px;
   right: 15%;
-  width: 10rem;
+  width: 13rem;
   z-index: 1000;
-  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
 
@@ -79,11 +69,10 @@
   position: absolute;
   top: 55px;
   right: 15%;
-  width: 10rem;
+  width: 13rem;
   z-index: 1000;
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
 
@@ -94,16 +83,16 @@
   border-top: none;
   z-index: 1000;
   width: 100%;
-  border: none;
   border-radius: 0;
   text-align: left;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   font-size: 1.1rem;
   font-weight: lighter;
   padding-left: 0.9rem;
 }
 
-.menuItem a, .menuItem span {
+.menuItem a,
+.menuItem span {
   display: block;
   width: 100%;
   cursor: pointer;
@@ -117,4 +106,3 @@
   background-color: #92bdff;
   color: black;
 }
-/*# sourceMappingURL=Header.module.css.map */

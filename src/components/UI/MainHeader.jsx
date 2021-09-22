@@ -7,10 +7,12 @@ export default function MainHeader(props) {
   const title = <Link to="/">JobBook</Link>;
   const menu = [
     <Link to="/admin">
-     <GearFill />  Admin 
+      <GearFill size="1.4rem" />
+      &nbsp;&nbsp;Admin
     </Link>,
     <Link to="/about">
-     <QuestionCircleFill /> About 
+      <QuestionCircleFill size="1.4rem" />
+      &nbsp;&nbsp;About
     </Link>,
   ];
   return (

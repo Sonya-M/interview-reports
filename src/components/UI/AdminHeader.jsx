@@ -7,10 +7,12 @@ export default function AdminHeader(props) {
   const title = <Link to="/admin">Admin</Link>;
   const menu = [
     <Link to="/">
-      <HouseFill /> Home
+      <HouseFill size="1.4rem" />
+      &nbsp;&nbsp;Home
     </Link>,
     <Link to="/wizard">
-      <PlusCircleFill /> New report
+      <PlusCircleFill size="1.4rem" />
+      &nbsp;&nbsp;New Report
     </Link>,
   ];
   return (
