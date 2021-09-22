@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Report from "./pages/Report";
@@ -15,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container } from 'react-bootstrap';
 import About from "./pages/About";
+import { BgContainer } from "./components/BgContainer";
 
 
 function App() {
@@ -51,8 +53,8 @@ function App() {
   };
 
   return (
-
-    <Container fluid className="m-0 p-0 mb-5">
+    
+    <BgContainer >
       <ErrorBoundary>
         <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
         {(!loggedIn) ?
@@ -95,7 +97,7 @@ function App() {
           </Switch>}
         <Footer />
       </ErrorBoundary>
-    </Container>
+    </BgContainer>
 
   );
 }

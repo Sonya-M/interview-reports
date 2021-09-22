@@ -148,15 +148,15 @@ export default function WizReportForm(props) {
           {markInvalid && !formIsValid ? (
             <p className={styles.invalidMsg}>Please fill out all form fields</p>
           ) : (
-            <React.Fragment />
+            <p> &nbsp; </p>
           )}
         </Col>
       </Row>
       <div className="d-flex justify-content-between">
-        <Button className="m-3" onClick={props.onBackBtnClick}>
+        <Button variant="dark" className="m-3" onClick={props.onBackBtnClick}>
           Back
         </Button>
-        <Button className="m-3" type="submit" onClick={handleSubmit}>
+        <Button variant="dark" className="m-3" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
       </div>

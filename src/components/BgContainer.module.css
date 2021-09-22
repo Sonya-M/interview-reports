@@ -1,0 +1,11 @@
+.adminBg {
+    background: linear-gradient(180deg, #ffffff, #d5d5d5, #adacac);
+    background-size: cover;
+     /* background-size: 400% 400%;  */
+     min-height: 100vh;
+}
+/* .mainBg {
+     background-image: url("https://ak.picdn.net/shutterstock/videos/1018020805/thumb/1.jpg"); 
+   background-size: cover;
+  background-attachment: fixed; 
+} */
