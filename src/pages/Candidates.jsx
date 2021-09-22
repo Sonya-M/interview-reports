@@ -6,6 +6,7 @@ import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
 import { SESSION_EXPIRED } from "../shared/constants";
 import styles from "./Candidates.module.css";
+import LoaderRipple from "./LoaderRipple";
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);
@@ -33,12 +34,10 @@ const Candidates = (props) => {
   };
 
   if (error) {
-    //!!!! cannot problems appear when trying to display error,
-    // since the error appears to be an empty object
     return <ErrorDisplay message={error} />;
   }
   if (loading) {
-    return <div>Loading ...</div>;
+    return <LoaderRipple />;
   }
 
   if (candidates.length === 0) {

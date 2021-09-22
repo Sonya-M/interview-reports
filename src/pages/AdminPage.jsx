@@ -6,6 +6,7 @@ import { Table } from "../components/Table";
 import ReportCommunicator from "../services/ReportCommunicator";
 import { SESSION_EXPIRED } from "../shared/constants";
 import styles from "./AdminPage.module.css";
+import LoaderRipple from "./LoaderRipple";
 
 export default function AdminPage(props) {
   const [reports, setReports] = useState([]);
@@ -52,7 +53,7 @@ export default function AdminPage(props) {
   if (error) {
     return <ErrorDisplay message={error} />;
   }
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoaderRipple />;
   return (
     <div className={styles.tableContainer}>
       <SearchBar onSearch={handleSearch} />

@@ -10,6 +10,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
+import LoaderRipple from "./LoaderRipple";
 
 export default function Report(props) {
   let { id } = useParams(); // candidate id
@@ -69,7 +70,7 @@ export default function Report(props) {
     return <ErrorDisplay message={error} />;
   }
   if (loadingCandidate || loadingReports) {
-    return <p>Loading</p>; // TODO: add spinner
+    return <LoaderRipple />;
   }
   if (!selectedCandidate || selectedCandidate.length === 0) {
     return <ErrorDisplay message="An unexpected error occurred." />;
