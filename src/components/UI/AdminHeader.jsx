@@ -1,34 +1,26 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "./Header";
-import { Button } from "react-bootstrap";
 import { HouseFill, PlusCircleFill } from "react-bootstrap-icons";
 
 export default function AdminHeader(props) {
-  const iconClasses = "fs-4";
-  let location = useLocation();
-  let menu = [
+  const title = <Link to="/admin">Admin</Link>;
+  const menu = [
     <Link to="/">
-      <Button>
-        <HouseFill className={iconClasses} />
-      </Button>
+      <HouseFill size="1.4rem" />
+      &nbsp;&nbsp;Home
+    </Link>,
+    <Link to="/wizard">
+      <PlusCircleFill size="1.4rem" />
+      &nbsp;&nbsp;New Report
     </Link>,
   ];
-
-  if (location.pathname === "/admin") {
-    menu.push(
-      <Link to="/wizard">
-        <Button>
-          <PlusCircleFill className={iconClasses} />
-        </Button>
-      </Link>
-    );
-  } else if (location.pathname === "/wizard") {
-    menu.push(
-      <Button>
-        <Link to="/admin">All Reports</Link>
-      </Button>
-    );
-  }
-  return <Header title={<Link to="/admin">Admin</Link>} menuItems={menu} />;
+  return (
+    <Header
+      loggedIn={props.loggedIn}
+      onLogout={props.onLogout}
+      title={title}
+      menu={menu}
+    />
+  );
 }

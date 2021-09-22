@@ -11,6 +11,7 @@ import AdminPage from "./pages/AdminPage";
 import Wizard from "./pages/Wizard";
 import ErrorBoundary from "./components/ErrorBoundary";
 import AuthCommunicator from "./services/AuthCommunicator";
+import NavigationBar from "./components/UI/NavigationBar"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -75,6 +76,7 @@ function App() {
 
     <Container fluid className="m-0 p-0 mb-5">
       <ErrorBoundary>
+        <NavigationBar loggedIn={loggedIn} onLogout={handleLogout}/>
         {(!loggedIn) ?
           (
             <LoginForm onLogin={handleLogin} sessionExpired={sessionExpired} />
@@ -83,23 +85,23 @@ function App() {
             {/* ErrorBoundary can also be inside Switch */}
             {/* <ErrorBoundary> */}
             <Route exact path="/">
-              {mainHeader}
+           
               <Candidates onSessionExpired={handleSessionExpired} />
             </Route >
             <Route exact path="/candidates/:id">
-              {mainHeader}
+            
               <Report onSessionExpired={handleSessionExpired} />
             </Route>
             <Route exact path="/admin">
-              {adminHeader}
+           
               <AdminPage onSessionExpired={handleSessionExpired} />
             </Route>
             <Route exact path="/wizard">
-              {adminHeader}
+             
               <Wizard onSessionExpired={handleSessionExpired} />
             </Route>
             <Route exact path="/about">
-              {mainHeader}
+            
               <About onSessionExpired={handleSessionExpired} />
             </Route>
             <Route>

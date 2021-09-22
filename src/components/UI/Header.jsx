@@ -1,22 +1,41 @@
-import React from "react";
+import React, {Fragment, useState} from "react";
 import { Button } from "react-bootstrap";
 import styles from "./Header.module.css";
+import LogoutBtn from "./LogoutBtn"
 
 export default function Header(props) {
-  const menuItemClasses = props.className;
+  let menuItems = props.menu;
+  menuItems = menuItems.concat(<LogoutBtn onLogout={props.onLogout}/>)
+  const [showMenu, setShowMenu] = useState(false);
+  const handleMenuBtn = () => {
+    setShowMenu(!showMenu);
+  };
+  const hideMenu = () => {
+    setShowMenu(false);
+  };
   return (
     <header className={styles.Header}>
-      <h1 className="display-5">{props.title}</h1>
-      <div className={styles.Menu}>
-        {props.menuItems.map((item, index) => {
+    <nav className={styles.navbar}>
+      <h1 className={styles.title}>{props.title}</h1>
+      {props.loggedIn ? <Fragment> <Button
+        className={styles.Menu}
+        onClick={handleMenuBtn}
+        onBlur={hideMenu}
+        
+      >
+        &#9660;
+      </Button>
+      <div className={showMenu ? styles.MenuShow : styles.MenuHide}>
+        {menuItems.map((item, index) => {
           if (!item) return null;
           return (
-            <span key={index} className={menuItemClasses} size="sm">
+            <span key={index} className={styles.menuItem}>
               {item}
             </span>
           );
         })}
-      </div>
-    </header>
+      </div> </Fragment> : <Fragment/>}
+    </nav>
+  </header>
   );
 }
