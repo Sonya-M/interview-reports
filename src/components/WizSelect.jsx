@@ -7,6 +7,7 @@ import { Row } from "react-bootstrap";
 import styles from "./WizSelect.module.css";
 import SearchBar from "./SearchBar";
 import { SESSION_EXPIRED } from "../shared/constants";
+import LoaderRipple from "../pages/LoaderRipple";
 
 export default function WizSelect(props) {
   const [items, setItems] = useState([]);
@@ -41,7 +42,7 @@ export default function WizSelect(props) {
   };
 
   if (error) return <ErrorDisplay message={error} />;
-  if (loading) return <div>Loading...</div>; //TODO
+  if (loading) return <LoaderRipple />; //TODO
 
   return (
     <div className={styles.selectBox}>
