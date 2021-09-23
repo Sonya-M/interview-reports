@@ -1,10 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Header from "./Header";
 import { GearFill, QuestionCircleFill } from "react-bootstrap-icons";
 
 export default function MainHeader(props) {
-  const title = <Link to="/">JobBook</Link>;
+  let history = useHistory();
+  const handleClick = () => {
+    history.push("/");
+    window.location.reload();
+  }
+  const title = <span onClick={handleClick}>JobBook</span>;
   const menu = [
     <Link to="/admin">
       <GearFill size="1.4rem" />

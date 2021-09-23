@@ -1,10 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Header from "./Header";
 import { HouseFill, PlusCircleFill } from "react-bootstrap-icons";
 
 export default function AdminHeader(props) {
-  const title = <Link to="/admin">Admin</Link>;
+  let history = useHistory();
+  const handleClick = () => {
+    history.push("/admin");
+    window.location.reload();
+  }
+  const title = <span onClick={handleClick}>Admin</span>;
   const menu = [
     <Link to="/">
       <HouseFill size="1.4rem" />
