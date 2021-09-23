@@ -40,7 +40,7 @@ export default function Report(props) {
       .finally(() => {
         setLoadingCandidate(false);
       });
-  }, [id, onSessionExpired]); //TODO: pitaj!
+  }, []);
 
   useEffect(() => {
     ReportCommunicator.getAllForCandidate(id)
@@ -56,7 +56,7 @@ export default function Report(props) {
       .finally(() => {
         setLoadingReports(false);
       });
-  }, [id, onSessionExpired]); //TODO: pitaj!
+  }, []);
 
   // if (true) {
   //   return (

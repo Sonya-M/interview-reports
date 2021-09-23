@@ -31,7 +31,7 @@ export default function WizSelect(props) {
         setError(error.message);
       })
       .finally(setLoading(false));
-  }, [communicator, onSessionExpired]);
+  }, []);
 
   const handleSelect = (item) => {
     props.onSelectItem(item);

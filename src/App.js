@@ -49,11 +49,11 @@ function App() {
     AuthCommunicator.clearSession();
     setLoggedIn(false);
     history.push("/");
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
-    
+
     <BgContainer >
       <ErrorBoundary>
         <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
