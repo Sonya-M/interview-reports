@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { formatDateForHtmlInput } from "../utilities/helpers";
+import { formatDateForHtmlInput } from "../../utilities/helpers";
 import { Row, Col, Form, FormGroup, Button } from "react-bootstrap";
 import styles from "./WizReportForm.module.css";
 
@@ -7,11 +7,11 @@ const inputReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return { value: action.val, isValid: action.val !== "" };
   }
-  if (action.type === "INPUT_BLUR") {
-    // not used here, but included for possible extension
-    // `state`: latest state snapshot, guaranteed to be up to date
-    return { value: state.value, isValid: state.value !== "" };
-  }
+  // if (action.type === "INPUT_BLUR") {
+  // not used here, but included for possible extension
+  // `state`: latest state snapshot, guaranteed to be up to date
+  // return { value: state.value, isValid: state.value !== "" };
+  // }
   // default:
   return { value: "", isValid: false };
 };
@@ -156,7 +156,12 @@ export default function WizReportForm(props) {
         <Button variant="dark" className="m-3" onClick={props.onBackBtnClick}>
           Back
         </Button>
-        <Button variant="dark" className="m-3" type="submit" onClick={handleSubmit}>
+        <Button
+          variant="dark"
+          className="m-3"
+          type="submit"
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
       </div>
