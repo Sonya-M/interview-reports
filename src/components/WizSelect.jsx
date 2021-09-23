@@ -7,7 +7,7 @@ import { Row } from "react-bootstrap";
 import styles from "./WizSelect.module.css";
 import SearchBar from "./SearchBar";
 import { SESSION_EXPIRED } from "../shared/constants";
-import LoaderRipple from "../pages/LoaderRipple";
+import LoaderRipple from "./UI/LoaderRipple";
 
 export default function WizSelect(props) {
   const [items, setItems] = useState([]);

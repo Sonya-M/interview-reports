@@ -6,7 +6,7 @@ import ErrorDisplay from "../components/ErrorDisplay";
 import SearchBar from "../components/SearchBar";
 import { SESSION_EXPIRED } from "../shared/constants";
 import styles from "./Candidates.module.css";
-import LoaderRipple from "./LoaderRipple";
+import LoaderRipple from "../components/UI/LoaderRipple";
 
 const Candidates = (props) => {
   const [candidates, setCandidates] = useState([]);

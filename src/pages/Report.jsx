@@ -10,7 +10,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 
 import style from "./Report.module.css";
 import { Table } from "../components/Table";
-import LoaderRipple from "./LoaderRipple";
+import LoaderRipple from "../components/UI/LoaderRipple";
 
 export default function Report(props) {
   let { id } = useParams(); // candidate id

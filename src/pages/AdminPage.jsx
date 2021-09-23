@@ -6,7 +6,7 @@ import { Table } from "../components/Table";
 import ReportCommunicator from "../services/ReportCommunicator";
 import { SESSION_EXPIRED } from "../shared/constants";
 import styles from "./AdminPage.module.css";
-import LoaderRipple from "./LoaderRipple";
+import LoaderRipple from "../components/UI/LoaderRipple";
 
 export default function AdminPage(props) {
   const [reports, setReports] = useState([]);
