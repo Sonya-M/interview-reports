@@ -5,12 +5,12 @@ import CandidateCommunicator from "../services/CandidateCommunicator";
 import CompanyCommunicator from "../services/CompanyCommunicator";
 
 import { Row, Col } from "react-bootstrap";
-import WizardSteps from "../components/WizardSteps";
-import WizSelect from "../components/WizSelect";
-import WizCandidateCard from "../components/WizCandidateCard";
-import WizCompanyCard from "../components/WizCompanyCard";
-import WizReportForm from "../components/WizReportForm";
-import WizSelectedInfo from "../components/WizSelectedInfo";
+import WizardSteps from "../components/wiz/WizardSteps";
+import WizSelect from "../components/wiz/WizSelect";
+import WizCandidateCard from "../components/wiz/WizCandidateCard";
+import WizCompanyCard from "../components/wiz/WizCompanyCard";
+import WizReportForm from "../components/wiz/WizReportForm";
+import WizSelectedInfo from "../components/wiz/WizSelectedInfo";
 
 import { SESSION_EXPIRED } from "../shared/constants";
 
@@ -33,7 +33,6 @@ export default function Wizard(props) {
         return candidate;
       }
     });
-
     setInput((prevInput) => {
       if (prevInput.candidateId && prevInput.candidateId === candidate.id) {
         // reset input to init state
@@ -152,6 +151,7 @@ export default function Wizard(props) {
             communicator={CompanyCommunicator}
             ItemCard={WizCompanyCard}
             selected={selectedCompany}
+            onSessionExpired={props.onSessionExpired}
             {...sharedSelectProps}
           />
         )}

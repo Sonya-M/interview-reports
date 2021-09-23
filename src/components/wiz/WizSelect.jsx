@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ErrorDisplay from "./ErrorDisplay";
+import ErrorDisplay from "../ErrorDisplay";
 import WizSelectBtns from "./WizSelectBtns";
 import WizOptionList from "./WizOptionList";
 
 import { Row } from "react-bootstrap";
 import styles from "./WizSelect.module.css";
-import SearchBar from "./SearchBar";
-import { SESSION_EXPIRED } from "../shared/constants";
-import LoaderRipple from "./UI/LoaderRipple";
+import SearchBar from "../SearchBar";
+import { SESSION_EXPIRED } from "../../shared/constants";
+import LoaderRipple from "../UI/LoaderRipple";
 
 export default function WizSelect(props) {
   const [items, setItems] = useState([]);

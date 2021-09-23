@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { includesIgnoreCase } from "../utilities/helpers";
+import { includesIgnoreCase } from "../../utilities/helpers";
 
 export default function WizOptionList(props) {
   let filtered;

@@ -1,7 +1,7 @@
 import React from "react";
-import ImageGuaranteed from "./UI/ImageGuaranteed";
+import ImageGuaranteed from "../UI/ImageGuaranteed";
 import WizOptionCard from "./WizOptionCard";
-import { PLACEHOLDER_IMG } from "../shared/constants";
+import { PLACEHOLDER_IMG } from "../../shared/constants";
 
 import styles from "./WizCandidateCard.module.css";
 
