@@ -1,11 +1,11 @@
-import * as service from "./services.js";
+import HttpService from "./HttpService.js";
 
 import Candidate from "../entities/Candidate";
 
 
 export default class CandidateCommunicator {
   static getAll() {
-    return service.getData("candidates")
+    return HttpService.getData("candidates")
       .then(json => {
         // console.log("Results", json);
         // console.log(("Candidates:", json.map(c => new Candidate(c))));
@@ -14,7 +14,7 @@ export default class CandidateCommunicator {
   }
 
   static getById(id) {
-    return service.getData("candidates", [{ key: "id", value: id }])
+    return HttpService.getData("candidates", [{ key: "id", value: id }])
       .then(json => {
         console.log("getSingleCandidate", json);
         const noResults = json.length === 0;
@@ -27,7 +27,7 @@ export default class CandidateCommunicator {
   }
 
   static save(candidate) {
-    return service.saveData("candidates", candidate.id ? "PUT" : "POST", candidate)
+    return HttpService.saveData("candidates", candidate.id ? "PUT" : "POST", candidate)
       .then(response => new Candidate(response));
   }
 }

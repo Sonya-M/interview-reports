@@ -1,10 +1,10 @@
-import * as service from "./services.js";
+import HttpService from "./HttpService.js";
 import Report from "../entities/Report";
 
 export default class ReportCommunicator {
 
   static getAll() {
-    return service.getData("reports")
+    return HttpService.getData("reports")
       .then(json => {
         // console.log("Reports results: ", json);
         // console.log("Reports:", json.map(r => new Report(r)));
@@ -13,19 +13,19 @@ export default class ReportCommunicator {
   }
 
   static getAllForCandidate(candidateId) {
-    return service.getData("reports", [{ key: "candidateId", value: candidateId }])
+    return HttpService.getData("reports", [{ key: "candidateId", value: candidateId }])
       .then(json => {
         return (json.map(r => new Report(r)));
       });
   }
 
   static save(report) {
-    return service.saveData("reports", report.id ? "PUT" : "POST", report)
+    return HttpService.saveData("reports", report.id ? "PUT" : "POST", report)
       .then(json => new Report(json));
   }
 
   static delete(reportID) {
-    return service.deleteData("reports", reportID)
+    return HttpService.deleteData("reports", reportID)
       .then(response => response);
   }
 }

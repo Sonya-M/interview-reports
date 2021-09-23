@@ -1,8 +1,8 @@
-import * as service from "./services.js";
+import HttpService from "./HttpService.js";
 
 export default class AuthCommunicator {
   static login(email, password) {
-    return service.authenticate(email, password);
+    return HttpService.authenticate(email, password);
   }
 
   /**
@@ -10,7 +10,7 @@ export default class AuthCommunicator {
    * clearing the access token from storage
    */
   static clearSession(callBack) {
-    service.clearToken();
+    HttpService.clearToken();
     if (callBack) callBack();
   }
 
