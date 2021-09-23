@@ -1,4 +1,3 @@
-import { style } from "dom-helpers";
 import React from "react";
 import { Link } from "react-router-dom";
 import BBTLogo from "./BBTLogo";

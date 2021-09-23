@@ -14,7 +14,6 @@ import NavigationBar from "./components/UI/NavigationBar"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Container } from 'react-bootstrap';
 import About from "./pages/About";
 import { BgContainer } from "./components/BgContainer";
 

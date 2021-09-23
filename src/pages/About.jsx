@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AboutContent from "../components/UI/AboutContent";
 import LoaderAtom from "../components/UI/LoaderAtom";
 

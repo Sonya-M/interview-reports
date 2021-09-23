@@ -1,12 +1,9 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-
 import ImageGuaranteed from "./UI/ImageGuaranteed.jsx";
 import { PLACEHOLDER_IMG } from "../shared/constants";
-
-import { Card, Col } from "react-bootstrap";
 import style from "./CandidateCard.module.css";
-import AdminPage, {candidateName, candidateId} from "../pages/AdminPage" 
+
 
 
 const CandidateCard = (props) => {

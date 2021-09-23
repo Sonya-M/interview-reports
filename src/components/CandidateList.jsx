@@ -3,7 +3,6 @@ import React, { Fragment } from "react";
 import CandidateCard from "./CandidateCard.jsx";
 import { includesIgnoreCase } from "../utilities/helpers.js";
 
-import { Row } from "react-bootstrap";
 import ErrorDisplay from "./ErrorDisplay";
 
 const CandidateList = ({ candidates, searchText, adminpage }) => {

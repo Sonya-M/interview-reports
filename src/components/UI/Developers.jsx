@@ -11,6 +11,7 @@ const Developers = () => {
             <img
               src="https://i.imgur.com/pY4BnLI.png"
               className={style.avatar}
+              alt="develperAvatar"
             />
             <div className={style.frontname}>Sonja Musicki</div>
           </div>
@@ -27,6 +28,7 @@ const Developers = () => {
                 <a
                   href="https://www.linkedin.com/in/sonja-musicki-novi-sad/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Visit profile
                 </a>
@@ -42,6 +44,7 @@ const Developers = () => {
             <img
               src="https://i.imgur.com/urRG7mO.png"
               className={style.avatar}
+              alt="develperAvatar"
             />
             <div className={style.frontname}>Dragana Bogicevic</div>
           </div>
@@ -58,6 +61,7 @@ const Developers = () => {
                 <a
                   href="https://www.linkedin.com/in/dragana-bogicevic/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Visit profile
                 </a>
@@ -72,6 +76,7 @@ const Developers = () => {
             <img
               src="https://i.imgur.com/NmCq6od.png"
               className={style.avatar}
+              alt="develperAvatar"
             />
             <div className={style.frontname}>Nikola Jankovic</div>
           </div>
@@ -88,6 +93,7 @@ const Developers = () => {
                 <a
                   href="https://www.linkedin.com/in/nikola-jankovic-bbb7a9220/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Visit profile
                 </a>
@@ -102,6 +108,7 @@ const Developers = () => {
             <img
               src="https://i.imgur.com/LO9O3ho.jpg"
               className={style.avatar}
+              alt="develperAvatar"
             />
             <div className={style.frontname}>Nikola Draganic</div>
           </div>
@@ -118,6 +125,7 @@ const Developers = () => {
                 <a
                   href="https://www.linkedin.com/in/draganic69/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Visit profile
                 </a>
