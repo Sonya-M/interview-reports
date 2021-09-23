@@ -16,7 +16,7 @@ export default function Header(props) {
   return (
     <header className={styles.Header}>
     <nav className={styles.navbar}>
-      <h1 className={styles.title}>{props.title}</h1>
+      <h2 className={styles.title}>{props.title}</h2>
       {props.loggedIn ? <Fragment> <Button
         className={styles.Menu}
         onClick={handleMenuBtn}
