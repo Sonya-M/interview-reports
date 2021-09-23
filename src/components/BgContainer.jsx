@@ -4,9 +4,18 @@ import { Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
 export const BgContainer = (props) => {
-    let location = useLocation();
-    const classes = " m-0 p-0 mb-5 ";
-    return ( 
-    <Container fluid className={location.pathname == "/admin" || location.pathname === "/wizard" ?`${classes} ${styles.adminBg}` : classes } >{props.children}</Container> )
+  let location = useLocation();
+  const classes = " m-0 p-0 mb-5 ";
+  return (
+    <Container
+      fluid
+      className={
+        location.pathname === "/admin" || location.pathname === "/wizard"
+          ? `${classes} ${styles.adminBg}`
+          : classes
+      }
+    >
+      {props.children}
+    </Container>
+  );
 };
-

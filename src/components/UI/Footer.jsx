@@ -1,10 +1,9 @@
-import { style } from "dom-helpers";
 import React from "react";
 import { Link } from "react-router-dom";
 import BBTLogo from "./BBTLogo";
 import styles from "./Footer.module.css";
 
-export default function Footer(props) {
+export default function Footer() {
   return (
     <footer className={styles.Footer}>
       <div className={styles.content}>

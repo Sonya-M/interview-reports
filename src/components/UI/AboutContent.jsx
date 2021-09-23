@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import style from "./AboutContent.module.css";
 import Developers from "./Developers";
 import RisingContainer from "./RisingContainer";
@@ -18,22 +18,26 @@ const AboutContent = () => {
         </p>
         <ul className={style.tehnology}>
           <li>
-            <i class="devicon-html5-plain"></i> HTML5
+            <i className="devicon-html5-plain"></i> HTML5
           </li>
           <li>
-            <i class="devicon-css3-plain"></i> CSS3
+            <i className="devicon-css3-plain"></i> CSS3
           </li>
           <li>
-            <i class="devicon-bootstrap-plain"></i> BootStrap
+            <i className="devicon-bootstrap-plain"></i> BootStrap
           </li>
           <li>
-            <i class="devicon-react-original"></i> React (JavaScript)
+            <i className="devicon-react-original"></i> React (JavaScript)
           </li>
         </ul>
         <p>A huge thank you to our instructors:</p>
         <ul className={style.professors}>
           <li>
-            <a href="https://www.linkedin.com/in/ivanbalic2/" target="_blank">
+            <a
+              href="https://www.linkedin.com/in/ivanbalic2/"
+              target="_blank"
+              rel="noreferrer"
+            >
               {" "}
               Ivan Balic
             </a>
@@ -42,6 +46,7 @@ const AboutContent = () => {
             <a
               href="https://www.linkedin.com/in/nikola-ali%C4%87-0310b0138/"
               target="_blank"
+              rel="noreferrer"
             >
               {" "}
               Nikola Alic
@@ -51,6 +56,7 @@ const AboutContent = () => {
             <a
               href="https://www.linkedin.com/in/tijana-pavlovic-304a27bb/"
               target="_blank"
+              rel="noreferrer"
             >
               {" "}
               Tijana Pavlovic

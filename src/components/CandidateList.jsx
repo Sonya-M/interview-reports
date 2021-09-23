@@ -3,7 +3,6 @@ import React, { Fragment } from "react";
 import CandidateCard from "./CandidateCard.jsx";
 import { includesIgnoreCase } from "../utilities/helpers.js";
 
-import { Row } from "react-bootstrap";
 import ErrorDisplay from "./ErrorDisplay";
 
 const CandidateList = ({ candidates, searchText, adminpage }) => {
@@ -15,16 +14,15 @@ const CandidateList = ({ candidates, searchText, adminpage }) => {
       return includesIgnoreCase(c.name, searchText);
     });
   }
-  if (adminpage){
+  if (adminpage) {
     return (
-      <Fragment >
-      {searchResult.map((item) => (
-        <CandidateCard key={item.id} candidate={item} adminpage={true}/>
-      ))}
-    </Fragment>
-    )
+      <Fragment>
+        {searchResult.map((item) => (
+          <CandidateCard key={item.id} candidate={item} adminpage={true} />
+        ))}
+      </Fragment>
+    );
   }
-  
 
   return searchResult.length !== 0 ? (
     <Fragment>
