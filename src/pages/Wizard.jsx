@@ -39,7 +39,7 @@ const wizReducer = (state, action) => {
       return {
         ...state,
         selectedCandidate: action.payload,
-        nextStep: 1,
+        nextStep: state.selectedCompany ? 2 : 1,
       };
     }
   }
@@ -57,7 +57,7 @@ const wizReducer = (state, action) => {
       return {
         ...state,
         selectedCompany: action.payload,
-        nextStep: 2,
+        nextStep: state.selectedCandidate ? 2 : 1,
       };
     }
   }
@@ -77,7 +77,7 @@ const wizReducer = (state, action) => {
   return defaultWizState;
 };
 
-export default function Wizard2(props) {
+export default function Wizard(props) {
   const history = useHistory();
   const [error, setError] = useState("");
   const [wizState, dispatchWizAction] = useReducer(wizReducer, defaultWizState);
