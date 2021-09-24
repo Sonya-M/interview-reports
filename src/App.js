@@ -52,9 +52,9 @@ function App() {
   };
 
   return (
+    <ErrorBoundary>
+      <BgContainer >
 
-    <BgContainer >
-      <ErrorBoundary>
         <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
         {(!loggedIn) ?
           (
@@ -86,17 +86,15 @@ function App() {
             <Route>
               <Redirect from="/candidates" to="/"></Redirect>
             </Route>
-            {/* </ErrorBoundary> */}
-            {/* For some reason, Page not found below is rendered below other pages when wrapped in ErrorBoundary, so I placed it outside
-            TODO: ask why!!!*/}
             <Route>
               <ErrorDisplay message="Page not found" />
             </Route>
 
           </Switch>}
         <Footer />
-      </ErrorBoundary>
-    </BgContainer>
+
+      </BgContainer>
+    </ErrorBoundary>
 
   );
 }
