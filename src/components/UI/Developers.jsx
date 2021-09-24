@@ -106,7 +106,7 @@ const Developers = () => {
         <div className={style.thecard}>
           <div className={style.thefront}>
             <img
-              src="https://i.imgur.com/LO9O3ho.jpg"
+              src="https://i.imgur.com/pECrTC9.png"
               className={style.avatar}
               alt="Nikola Draganic"
             />

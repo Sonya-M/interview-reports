@@ -7,7 +7,7 @@ import {
   // XCircleFill,
   // CheckCircleFill,
 } from "react-bootstrap-icons";
-import style from "./Table.module.css";
+import style from "./TableInfo.module.css";
 import ModalWrapper from "./ModalWrapper";
 import ReportDetails from "./ReportDetails";
 import { TrashFill } from "react-bootstrap-icons";
