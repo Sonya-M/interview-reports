@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ReportCommunicator from "../services/ReportCommunicator";
 import CandidateCommunicator from "../services/CandidateCommunicator";
@@ -17,71 +17,100 @@ import { SESSION_EXPIRED } from "../shared/constants";
 import styles from "./Wizard.module.css";
 import ErrorDisplay from "../components/ErrorDisplay";
 
-export default function Wizard(props) {
+const defaultWizState = {
+  selectedCandidate: null,
+  selectedCompany: null,
+  currentStep: 0, // currently active step, can already have input
+  nextStep: 0, // next step where no input was provided by user
+};
+
+const wizReducer = (state, action) => {
+  if (action.type === "SELECT_CANDIDATE") {
+    if (
+      state.selectedCandidate &&
+      state.selectedCandidate.id === action.payload.id
+    ) {
+      return {
+        ...state,
+        selectedCandidate: null, // deselect candidate
+        nextStep: 0,
+      };
+    } else {
+      return {
+        ...state,
+        selectedCandidate: action.payload,
+        nextStep: 1,
+      };
+    }
+  }
+  if (action.type === "SELECT_COMPANY") {
+    if (
+      state.selectedCompany &&
+      state.selectedCompany.id === action.payload.id
+    ) {
+      return {
+        ...state,
+        selectedCompany: null,
+        nextStep: 1,
+      };
+    } else {
+      return {
+        ...state,
+        selectedCompany: action.payload,
+        nextStep: 2,
+      };
+    }
+  }
+  if (action.type === "BACK_BTN_CLICK") {
+    if (state.currentStep !== 0)
+      return { ...state, currentStep: state.currentStep - 1 };
+  }
+  if (action.type === "NEXT_BTN_CLICK") {
+    return { ...state, currentStep: state.currentStep + 1 }; // no next btn in form
+  }
+  if (action.type === "STEP_CLICK") {
+    // change currentStep only if going back or going 1 step forward
+    if (state.nextStep >= action.step) {
+      return { ...state, currentStep: action.step };
+    }
+  }
+  return defaultWizState;
+};
+
+export default function Wizard2(props) {
   const history = useHistory();
-  const [currentStep, setCurrentStep] = useState(0);
-  const [input, setInput] = useState({});
   const [error, setError] = useState("");
-  const [selectedCandidate, setSelectedCandidate] = useState(null);
-  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [wizState, dispatchWizAction] = useReducer(wizReducer, defaultWizState);
 
   const handleSelectCandidate = (candidate) => {
-    setSelectedCandidate((prevSelectedCandidate) => {
-      if (prevSelectedCandidate && prevSelectedCandidate.id === candidate.id) {
-        return null; // deselect
-      } else {
-        return candidate;
-      }
-    });
-    setInput((prevInput) => {
-      if (prevInput.candidateId && prevInput.candidateId === candidate.id) {
-        // reset input to init state
-        const newInput = { ...prevInput };
-        delete newInput.candidateName;
-        delete newInput.candidateId;
-        return {
-          ...newInput,
-        };
-      } else {
-        return {
-          ...prevInput,
-          candidateName: candidate.name,
-          candidateId: candidate.id,
-        };
-      }
-    });
+    dispatchWizAction({ type: "SELECT_CANDIDATE", payload: candidate });
   };
 
   const handleSelectCompany = (company) => {
-    setSelectedCompany((prevSelectedCompany) => {
-      if (prevSelectedCompany && prevSelectedCompany.id === company.id) {
-        return null; // deselect
-      } else {
-        return company;
-      }
-    });
+    dispatchWizAction({ type: "SELECT_COMPANY", payload: company });
+  };
 
-    setInput((prevInput) => {
-      if (prevInput.companyId && prevInput.companyId === company.id) {
-        // reset input to init state
-        const newInput = { ...prevInput };
-        delete newInput.companyName;
-        delete newInput.companyId;
-        return {
-          ...newInput,
-        };
-      } else
-        return {
-          ...prevInput,
-          companyName: company.name,
-          companyId: company.id,
-        };
-    });
+  const handleBackBtnClick = () => {
+    dispatchWizAction({ type: "BACK_BTN_CLICK" });
+  };
+
+  const handleNextBtnClick = () => {
+    dispatchWizAction({ type: "NEXT_BTN_CLICK" });
+  };
+
+  const handleStepClick = (step) => {
+    dispatchWizAction({ type: "STEP_CLICK", step: step });
   };
 
   const handleFormSubmit = (formInput) => {
     const { interviewDate, phase, status, note } = formInput;
-    const reportData = { ...input, interviewDate, phase, status, note };
+    const selectedData = {
+      candidateId: wizState.selectedCandidate.id,
+      candidateName: wizState.selectedCandidate.name,
+      companyId: wizState.selectedCompany.id,
+      companyName: wizState.selectedCompany.name,
+    };
+    const reportData = { ...selectedData, interviewDate, phase, status, note };
     console.log("reportData: ", reportData);
     ReportCommunicator.save(reportData)
       .then((response) => console.log(response))
@@ -92,31 +121,12 @@ export default function Wizard(props) {
       });
   };
 
-  const handleBackBtnClick = () => {
-    if (currentStep !== 0) setCurrentStep((prevStep) => prevStep - 1);
-  };
-
-  const handleNextBtnClick = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
-  };
-
-  const handleStepClick = (step) => {
-    // only react if going back:
-    const nextStep =
-      selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
-    if (nextStep >= step) {
-      setCurrentStep(step);
-    }
-  };
-
   const sharedSelectProps = {
-    currentStep,
+    currentStep: wizState.currentStep,
     onBackBtnClick: handleBackBtnClick,
     onNextBtnClick: handleNextBtnClick,
+    onSessionExpired: props.onSessionExpired,
   };
-
-  const nextStep =
-    selectedCompany && selectedCandidate ? 2 : selectedCandidate ? 1 : 0;
 
   if (error) return <ErrorDisplay message={error} />;
 
@@ -124,38 +134,40 @@ export default function Wizard(props) {
     <Row className="mt-4  m-0">
       <Col sm={3} lg={2} className={styles.stepsDiv}>
         <WizardSteps
-          currentStep={currentStep}
-          nextStep={nextStep}
+          currentStep={wizState.currentStep}
+          nextStep={wizState.nextStep}
           onClick={handleStepClick}
         />
         <hr />
         <WizSelectedInfo
-          candidateName={selectedCandidate ? selectedCandidate.name : ""}
-          companyName={selectedCompany ? selectedCompany.name : ""}
+          candidateName={
+            wizState.selectedCandidate ? wizState.selectedCandidate.name : ""
+          }
+          companyName={
+            wizState.selectedCompany ? wizState.selectedCompany.name : ""
+          }
         />
       </Col>
       <Col sm={8} className={styles.optionsDiv}>
-        {currentStep === 0 && (
+        {wizState.currentStep === 0 && (
           <WizSelect
             onSelectItem={handleSelectCandidate}
             communicator={CandidateCommunicator}
             ItemCard={WizCandidateCard}
-            selected={selectedCandidate}
-            onSessionExpired={props.onSessionExpired}
+            selected={wizState.selectedCandidate}
             {...sharedSelectProps}
           />
         )}
-        {currentStep === 1 && (
+        {wizState.currentStep === 1 && (
           <WizSelect
             onSelectItem={handleSelectCompany}
             communicator={CompanyCommunicator}
             ItemCard={WizCompanyCard}
-            selected={selectedCompany}
-            onSessionExpired={props.onSessionExpired}
+            selected={wizState.selectedCompany}
             {...sharedSelectProps}
           />
         )}
-        {currentStep === 2 && (
+        {wizState.currentStep === 2 && (
           <WizReportForm
             onBackBtnClick={handleBackBtnClick}
             onSubmit={handleFormSubmit}
