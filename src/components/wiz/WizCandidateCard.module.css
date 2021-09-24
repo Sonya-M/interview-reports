@@ -4,6 +4,7 @@
   object-fit: cover;
   max-width: 100%;
   margin: 0.3rem;
+  margin-right: 0.8rem;
 }
 
 .info {
