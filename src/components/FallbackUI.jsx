@@ -10,8 +10,8 @@ export default function FallbackUI(props) {
   };
 
   return (
-    <div className={`text-center mt-5 ${styles.fallback}`}>
-      <h2 className="display-4">Something went wrong...</h2>
+    <div className={`text-center ${styles.fallback}`}>
+      <h2 className="display-4 pt-5">Something went wrong...</h2>
       <div className="m-5">
         <p>An unexpected error has occurred.</p>
         <p>Sorry for the inconvenience.</p>
