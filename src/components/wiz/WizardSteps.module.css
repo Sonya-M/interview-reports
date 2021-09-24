@@ -1,25 +1,22 @@
 ol.stepList,
 ol.stepList li {
   all: unset;
+  font-size: 1.1rem;
 }
 
 ol.stepList li {
   margin: 0;
   display: block;
   padding: 0.5rem;
-  font-size: 1.1rem;
-  /* font-weight: lighter; */
 }
 ol.stepList li.active {
   cursor: pointer;
 }
 ol.stepList li.active:hover {
-  font-size: 1.15rem;
   text-shadow: 2px 2px 4px #ddd;
 }
 
 ol.stepList li.currentStep {
   color: rgb(0, 140, 255);
   font-weight: bolder;
-  font-size: 1.2rem;
 }
