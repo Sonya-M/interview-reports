@@ -4,7 +4,7 @@ import ReportCommunicator from "../services/ReportCommunicator";
 import CandidateCommunicator from "../services/CandidateCommunicator";
 import CompanyCommunicator from "../services/CompanyCommunicator";
 
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ProgressBar } from "react-bootstrap";
 import WizardSteps from "../components/wiz/WizardSteps";
 import WizSelect from "../components/wiz/WizSelect";
 import WizCandidateCard from "../components/wiz/WizCandidateCard";
@@ -138,7 +138,9 @@ export default function Wizard(props) {
           nextStep={wizState.nextStep}
           onClick={handleStepClick}
         />
-        <hr />
+        <div className="text-center my-4" style={{width: "100%"}}>
+          <ProgressBar max="3" now={wizState.currentStep + 1} variant="dark"/>
+        </div>
         <WizSelectedInfo
           candidateName={
             wizState.selectedCandidate ? wizState.selectedCandidate.name : ""
