@@ -96,7 +96,7 @@ export default function Report(props) {
             <div className={style.name}>{selectedCandidate.name}</div>
           </div>
           <div className={style.containerMax}>
-            <div className={showMore ? style.cardMore : style.card}>
+            <div className={`${style.card} ${showMore ? style.cardMore : style.cardLess}`}>
               <span className={style.about}>About</span>
               <p className={style.candidateInfo}>
                 Email

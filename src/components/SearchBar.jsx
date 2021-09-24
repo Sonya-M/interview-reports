@@ -8,7 +8,7 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import { Search } from "react-bootstrap-icons";
+import { Search, X } from "react-bootstrap-icons";
 
 const SearchBar = (props) => {
   const [searchText, setSearchText] = useState("");
@@ -29,7 +29,7 @@ const SearchBar = (props) => {
 
   return (
     <Form as={Row} className="m-5" onSubmit={handleSubmit}>
-      <Col md={6} className="offset-md-3">
+      <Col md={6} sm={10}  className="offset-md-3 offset-sm-1">
         <InputGroup className="mb-2">
           <InputGroup.Text>
             <Search size="1rem" />
@@ -39,10 +39,11 @@ const SearchBar = (props) => {
             name="searchForm"
             value={searchText}
             onChange={(e) => handleChange(e.target.value)}
+            style={{borderRight: "none"}}
           />
-          <Button className="bg-danger text-light" style={{zIndex : "1"}} onClick={handleClear}>
-            x
-          </Button>
+          <InputGroup.Text onClick={handleClear} className="bg-white" style={{borderLeft: "none", cursor: "pointer"}}>
+            <X size="1.5rem" style={{zIndex : "1"}} />
+          </InputGroup.Text>
         </InputGroup>
       </Col>
     </Form>
