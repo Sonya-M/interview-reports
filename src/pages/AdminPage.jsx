@@ -49,7 +49,7 @@ export default function AdminPage(props) {
         setError(error.message);
       });
   };
-
+  
   if (error) {
     return <ErrorDisplay message={error} />;
   }

@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 .th > tr > th:first-child {
   border-top-left-radius: 10px;
 }
@@ -35,34 +32,6 @@
   .th > tr > th:last-child {
     border-top-right-radius: 10px;
   }
-  .tr:last-child > td:first-child {
-    border-bottom-left-radius: 10px;
-  }
-  .tr:last-child > td:last-child {
-    border-bottom-right-radius: 10px;
-  }
-  .passed {
-    color: #2c876d;
-  }
-  .declined {
-    color: #872c2c;
-  }
-  .tr > td {
-    padding: 0.3em;
-    font-weight: 700;
-  }
-
-  .tr:nth-child(even) {
-    background: hsl(0, 0%, 80%);
-    color: hsl(0, 0%, 27%);
-  }
-  .tr:nth-child(odd) {
-    background: hsl(0, 0%, 90%);
-    color: hsl(0, 0%, 27%);
-  }
-  .eyeFill:hover {
-    cursor: pointer;
-  }
 }
 @media screen and (min-width: 481px) and (max-width: 913px) {
   .table {
@@ -79,29 +48,6 @@
     line-height: 1.4;
     background-color: #6c7ae0;
     padding: 0.5em;
-  }
-  .tr > td {
-    padding: 0.5em;
-    font-weight: 700;
-  }
-
-  .passed {
-    color: #2c876d;
-  }
-  .declined {
-    color: #872c2c;
-  }
-
-  .tr:nth-child(even) {
-    background: hsl(0, 0%, 80%);
-    color: hsl(0, 0%, 27%);
-  }
-  .tr:nth-child(odd) {
-    background: hsl(0, 0%, 90%);
-    color: hsl(0, 0%, 27%);
-  }
-  .eyeFill:hover {
-    cursor: pointer;
   }
 }
 @media screen and (min-width: 913px) {
@@ -137,40 +83,5 @@
     /* line-height: 1.4; */
     background-color: #4c4c4e;
     padding: 1em;
-  }
-  .tr > td {
-    padding: 1em;
-    font-weight: 700;
-  }
-  .table > .th > tr > th:first-child {
-    border-top-left-radius: 10px;
-  }
-  .table > .th > tr > th:last-child {
-    border-top-right-radius: 10px;
-  }
-  .table > .tb > .tr:last-child > td:first-child {
-    border-bottom-left-radius: 10px;
-  }
-  .table > .tb > .tr:last-child > td:last-child {
-    border-bottom-right-radius: 10px;
-  }
-  .passed {
-    color: #2c876d;
-  }
-  .declined {
-    color: #872c2c;
-  }
-
-  .tr:nth-child(even) {
-    background: hsl(0, 0%, 80%);
-    color: hsl(0, 0%, 27%);
-  }
-  .tr:nth-child(odd) {
-    background: hsl(0, 0%, 90%);
-    color: hsl(0, 0%, 27%);
-  }
-
-  .eyeFill:hover {
-    cursor: pointer;
   }
 }
