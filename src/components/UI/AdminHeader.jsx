@@ -23,6 +23,10 @@ export default function AdminHeader(props) {
       <PlusCircleFill size="1.4rem" />
       &nbsp;&nbsp;New Company
     </Link>,
+    <Link to="/new_candidate">
+    <PlusCircleFill size="1.4rem" />
+    &nbsp;&nbsp;New Candidate
+  </Link>,
   ];
   return (
     <Header

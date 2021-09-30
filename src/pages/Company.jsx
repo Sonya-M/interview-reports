@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import CompanyCommunicator from "../services/CompanyCommunicator";
 import style from "./Company.module.css";
+import { useHistory } from 'react-router-dom';
 
 const Company = () => {
   const [id, setId] = useState("");
@@ -10,6 +11,7 @@ const Company = () => {
   const [noName, setNoName] = useState(false);
   const [noEmail, setNoEmail] = useState(false);
   const [noData, setNoData] = useState(false);
+  const history = useHistory();
 
   const handleId = () => {
     setId(document.getElementById("company_id").value);
@@ -40,7 +42,7 @@ const Company = () => {
       setNoName(true);
       setNoData(true)
     }
-    if (email.length < 1){
+    if (email.length < 1 || !email.includes('@') || !email.includes('.')){
       setNoEmail(true)
       setNoData(true)
     }
@@ -51,6 +53,8 @@ const Company = () => {
       CompanyCommunicator.save(formInput).then((response) =>
         console.log(response)
       );
+      history.push('/admin')
+
     } 
   };
   return (
@@ -62,6 +66,7 @@ const Company = () => {
           type="number"
           id="company_id"
           className={noId ? style.inputError : style.input}
+          placeholder="Company ID"
           onChange={handleId}
         ></input>
         <label htmlFor="name">NAME:</label>
@@ -69,6 +74,7 @@ const Company = () => {
           type="text"
           id="name"
           className={noName ? style.inputError : style.input}
+          placeholder="Company name"
           onChange={handleName}
         ></input>
         <label htmlFor="email">EMAIL:</label>
@@ -76,6 +82,7 @@ const Company = () => {
           type="email"
           id="email"
           className={noEmail ? style.inputError : style.input}
+          placeholder="example@example.com"
           onChange={handleEmail}
         >
           {console.log(`id: ${id.length} name: ${name} email: ${email}  `)}
