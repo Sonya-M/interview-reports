@@ -16,6 +16,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import About from "./pages/About";
 import { BgContainer } from "./components/BgContainer";
+import Company from "./pages/Company";
+import NewCandidate from "./pages/NewCandidate";
 
 
 function App() {
@@ -78,6 +80,14 @@ function App() {
             <Route exact path="/wizard">
 
               <Wizard onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/company">
+
+              <Company onSessionExpired={handleSessionExpired} />
+            </Route>
+            <Route exact path="/new_candidate">
+
+              <NewCandidate onSessionExpired={handleSessionExpired} />
             </Route>
             <Route exact path="/about">
 

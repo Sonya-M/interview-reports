@@ -76,7 +76,7 @@ function concatParams(params) {
 export function saveData(action, method, data) {
   let link = BASE_URL + action;
   return (fetch(link, {
-    method: method,
+    method: "POST",
     headers: getHeaders(),
     body: JSON.stringify(data),
   }).then(response => handleResponse(response))

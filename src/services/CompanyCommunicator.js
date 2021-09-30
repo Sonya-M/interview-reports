@@ -11,4 +11,8 @@ export default class CompanyCommunicator {
         return json.map(c => new Company(c));
       });
   }
+  static save(company) {
+    return service.saveData("companies", "POST", company)
+      .then(company => new Company(company));
+  }
 }
