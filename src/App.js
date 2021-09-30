@@ -18,6 +18,7 @@ import About from "./pages/About";
 import { BgContainer } from "./components/BgContainer";
 import Company from "./pages/Company";
 import NewCandidate from "./pages/NewCandidate";
+import ThreeAnimation from "./components/UI/ThreeAnimation";
 
 
 function App() {
