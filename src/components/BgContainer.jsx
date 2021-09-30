@@ -10,7 +10,7 @@ export const BgContainer = (props) => {
     <Container
       fluid
       className={
-        location.pathname === "/admin" || location.pathname === "/wizard"
+        location.pathname === "/admin" || location.pathname === "/wizard" || location.pathname === "/company"
           ? `${classes} ${styles.adminBg}`
           : classes
       }

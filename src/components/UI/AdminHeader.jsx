@@ -8,7 +8,7 @@ export default function AdminHeader(props) {
   const handleClick = () => {
     history.push("/admin");
     window.location.reload();
-  }
+  };
   const title = <span onClick={handleClick}>Admin</span>;
   const menu = [
     <Link to="/">
@@ -18,6 +18,10 @@ export default function AdminHeader(props) {
     <Link to="/wizard">
       <PlusCircleFill size="1.4rem" />
       &nbsp;&nbsp;New Report
+    </Link>,
+    <Link to="/company">
+      <PlusCircleFill size="1.4rem" />
+      &nbsp;&nbsp;New Company
     </Link>,
   ];
   return (
