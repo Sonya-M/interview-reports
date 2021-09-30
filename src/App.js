@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Report from "./pages/Report";
 import Candidates from './pages/Candidates';
-import { Route, Switch, Redirect, useHistory } from 'react-router';
+import { Route, Switch, Redirect, useHistory, Router } from 'react-router';
 import ErrorDisplay from "./components/ErrorDisplay";
 import Footer from "./components/UI/Footer";
 import AdminPage from "./pages/AdminPage";
@@ -93,6 +93,9 @@ function App() {
 
               <About onSessionExpired={handleSessionExpired} />
             </Route>
+            <Router exact path="/three">
+              <ThreeAnimation/>
+              </Router>
             <Route>
               <Redirect from="/candidates" to="/"></Redirect>
             </Route>
