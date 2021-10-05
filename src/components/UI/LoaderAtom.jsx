@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import style from "./LoaderAtom.module.css";
+import ThreeAnimation from "./ThreeAnimation";
 
 const LoaderAtom = () => {
     const [phase, setPhase] = useState(0);
@@ -12,11 +13,7 @@ const LoaderAtom = () => {
   return (
      
     <div className={phase === 0 ? style.main : style.mainDisappear}>
-      <div className={style.center}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <ThreeAnimation/>
     </div>
    
   );

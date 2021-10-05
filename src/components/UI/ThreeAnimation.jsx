@@ -1,7 +1,16 @@
-import React from 'react';
-import { Canvas } from "react-three-fiber";
+import { Canvas } from "@react-three/fiber";
+import { Fragment, Suspense } from "react";
+import { Sphere } from "./Sphere";
 
-const ThreeAnimation = () => {
-    return (<div>test</div>)
+function ThreeAnimation() {
+  return (
+    <Fragment>
+      <Canvas>
+        <Suspense fallback={null}>
+          <Sphere />
+        </Suspense>
+      </Canvas>
+    </Fragment>
+  );
 }
-export default ThreeAnimation
+export default ThreeAnimation;
