@@ -42,7 +42,7 @@ export function Sphere(props) {
   return (
     <>
       {/* <ambientLight intensity={1} /> */}
-      <pointLight color="#f6f3ea" position={[2, 0, 7]} intensity={3.2} />
+      <pointLight color="#f6f3ea" position={[10, 0, 7]} intensity={3.2} />
       {/* <Stars
         radius={300}
         depth={60}
